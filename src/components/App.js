@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
-import { getCategories } from '../utils/api'
+import { Route } from 'react-router-dom';
+import { getCategories } from '../utils/api';
 
 class App extends Component {
   state = {
     categories: [],
   }
+  
   componentDidMount() {
     getCategories().then((categories) => {
       this.setState({ categories });
