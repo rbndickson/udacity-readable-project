@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { getCategories } from './utils/api'
 
 class App extends Component {
