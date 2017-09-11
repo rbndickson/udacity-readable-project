@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { getCategories } from '../utils/api';
+import { connect } from 'react-redux';
 
 class App extends Component {
-  state = {
-    categories: [],
-  }
-  
-  componentDidMount() {
-    getCategories().then((categories) => {
-      this.setState({ categories });
-    });
-  }
-
   render() {
     return (
       <div className="App">
@@ -21,7 +11,7 @@ class App extends Component {
         </div>
         <div>
           <ul>
-            {this.state.categories.map((category) => (
+            {this.props.categories.map((category) => (
               <li key={category.name}>{category.name}</li>
             ))}
           </ul>
@@ -41,4 +31,23 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps() {
+  return {
+    categories: [
+      {
+        name: 'react',
+        path: 'react'
+      },
+      {
+        name: 'redux',
+        path: 'redux'
+      },
+      {
+        name: 'udacity',
+        path: 'udacity'
+      }
+    ]
+  }
+}
+
+export default connect(mapStateToProps)(App);
