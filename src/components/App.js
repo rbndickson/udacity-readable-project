@@ -24,14 +24,19 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Readable</h2>
-        </div>
-        <section>
-          <div>
+          <nav>
             <ul>
+              <li>
+                all
+              </li>
               {this.props.categories.map((category) => (
                 <li key={category.name}>{category.name}</li>
               ))}
             </ul>
+          </nav>
+        </div>
+        <section>
+          <div>
           </div>
         </section>
         <section>
