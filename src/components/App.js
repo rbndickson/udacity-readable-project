@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getCategories } from '../utils/api';
+import { addCategory } from '../actions'
 
 class App extends Component {
+  componentWillMount() {
+    getCategories().then((categories) => {
+      categories.forEach((category) => {
+        this.props.dispatch(addCategory(category));
+      })
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -31,22 +41,12 @@ class App extends Component {
   }
 }
 
-function mapStateToProps() {
+
+function mapStateToProps (categories) {
+  const category_keys = Object.keys(categories);
+
   return {
-    categories: [
-      {
-        name: 'react',
-        path: 'react'
-      },
-      {
-        name: 'redux',
-        path: 'redux'
-      },
-      {
-        name: 'udacity',
-        path: 'udacity'
-      }
-    ]
+    categories: category_keys.map(category_key => categories[category_key])
   }
 }
 
