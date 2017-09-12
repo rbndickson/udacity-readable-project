@@ -4,6 +4,7 @@ import {
   ADD_CATEGORY,
   CHANGE_CATEGORY_FILTER,
   ADD_POST,
+  UPDATE_POST,
   ADD_COMMENT,
 } from '../actions'
 
@@ -31,10 +32,15 @@ function categoryFilter (state = 'all', action) {
 }
 
 function posts (state = {}, action) {
+  const { post } = action
+
   switch (action.type) {
     case ADD_POST :
-      const { post } = action
-
+      return {
+        ...state,
+        [post.id]: post
+      }
+    case UPDATE_POST :
       return {
         ...state,
         [post.id]: post

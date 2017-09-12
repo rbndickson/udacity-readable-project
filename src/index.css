@@ -44,6 +44,12 @@ nav ul li {
   background-color: #FFF;
 }
 
+.vote-buttons {
+  display: inline-block;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
 .post-title {
   display: inline;
   text-align: left;
