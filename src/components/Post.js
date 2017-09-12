@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPostComments, upVote, downVote } from '../utils/api';
-import { addComment, updatePost } from '../actions';
+import { getPostComments } from '../utils/api';
+import { addComment } from '../actions';
 import CommentList from './CommentList';
+import VoteButtons from './VoteButtons';
 import {Link} from 'react-router-dom';
 
 class Post extends Component {
@@ -23,18 +24,7 @@ class Post extends Component {
             <div className="post-score">
               {post.voteScore}
             </div>
-            <div className="vote-buttons">
-              <div className="vote-buttons" onClick={ () => {
-                upVote(post.id).then( p => {
-                  this.props.dispatch(updatePost(p))
-                })
-              }}>⬆</div>
-              <div className="vote-buttons" onClick={ () => {
-                downVote(post.id).then( p => {
-                  this.props.dispatch(updatePost(p))
-                })
-              }}>⬇</div>
-            </div>
+            <VoteButtons voteType='post' id={post.id}/>
             <h3 className="post-title">
               <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
             </h3>
