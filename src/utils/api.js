@@ -27,7 +27,7 @@ export const getPostComments = (postID) =>
   fetch(`${api}/posts/${postID}/comments`, { headers })
     .then(res => res.json())
 
-export const upVote = (postID) =>
+export const upVotePost = (postID) =>
   fetch(`${api}/posts/${postID}`, {
     method: 'POST',
     headers: {
@@ -37,7 +37,7 @@ export const upVote = (postID) =>
     body: JSON.stringify({option: 'upVote'})
   }).then(res => res.json())
 
-export const downVote = (postID) =>
+export const downVotePost = (postID) =>
   fetch(`${api}/posts/${postID}`, {
     method: 'POST',
     headers: {
