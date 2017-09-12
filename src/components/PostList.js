@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getPosts } from '../utils/api';
 import { addPost } from '../actions';
+import Post from './Post';
 
 class PostList extends Component {
   componentDidMount() {
@@ -14,11 +15,13 @@ class PostList extends Component {
 
   render() {
     return (
-      <ul>
+      <div>
         {this.props.posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <article key={post.id}>
+            <Post id={post.id}/>
+          </article>
         ))}
-      </ul>
+      </div>
     );
   }
 }
