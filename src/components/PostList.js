@@ -23,12 +23,17 @@ class PostList extends Component {
   }
 }
 
-
 function mapStateToProps (state) {
   const post_keys = Object.keys(state.posts);
 
+  const allPosts = post_keys.map(post_key => state.posts[post_key]);
+
+  const posts = state.categoryFilter === 'all'
+    ? allPosts
+    : allPosts.filter(post => post.category === state.categoryFilter)
+
   return {
-    posts: post_keys.map(post_key => state.posts[post_key]),
+    posts: posts,
   }
 }
 
