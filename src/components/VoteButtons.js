@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { upVotePost, downVotePost } from '../utils/api';
-import { updatePost } from '../actions';
+import { upVotePost, downVotePost, upVoteComment, downVoteComment } from '../utils/api';
+import { updatePost, updateComment } from '../actions';
 
 class VoteButtons extends Component {
   render() {
@@ -10,14 +10,22 @@ class VoteButtons extends Component {
     return (
       <div className="vote-buttons">
         <div className="vote-buttons" onClick={ () => {
-          upVotePost(id).then( p => {
-            this.props.dispatch(updatePost(p))
-          })
+          voteType === 'post'
+          ? upVotePost(id).then(post => {
+             this.props.dispatch(updatePost(post))
+            })
+          : upVoteComment(id).then(comment => {
+              this.props.dispatch(updateComment(comment))
+            })
         }}>⬆</div>
         <div className="vote-buttons" onClick={ () => {
-          downVotePost(id).then( p => {
-            this.props.dispatch(updatePost(p))
-          })
+          voteType === 'post'
+          ? downVotePost(id).then(post => {
+              this.props.dispatch(updatePost(post))
+            })
+          : downVoteComment(id).then(comment => {
+              this.props.dispatch(updateComment(comment))
+            })
         }}>⬇</div>
       </div>
     );

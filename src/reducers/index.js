@@ -6,6 +6,7 @@ import {
   ADD_POST,
   UPDATE_POST,
   ADD_COMMENT,
+  UPDATE_COMMENT,
 } from '../actions'
 
 function categories (state = {}, action) {
@@ -50,12 +51,16 @@ function posts (state = {}, action) {
   }
 }
 
-
 function comments (state = {}, action) {
+  const { comment } = action
+
   switch (action.type) {
     case ADD_COMMENT :
-      const { comment } = action
-
+      return {
+        ...state,
+        [comment.id]: comment
+      }
+    case UPDATE_COMMENT :
       return {
         ...state,
         [comment.id]: comment

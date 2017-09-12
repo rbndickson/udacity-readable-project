@@ -3,6 +3,7 @@ export const CHANGE_CATEGORY_FILTER = 'CHANGE_CATEGORY_FILTER';
 export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_POST = 'UPDATE_POST';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 
 export function addCategory (category) {
   return {
@@ -35,6 +36,13 @@ export function updatePost (post) {
 export function addComment (comment) {
   return {
     type: ADD_COMMENT,
+    comment,
+  }
+}
+
+export function updateComment (comment) {
+  return {
+    type: UPDATE_COMMENT,
     comment,
   }
 }

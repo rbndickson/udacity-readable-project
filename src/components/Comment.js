@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import VoteButtons from './VoteButtons';
 
 class Comment extends Component {
 
@@ -12,6 +13,7 @@ class Comment extends Component {
           <div className="post-score">
             {comment.voteScore}
           </div>
+          <VoteButtons voteType='comment' id={comment.id}/>
         </div>
         <div className="post-body">
           {comment.body}
