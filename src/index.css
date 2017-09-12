@@ -4,15 +4,14 @@ body {
   font-family: sans-serif;
 }
 
-.app {
+h1, h2, h3 {
   text-align: center;
 }
 
 .app-header {
-  background-color: #eee;
+  background-color: #5BBCAF;
   height: 60px;
   padding: 10px 0 30px 0;
-  color: #000;
 }
 
 nav ul {
@@ -26,4 +25,20 @@ nav ul li {
   width: 100px;
   text-align: center;
   display: inline-block;
+}
+
+.post {
+  width: 600px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #D9EBE6;
+}
+
+.post-author {
+  font-size: .9em;
+}
+
+.post-date {
+  font-size: .8em;
+  color: #14939E;
 }

@@ -12,13 +12,13 @@ class Post extends Component {
         <h3>
           {post.title}
         </h3>
-        <p>
+        <div className="post-body">
           {post.body}
-        </p>
-        <p>
+        </div>
+        <p className="post-author">
           Posted by {post.author}
         </p>
-        <p>
+        <p className="post-date">
           {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
         </p>
       </div>
