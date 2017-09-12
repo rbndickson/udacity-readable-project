@@ -11,7 +11,7 @@ class App extends Component {
           <h2>Readable</h2>
           <Navigation />
         </div>
-        <Route exact path="/" component={Main} category='all'/>
+        <Route exact path="/" component={Main} />
         <Route path="/:category" component={Main} />
       </div>
     );
