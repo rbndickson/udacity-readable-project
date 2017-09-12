@@ -42,3 +42,11 @@ nav ul li {
   font-size: .8em;
   color: #14939E;
 }
+
+.post-comments-container {
+  background-color: #ECFFFB;
+}
+
+.post-comments {
+  margin-left: 20px;
+}

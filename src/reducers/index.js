@@ -4,6 +4,7 @@ import {
   ADD_CATEGORY,
   CHANGE_CATEGORY_FILTER,
   ADD_POST,
+  ADD_COMMENT,
 } from '../actions'
 
 function categories (state = {}, action) {
@@ -43,8 +44,24 @@ function posts (state = {}, action) {
   }
 }
 
+
+function comments (state = {}, action) {
+  switch (action.type) {
+    case ADD_COMMENT :
+      const { comment } = action
+
+      return {
+        ...state,
+        [comment.id]: comment
+      }
+    default :
+      return state
+  }
+}
+
 export default combineReducers({
   categories,
   categoryFilter,
   posts,
+  comments,
 })

@@ -1,6 +1,7 @@
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const CHANGE_CATEGORY_FILTER = 'CHANGE_CATEGORY_FILTER';
-export const ADD_POST = 'ADD_POST'
+export const ADD_POST = 'ADD_POST';
+export const ADD_COMMENT = 'ADD_COMMENT';
 
 export function addCategory (category) {
   return {
@@ -20,5 +21,12 @@ export function addPost (post) {
   return {
     type: ADD_POST,
     post,
+  }
+}
+
+export function addComment (comment) {
+  return {
+    type: ADD_COMMENT,
+    comment,
   }
 }
