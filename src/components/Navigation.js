@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCategories } from '../utils/api';
-import { addCategory } from '../actions';
+import { addCategory, changeCategoryFilter } from '../actions';
+import { Link } from 'react-router-dom';
 
 class Navigation extends Component {
   componentDidMount() {
@@ -16,11 +17,17 @@ class Navigation extends Component {
     return (
       <nav>
         <ul>
-          <li>
-            <a href="/">all</a>
+          <li key="all" onClick={() => {
+            this.props.dispatch(changeCategoryFilter('all'));
+          }}>
+            <Link to="/">all</Link>
           </li>
           {this.props.categories.map((category) => (
-            <li key={category.name}><a href={category.path}>{category.name}</a></li>
+            <li key={category.name} onClick={() => {
+              this.props.dispatch(changeCategoryFilter(category.name));
+            }}>
+              <Link to={category.path}>{category.name}</Link>
+            </li>
           ))}
         </ul>
       </nav>

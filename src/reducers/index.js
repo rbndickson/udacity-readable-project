@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import {
   ADD_CATEGORY,
+  CHANGE_CATEGORY_FILTER,
   ADD_POST,
 } from '../actions'
 
@@ -14,6 +15,15 @@ function categories (state = {}, action) {
         ...state,
         [category.name]: category
       }
+    default :
+      return state
+  }
+}
+
+function categoryFilter (state = 'all', action) {
+  switch (action.type) {
+    case CHANGE_CATEGORY_FILTER :
+      return action.category
     default :
       return state
   }
@@ -35,5 +45,6 @@ function posts (state = {}, action) {
 
 export default combineReducers({
   categories,
+  categoryFilter,
   posts,
 })
