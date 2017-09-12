@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getPostComments } from '../utils/api';
 import { addComment } from '../actions';
-import Comment from './Comment';
+import CommentList from './CommentList';
 
 class Post extends Component {
   componentDidMount() {
@@ -31,20 +31,8 @@ class Post extends Component {
             {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
           </p>
         </div>
-        {this.props.comments && (
-          <div className="post-comments-container">
-          <hr />
-            <div className="post-comments">
-              <h4>Comments</h4>
-              {this.props.comments.map(comment => {
-                return (
-                  <div key={comment.id}>
-                    <Comment id={comment.id} />
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+        {this.props.comment_count > 0 && (
+          <CommentList id={post.id}/>
         )}
       </div>
     );
@@ -54,13 +42,14 @@ class Post extends Component {
 function mapStateToProps (state, ownProps) {
   const postID = ownProps.id
   const comment_keys = Object.keys(state.comments);
-  const comments = comment_keys
+  const comment_count = comment_keys
     .map(comment_key => state.comments[comment_key])
-    .filter(comment => comment.parentId == postID)
+    .filter(comment => comment.parentId === postID)
+    .length
 
   return {
     post: state.posts[ownProps.id],
-    comments: comments,
+    comment_count: comment_count,
   }
 }
 
