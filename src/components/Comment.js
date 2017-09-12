@@ -5,12 +5,14 @@ class Comment extends Component {
 
   render() {
     const { comment } = this.props;
-    
+
     return (
       <div className="post-parent">
-        <h3>
-          {comment.title}
-        </h3>
+        <div>
+          <div className="post-score">
+            {comment.voteScore}
+          </div>
+        </div>
         <div className="post-body">
           {comment.body}
         </div>

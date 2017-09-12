@@ -18,9 +18,14 @@ class Post extends Component {
     return (
       <div>
         <div className="post-parent">
-          <h3>
-            {post.title}
-          </h3>
+          <div>
+            <div className="post-score">
+              {post.voteScore}
+            </div>
+            <h3 className="post-title">
+              {post.title}
+            </h3>
+          </div>
           <div className="post-body">
             {post.body}
           </div>
@@ -40,7 +45,7 @@ class Post extends Component {
 }
 
 function mapStateToProps (state, ownProps) {
-  const postID = ownProps.id
+  const postID = ownProps.id;
   const comment_keys = Object.keys(state.comments);
   const comment_count = comment_keys
     .map(comment_key => state.comments[comment_key])
