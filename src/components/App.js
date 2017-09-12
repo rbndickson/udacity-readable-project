@@ -27,10 +27,10 @@ class App extends Component {
           <nav>
             <ul>
               <li>
-                all
+                <a href="/">all</a>
               </li>
               {this.props.categories.map((category) => (
-                <li key={category.name}>{category.name}</li>
+                <li key={category.name}><a href={category.path}>{category.name}</a></li>
               ))}
             </ul>
           </nav>
