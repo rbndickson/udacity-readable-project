@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getPostComments } from '../utils/api';
 import { addComment } from '../actions';
 import CommentList from './CommentList';
+import {Link} from 'react-router-dom';
 
 class Post extends Component {
   componentDidMount() {
@@ -23,7 +24,7 @@ class Post extends Component {
               {post.voteScore}
             </div>
             <h3 className="post-title">
-              {post.title}
+              <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
             </h3>
           </div>
           <div className="post-body">

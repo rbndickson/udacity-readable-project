@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Navigation from './Navigation';
 import Category from './Category';
+import PostDetail from './PostDetail';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         </div>
         <Route exact path="/" component={Category} />
         <Route exact path="/:category" component={Category} />
+        <Route exact path="/:category/:post" component={PostDetail} />
       </div>
     );
   }

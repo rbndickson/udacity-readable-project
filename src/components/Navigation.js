@@ -26,7 +26,7 @@ class Navigation extends Component {
             <li key={category.name} onClick={() => {
               this.props.dispatch(changeCategoryFilter(category.name));
             }}>
-              <Link to={category.path}>{category.name}</Link>
+              <Link to={`/${category.path}`}>{category.name}</Link>
             </li>
           ))}
         </ul>
