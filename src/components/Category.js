@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PostList from './PostList';
 import { changeCategoryFilter } from '../actions';
 
-class Main extends Component {
+class Category extends Component {
   updateCategoryFilter() {
     const category = this.props.match.params.category || 'all'
 
@@ -30,4 +30,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps)(Category);
