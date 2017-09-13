@@ -63,7 +63,7 @@ class NewPost extends Component {
             Category:
             <select name="category" value={this.props.category} onChange={this.handleChange}>
               {this.props.categories.map((category) => (
-                <option value={category.name}>{category.name}</option>
+                <option key={category.name} value={category.name}>{category.name}</option>
               ))}
             </select>
           </label>
