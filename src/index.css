@@ -27,7 +27,11 @@ nav ul li {
   display: inline-block;
 }
 
-.post {
+.new-post-link {
+  text-align: center;
+}
+
+.post, .new-post-form {
   width: 600px;
   margin: 20px auto;
   padding: 10px 20px;
@@ -70,4 +74,10 @@ nav ul li {
 
 .post-comments {
   margin-left: 20px;
+}
+
+.new-post-form * {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
 }

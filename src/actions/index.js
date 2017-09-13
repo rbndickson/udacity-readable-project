@@ -4,6 +4,8 @@ export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_POST = 'UPDATE_POST';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
+export const UPDATE_POST_FORM = 'UPDATE_POST_FORM';
+export const CLEAR_POST_FORM = 'CLEAR_POST_FORM';
 
 export function addCategory (category) {
   return {
@@ -44,5 +46,18 @@ export function updateComment (comment) {
   return {
     type: UPDATE_COMMENT,
     comment,
+  }
+}
+
+export function updatePostForm (postForm) {
+  return {
+    type: UPDATE_POST_FORM,
+    postForm
+  }
+}
+
+export function clearPostForm () {
+  return {
+    type: CLEAR_POST_FORM,
   }
 }

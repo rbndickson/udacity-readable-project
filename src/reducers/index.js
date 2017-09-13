@@ -7,6 +7,8 @@ import {
   UPDATE_POST,
   ADD_COMMENT,
   UPDATE_COMMENT,
+  UPDATE_POST_FORM,
+  CLEAR_POST_FORM,
 } from '../actions'
 
 function categories (state = {}, action) {
@@ -70,9 +72,35 @@ function comments (state = {}, action) {
   }
 }
 
+const initialPostFormState = {
+  title: '',
+  author: '',
+  body: '',
+}
+
+function postForm (state = initialPostFormState, action) {
+  const { postForm } = action
+
+  switch (action.type) {
+    case UPDATE_POST_FORM :
+      return {
+        ...state,
+        ...postForm
+      }
+    case CLEAR_POST_FORM :
+      return {
+        ...state,
+        ...initialPostFormState
+      }
+    default :
+      return state
+  }
+}
+
 export default combineReducers({
   categories,
   categoryFilter,
   posts,
   comments,
+  postForm,
 })

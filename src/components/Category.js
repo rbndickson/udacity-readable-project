@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostList from './PostList';
 import { changeCategoryFilter } from '../actions';
+import { Link } from 'react-router-dom';
 
 class Category extends Component {
   updateCategoryFilter() {
@@ -18,6 +19,9 @@ class Category extends Component {
     return (
       <main>
         <h2>{this.props.categoryName}</h2>
+        <div className="new-post-link">
+          <Link to="/posts/new">Add post</Link>
+        </div>
         <PostList />
       </main>
     );
