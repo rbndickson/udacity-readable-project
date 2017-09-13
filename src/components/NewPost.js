@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { updatePostForm, clearPostForm } from '../actions';
 import { createPost } from '../utils/api';
 
 class NewPost extends Component {
   componentWillUnmount() {
     this.props.dispatch(clearPostForm());
-    console.log('whoa unmounting!');
   }
 
   handleSubmit = (e) => {
@@ -21,7 +21,9 @@ class NewPost extends Component {
         body: this.props.body,
         category: this.props.category,
       }
-    )
+    ).then(() => {
+      this.setState({ redirect: true });
+    })
   }
 
   handleChange = (e) => {
@@ -36,6 +38,11 @@ class NewPost extends Component {
   }
 
   render() {
+    if (this.state && this.state.redirect) {
+      return (
+        <Redirect to={`/${this.props.category}`} />
+      )
+    }
     return (
       <main>
         <h2>Create New Post</h2>
