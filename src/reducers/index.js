@@ -76,6 +76,7 @@ const initialPostFormState = {
   title: '',
   author: '',
   body: '',
+  category: 'react'
 }
 
 function postForm (state = initialPostFormState, action) {

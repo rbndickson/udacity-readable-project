@@ -14,6 +14,7 @@ class NewPost extends Component {
 
   handleChange = (e) => {
     e.preventDefault()
+    console.log(e.target.value)
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -40,6 +41,14 @@ class NewPost extends Component {
              Body:
              <textarea name="body" value={this.props.body} onChange={this.handleChange} />
           </label>
+          <label>
+            Category:
+            <select name="category" value={this.props.category} onChange={this.handleChange}>
+              {this.props.categories.map((category) => (
+                <option value={category.name}>{category.name}</option>
+              ))}
+            </select>
+          </label>
           <input type="submit" value="Submit" />
         </form>
       </main>
@@ -48,10 +57,14 @@ class NewPost extends Component {
 }
 
 function mapStateToProps (state) {
+  const category_keys = Object.keys(state.categories);
+
   return {
+    categories: category_keys.map(category_key => state.categories[category_key]),
     title: state.postForm.title,
     author: state.postForm.author,
     body: state.postForm.body,
+    category: state.postForm.category,
   }
 }
 
