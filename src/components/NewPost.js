@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatePostForm, clearPostForm } from '../actions';
+import { createPost } from '../utils/api';
 
 class NewPost extends Component {
   componentWillUnmount() {
@@ -10,11 +11,21 @@ class NewPost extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+
+    createPost(
+      {
+        id: Date.now().toString(36) + Math.random().toString(36).substr(2, 14),
+        timestamp: Date.now(),
+        author: this.props.author,
+        title: this.props.title,
+        body: this.props.body,
+        category: this.props.category,
+      }
+    )
   }
 
   handleChange = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
     const target = e.target;
     const value = target.value;
     const name = target.name;
