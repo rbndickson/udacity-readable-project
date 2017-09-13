@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Navigation from './Navigation';
 import Category from './Category';
 import PostDetail from './PostDetail';
@@ -13,10 +13,12 @@ class App extends Component {
           <h2>Readable</h2>
           <Navigation />
         </div>
-        <Route exact path="/" component={Category} />
-        <Route exact path="/posts/new" component={NewPost} />
-        <Route exact path="/:category" component={Category} />
-        <Route exact path="/:category/:post" component={PostDetail} />
+        <Switch>
+          <Route exact path="/" component={Category} />
+          <Route exact path="/posts/new" component={NewPost} />
+          <Route exact path="/:category" component={Category} />
+          <Route exact path="/:category/:post" component={PostDetail} />
+        </Switch>
       </div>
     );
   }
