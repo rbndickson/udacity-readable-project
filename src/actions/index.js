@@ -3,6 +3,7 @@ export const CHANGE_CATEGORY_FILTER = 'CHANGE_CATEGORY_FILTER';
 export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_POST = 'UPDATE_POST';
+export const REMOVE_POST = 'REMOVE_POST';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_POST_FORM = 'UPDATE_POST_FORM';
 export const CLEAR_POST_FORM = 'CLEAR_POST_FORM';
@@ -31,6 +32,13 @@ export function addPost (post) {
 export function updatePost (post) {
   return {
     type: UPDATE_POST,
+    post,
+  }
+}
+
+export function removePost (post) {
+  return {
+    type: REMOVE_POST,
     post,
   }
 }

@@ -29,7 +29,9 @@ class PostList extends Component {
 function mapStateToProps (state) {
   const post_keys = Object.keys(state.posts);
 
-  const allPosts = post_keys.map(post_key => state.posts[post_key]);
+  const allPosts = post_keys
+    .map(post_key => state.posts[post_key])
+    .filter(post => post.deleted === false);
 
   const posts = state.categoryFilter === 'all'
     ? allPosts

@@ -5,6 +5,7 @@ import {
   CHANGE_CATEGORY_FILTER,
   ADD_POST,
   UPDATE_POST,
+  REMOVE_POST,
   ADD_COMMENT,
   UPDATE_COMMENT,
   UPDATE_POST_FORM,
@@ -47,6 +48,14 @@ function posts (state = {}, action) {
       return {
         ...state,
         [post.id]: post
+      }
+    case REMOVE_POST :
+      return {
+        ...state,
+        [post.id]: {
+          ...state[post.id],
+          deleted: true,
+        }
       }
     default :
       return state

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPostComments } from '../utils/api';
-import { addComment } from '../actions';
+import { getPostComments, deletePost } from '../utils/api';
+import { addComment, removePost } from '../actions';
 import CommentList from './CommentList';
 import VoteButtons from './VoteButtons';
 import {Link} from 'react-router-dom';
@@ -38,6 +38,13 @@ class Post extends Component {
           <p className="post-date">
             {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
           </p>
+          <button onClick={ () => {
+            deletePost(post.id).then((res) => {
+              if (res && res.ok) {
+                this.props.dispatch(removePost(post))
+              }
+            })
+          }}>Delete Post</button>
         </div>
         {this.props.comment_count > 0 && (
           <CommentList id={post.id}/>
