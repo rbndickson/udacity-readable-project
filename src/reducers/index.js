@@ -11,6 +11,9 @@ import {
   UPDATE_POST_FORM,
   CLEAR_POST_FORM,
   UPDATE_EDIT_POST_FORM,
+  UPDATE_USER_INTERFACE,
+  UPDATE_COMMENT_FORM,
+  CLEAR_COMMENT_FORM,
 } from '../actions'
 
 function categories (state = {}, action) {
@@ -129,6 +132,45 @@ function editPostForm (state = initialEditPostFormState, action) {
   }
 }
 
+
+const initialCommentFormState = {
+  author: '',
+  body: '',
+}
+
+function commentForm (state = initialCommentFormState, action) {
+  const { updatedField } = action
+
+  switch (action.type) {
+    case UPDATE_COMMENT_FORM :
+      return {
+        ...state,
+        ...updatedField
+      }
+    case CLEAR_COMMENT_FORM :
+      return {
+        ...state,
+        ...initialCommentFormState
+      }
+    default :
+      return state
+  }
+}
+
+function userInterface (state = {}, action) {
+  const { userInterface } = action
+
+  switch (action.type) {
+    case UPDATE_USER_INTERFACE :
+      return {
+        ...state,
+        ...userInterface
+      }
+    default :
+      return state
+  }
+}
+
 export default combineReducers({
   categories,
   categoryFilter,
@@ -136,4 +178,6 @@ export default combineReducers({
   comments,
   postForm,
   editPostForm,
+  commentForm,
+  userInterface,
 })

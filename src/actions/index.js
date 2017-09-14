@@ -8,6 +8,9 @@ export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_POST_FORM = 'UPDATE_POST_FORM';
 export const CLEAR_POST_FORM = 'CLEAR_POST_FORM';
 export const UPDATE_EDIT_POST_FORM = 'UPDATE_EDIT_POST_FORM';
+export const UPDATE_COMMENT_FORM = 'UPDATE_COMMENT_FORM';
+export const CLEAR_COMMENT_FORM = 'CLEAR_COMMENT_FORM';
+export const UPDATE_USER_INTERFACE = 'UPDATE_USER_INTERFACE';
 
 export function addCategory (category) {
   return {
@@ -75,5 +78,25 @@ export function updateEditPostForm (editPostForm) {
 export function clearPostForm () {
   return {
     type: CLEAR_POST_FORM,
+  }
+}
+
+export function updateUserInterface (userInterface) {
+  return {
+    type: UPDATE_USER_INTERFACE,
+    userInterface,
+  }
+}
+
+export function updateCommentForm (updatedField) {
+  return {
+    type: UPDATE_COMMENT_FORM,
+    updatedField
+  }
+}
+
+export function clearCommentForm () {
+  return {
+    type: CLEAR_COMMENT_FORM,
   }
 }

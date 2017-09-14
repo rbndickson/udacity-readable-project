@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comment from './Comment';
+import CommentForm from './CommentForm';
+import { updateUserInterface } from '../actions';
 
 class CommentList extends Component {
+  openCommentForm = () => {
+    this.props.dispatch(updateUserInterface(
+      {
+        [this.props.post.id]: { commentFormOpen: true, }
+      }
+    ));
+  }
+
   render() {
     return (
       <div className="post-comments-container">
       <hr />
         <div className="post-comments">
           <h4>Comments ({this.props.comment_count})</h4>
+          <button onClick={ this.openCommentForm }>Add New Comment</button>
+          {this.props.commentFormOpen &&(
+            <div>
+              <CommentForm parentId={this.props.post.id}/>
+            </div>
+          )}
           {this.props.comments.map(comment => {
             return (
               <div key={comment.id}>
@@ -33,6 +49,7 @@ function mapStateToProps (state, ownProps) {
     post: state.posts[ownProps.id],
     comments: comments,
     comment_count: comments.length,
+    commentFormOpen: state.userInterface[ownProps.id] && state.userInterface[ownProps.id].commentFormOpen,
   }
 }
 
