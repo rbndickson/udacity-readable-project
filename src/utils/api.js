@@ -34,6 +34,16 @@ export const createPost = (postParams) =>
     body: JSON.stringify(postParams)
   }).then(res => res.json())
 
+export const updatePost = (postID, postParams) =>
+  fetch(`${api}/posts/${postID}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(postParams)
+  }).then(res => res.json())
+
 export const deletePost = (postID) =>
   fetch(`${api}/posts/${postID}`, {
     method: 'DELETE',
@@ -42,7 +52,6 @@ export const deletePost = (postID) =>
       'Content-Type': 'application/json'
     },
   })
-
 
 export const getPostComments = (postID) =>
   fetch(`${api}/posts/${postID}/comments`, { headers })

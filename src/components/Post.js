@@ -45,6 +45,7 @@ class Post extends Component {
               }
             })
           }}>Delete Post</button>
+          <a href={`/posts/${post.id}/edit`}><button>Edit Post</button></a>
         </div>
         {this.props.comment_count > 0 && (
           <CommentList id={post.id}/>

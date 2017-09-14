@@ -10,6 +10,7 @@ import {
   UPDATE_COMMENT,
   UPDATE_POST_FORM,
   CLEAR_POST_FORM,
+  UPDATE_EDIT_POST_FORM,
 } from '../actions'
 
 function categories (state = {}, action) {
@@ -107,10 +108,32 @@ function postForm (state = initialPostFormState, action) {
   }
 }
 
+// Otherwise the form is rendered before the state has been set and it cannot
+// call props.title
+const initialEditPostFormState = {
+  title: '',
+  body: '',
+}
+
+function editPostForm (state = initialEditPostFormState, action) {
+  const { editPostForm } = action
+
+  switch (action.type) {
+    case UPDATE_EDIT_POST_FORM :
+      return {
+        ...state,
+        ...editPostForm
+      }
+    default :
+      return state
+  }
+}
+
 export default combineReducers({
   categories,
   categoryFilter,
   posts,
   comments,
   postForm,
+  editPostForm,
 })

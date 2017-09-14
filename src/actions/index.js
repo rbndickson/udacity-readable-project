@@ -7,6 +7,7 @@ export const REMOVE_POST = 'REMOVE_POST';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_POST_FORM = 'UPDATE_POST_FORM';
 export const CLEAR_POST_FORM = 'CLEAR_POST_FORM';
+export const UPDATE_EDIT_POST_FORM = 'UPDATE_EDIT_POST_FORM';
 
 export function addCategory (category) {
   return {
@@ -61,6 +62,13 @@ export function updatePostForm (postForm) {
   return {
     type: UPDATE_POST_FORM,
     postForm
+  }
+}
+
+export function updateEditPostForm (editPostForm) {
+  return {
+    type: UPDATE_EDIT_POST_FORM,
+    editPostForm
   }
 }
 
