@@ -23,13 +23,30 @@ class PostList extends Component {
     return 0;
   }
 
+  compareForMostRecent = (a, b) => {
+    if (a.timestamp < b.timestamp) {
+      return 1;
+    }
+    if (a.timestamp > b.timestamp) {
+      return -1;
+    }
+    return 0;
+  }
+
   render() {
     const { posts } = this.props
 
     return (
       <div>
-        {!this.props.sortBy && (
+        {this.props.sortBy === 'voteScore' && (
           posts.sort(this.compareForHighestScore).map((post) => (
+            <article key={post.id} className="post">
+              <Post id={post.id}/>
+            </article>
+          ))
+        )}
+        {this.props.sortBy === 'timestamp' && (
+          posts.sort(this.compareForMostRecent).map((post) => (
             <article key={post.id} className="post">
               <Post id={post.id}/>
             </article>
@@ -53,6 +70,7 @@ function mapStateToProps (state) {
 
   return {
     posts: posts,
+    sortBy: state.categorySorts[state.categoryFilter],
   }
 }
 

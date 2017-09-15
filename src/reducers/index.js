@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 import {
   ADD_CATEGORY,
   CHANGE_CATEGORY_FILTER,
+  CHANGE_CATEGORY_SORT,
   ADD_POST,
   UPDATE_POST,
   REMOVE_POST,
@@ -35,6 +36,25 @@ function categoryFilter (state = 'all', action) {
   switch (action.type) {
     case CHANGE_CATEGORY_FILTER :
       return action.category
+    default :
+      return state
+  }
+}
+
+const initialCategorySortState = {
+  all: 'voteScore',
+  react: 'voteScore',
+  redux: 'voteScore',
+  udacity: 'voteScore',
+}
+
+function categorySorts (state = initialCategorySortState, action) {
+  switch (action.type) {
+    case CHANGE_CATEGORY_SORT :
+      return {
+        ...state,
+        [action.category]: action.sortValue
+      }
     default :
       return state
   }
@@ -183,6 +203,7 @@ function userInterface (state = {}, action) {
 export default combineReducers({
   categories,
   categoryFilter,
+  categorySorts,
   posts,
   comments,
   postForm,

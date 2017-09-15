@@ -34,13 +34,18 @@ nav ul li {
   display: inline-block;
 }
 
+main {
+  width: 600px;
+  margin: 0 auto;
+}
+
 .new-post-link {
   text-align: center;
 }
 
 .post, .new-post-form {
   width: 600px;
-  margin: 20px auto;
+  margin: 20px 0;
   padding: 10px 20px;
   background-color: #D9EBE6;
 }
