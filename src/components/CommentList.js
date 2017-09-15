@@ -13,18 +13,29 @@ class CommentList extends Component {
     ));
   }
 
+  closeCommentForm = () => {
+    this.props.dispatch(updateUserInterface(
+      {
+        [this.props.post.id]: { commentFormOpen: false, }
+      }
+    ));
+  }
+
   render() {
     return (
       <div className="post-comments-container">
       <hr />
         <div className="post-comments">
           <h4>Comments ({this.props.comment_count})</h4>
-          <button onClick={ this.openCommentForm }>Add New Comment</button>
-          {this.props.commentFormOpen &&(
-            <div>
-              <CommentForm parentId={this.props.post.id}/>
-            </div>
-          )}
+          {this.props.commentFormOpen
+            ? <div>
+                <button onClick={ this.closeCommentForm }>Close</button>
+                <div>
+                  <CommentForm parentId={this.props.post.id}/>
+                </div>
+              </div>
+            : <button onClick={ this.openCommentForm }>Add New Comment</button>
+          }
           {this.props.comments.map(comment => {
             return (
               <div key={comment.id}>
