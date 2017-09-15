@@ -13,14 +13,28 @@ class PostList extends Component {
     });
   }
 
+  compareForHighestScore = (a, b) => {
+    if (a.voteScore < b.voteScore) {
+      return 1;
+    }
+    if (a.voteScore > b.voteScore) {
+      return -1;
+    }
+    return 0;
+  }
+
   render() {
+    const { posts } = this.props
+
     return (
       <div>
-        {this.props.posts.map((post) => (
-          <article key={post.id} className="post">
-            <Post id={post.id}/>
-          </article>
-        ))}
+        {!this.props.sortBy && (
+          posts.sort(this.compareForHighestScore).map((post) => (
+            <article key={post.id} className="post">
+              <Post id={post.id}/>
+            </article>
+          ))
+        )}
       </div>
     );
   }
