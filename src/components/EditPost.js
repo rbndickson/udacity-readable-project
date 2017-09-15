@@ -15,7 +15,7 @@ class EditPost extends Component {
     e.preventDefault()
 
     updatePost(
-      this.props.postID,
+      this.props.postId,
       {
         title: this.props.title,
         body: this.props.body,
@@ -39,7 +39,7 @@ class EditPost extends Component {
   render() {
     if (this.state && this.state.redirect) {
       return (
-        <Redirect to={`/posts/${this.props.postID}`} />
+        <Redirect to={`/posts/${this.props.postId}`} />
       )
     }
     return (
@@ -64,10 +64,10 @@ class EditPost extends Component {
 }
 
 function mapStateToProps (state, ownProps) {
-  const postID = ownProps.match.params.post;
+  const postId = ownProps.match.params.post;
 
   return {
-    postID: postID,
+    postId: postId,
     title: state.editPostForm.title,
     body: state.editPostForm.body,
   }

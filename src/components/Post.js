@@ -56,11 +56,11 @@ class Post extends Component {
 }
 
 function mapStateToProps (state, ownProps) {
-  const postID = ownProps.id;
+  const postId = ownProps.id;
   const comment_keys = Object.keys(state.comments);
   const comment_count = comment_keys
     .map(comment_key => state.comments[comment_key])
-    .filter(comment => comment.parentId === postID)
+    .filter(comment => comment.parentId === postId)
     .length
 
   return {

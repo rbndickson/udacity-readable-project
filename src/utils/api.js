@@ -15,8 +15,8 @@ export const getCategories = () =>
     .then(res => res.json())
     .then(data => data.categories)
 
-export const getPost = (postID) =>
-  fetch(`${api}/posts/${postID}`, { headers })
+export const getPost = (postId) =>
+  fetch(`${api}/posts/${postId}`, { headers })
     .then(res => res.json())
 
 export const getPosts = () =>
@@ -34,8 +34,8 @@ export const createPost = (postParams) =>
     body: JSON.stringify(postParams)
   }).then(res => res.json())
 
-export const updatePost = (postID, postParams) =>
-  fetch(`${api}/posts/${postID}`, {
+export const updatePost = (postId, postParams) =>
+  fetch(`${api}/posts/${postId}`, {
     method: 'PUT',
     headers: {
       ...headers,
@@ -44,8 +44,8 @@ export const updatePost = (postID, postParams) =>
     body: JSON.stringify(postParams)
   }).then(res => res.json())
 
-export const deletePost = (postID) =>
-  fetch(`${api}/posts/${postID}`, {
+export const deletePost = (postId) =>
+  fetch(`${api}/posts/${postId}`, {
     method: 'DELETE',
     headers: {
       ...headers,
@@ -53,12 +53,12 @@ export const deletePost = (postID) =>
     },
   })
 
-export const getPostComments = (postID) =>
-  fetch(`${api}/posts/${postID}/comments`, { headers })
+export const getPostComments = (postId) =>
+  fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
 
-export const upVotePost = (postID) =>
-  fetch(`${api}/posts/${postID}`, {
+export const upVotePost = (postId) =>
+  fetch(`${api}/posts/${postId}`, {
     method: 'POST',
     headers: {
       ...headers,
@@ -67,8 +67,8 @@ export const upVotePost = (postID) =>
     body: JSON.stringify({option: 'upVote'})
   }).then(res => res.json())
 
-export const downVotePost = (postID) =>
-  fetch(`${api}/posts/${postID}`, {
+export const downVotePost = (postId) =>
+  fetch(`${api}/posts/${postId}`, {
     method: 'POST',
     headers: {
       ...headers,
@@ -96,8 +96,8 @@ export const deleteComment = (commentId) =>
     },
   })
 
-export const upVoteComment = (commentID) =>
-  fetch(`${api}/comments/${commentID}`, {
+export const upVoteComment = (commentId) =>
+  fetch(`${api}/comments/${commentId}`, {
     method: 'POST',
     headers: {
       ...headers,
@@ -106,8 +106,8 @@ export const upVoteComment = (commentID) =>
     body: JSON.stringify({option: 'upVote'})
   }).then(res => res.json())
 
-export const downVoteComment = (commentID) =>
-  fetch(`${api}/comments/${commentID}`, {
+export const downVoteComment = (commentId) =>
+  fetch(`${api}/comments/${commentId}`, {
     method: 'POST',
     headers: {
       ...headers,
