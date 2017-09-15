@@ -68,9 +68,11 @@ function mapStateToProps (state) {
     ? allPosts
     : allPosts.filter(post => post.category === state.categoryFilter)
 
+  const sortBy = state.categorySorts[state.categoryFilter] || 'voteScore';
+
   return {
     posts: posts,
-    sortBy: state.categorySorts[state.categoryFilter],
+    sortBy: sortBy,
   }
 }
 

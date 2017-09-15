@@ -46,9 +46,11 @@ class Category extends Component {
 }
 
 function mapStateToProps (state) {
+  const sortBy = state.categorySorts[state.categoryFilter] || 'voteScore';
+
   return {
     categoryName: state.categoryFilter,
-    categorySort: state.categorySorts[state.categoryFilter],
+    categorySort: sortBy,
   }
 }
 

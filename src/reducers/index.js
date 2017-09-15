@@ -41,14 +41,7 @@ function categoryFilter (state = 'all', action) {
   }
 }
 
-const initialCategorySortState = {
-  all: 'voteScore',
-  react: 'voteScore',
-  redux: 'voteScore',
-  udacity: 'voteScore',
-}
-
-function categorySorts (state = initialCategorySortState, action) {
+function categorySorts (state = {}, action) {
   switch (action.type) {
     case CHANGE_CATEGORY_SORT :
       return {
