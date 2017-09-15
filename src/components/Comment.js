@@ -24,6 +24,7 @@ class Comment extends Component {
         <p className="post-date">
           {new Date(comment.timestamp).toDateString()} at {new Date(comment.timestamp).toLocaleTimeString()}
         </p>
+        <hr/>
       </div>
     )
   }

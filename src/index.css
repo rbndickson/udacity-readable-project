@@ -8,6 +8,13 @@ h1, h2, h3 {
   text-align: center;
 }
 
+hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 .app-header {
   background-color: #5BBCAF;
   height: 60px;
