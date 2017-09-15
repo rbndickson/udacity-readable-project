@@ -8,6 +8,7 @@ import {
   REMOVE_POST,
   ADD_COMMENT,
   UPDATE_COMMENT,
+  REMOVE_COMMENT,
   UPDATE_POST_FORM,
   CLEAR_POST_FORM,
   UPDATE_EDIT_POST_FORM,
@@ -79,6 +80,14 @@ function comments (state = {}, action) {
       return {
         ...state,
         [comment.id]: comment
+      }
+    case REMOVE_COMMENT :
+      return {
+        ...state,
+        [comment.id]: {
+          ...state[comment.id],
+          deleted: true,
+        }
       }
     default :
       return state

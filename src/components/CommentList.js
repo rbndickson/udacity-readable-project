@@ -55,6 +55,7 @@ function mapStateToProps (state, ownProps) {
   const comments = comment_keys
     .map(comment_key => state.comments[comment_key])
     .filter(comment => comment.parentId === postID)
+    .filter(comment => comment.deleted === false);
 
   return {
     post: state.posts[ownProps.id],

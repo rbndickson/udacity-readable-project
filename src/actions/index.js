@@ -5,6 +5,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_POST = 'UPDATE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const UPDATE_POST_FORM = 'UPDATE_POST_FORM';
 export const CLEAR_POST_FORM = 'CLEAR_POST_FORM';
 export const UPDATE_EDIT_POST_FORM = 'UPDATE_EDIT_POST_FORM';
@@ -57,6 +58,14 @@ export function addComment (comment) {
 export function updateComment (comment) {
   return {
     type: UPDATE_COMMENT,
+    comment,
+  }
+}
+
+
+export function removeComment (comment) {
+  return {
+    type: REMOVE_COMMENT,
     comment,
   }
 }
