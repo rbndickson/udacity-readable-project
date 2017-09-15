@@ -7,7 +7,6 @@ import { removeComment } from '../actions';
 class Comment extends Component {
   handleDelete = () => {
     deleteComment(this.props.comment.id).then((res) => {
-      console.log(res);
       if (res && res.ok) {
         this.props.dispatch(removeComment(this.props.comment));
       }
