@@ -21,6 +21,17 @@ class CommentList extends Component {
     ));
   }
 
+
+  compareForHighestScore = (a, b) => {
+    if (a.voteScore < b.voteScore) {
+      return 1;
+    }
+    if (a.voteScore > b.voteScore) {
+      return -1;
+    }
+    return 0;
+  }
+
   render() {
     return (
       <div className="post-comments-container">
@@ -36,7 +47,7 @@ class CommentList extends Component {
               </div>
             : <button onClick={ this.openCommentForm }>Add New Comment</button>
           }
-          {this.props.comments.map(comment => {
+          {this.props.comments.sort(this.compareForHighestScore).map(comment => {
             return (
               <div key={comment.id}>
                 <Comment id={comment.id} />
