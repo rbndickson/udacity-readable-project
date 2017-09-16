@@ -179,7 +179,11 @@ function commentForm (state = initialCommentFormState, action) {
   }
 }
 
-function userInterface (state = {}, action) {
+const userInterfaceInitialState = {
+  newPostFormOpen: false,
+}
+
+function userInterface (state = userInterfaceInitialState, action) {
   const { userInterface } = action
 
   switch (action.type) {

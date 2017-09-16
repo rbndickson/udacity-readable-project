@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostList from './PostList';
-import { changeCategoryFilter, changeCategorySort } from '../actions';
-import { Link } from 'react-router-dom';
+import NewPost from './NewPost';
+import {
+  changeCategoryFilter,
+  changeCategorySort,
+  updateUserInterface,
+} from '../actions';
 
 class Category extends Component {
   updateCategoryFilter() {
@@ -16,7 +20,11 @@ class Category extends Component {
       category: this.props.categoryName,
       sortValue: e.target.value,
     }))
+  }
 
+  handleNewPostLink = (e) => {
+    e.preventDefault();
+    this.props.dispatch(updateUserInterface({ newPostFormOpen: true }))
   }
 
   // For ariving via the URL & Using the navigation
@@ -27,9 +35,14 @@ class Category extends Component {
     return (
       <main>
         <h2>{this.props.categoryName}</h2>
-        <div className="new-post-link">
-          <Link to="/posts/new">Add post</Link>
-        </div>
+        {!this.props.newPostFormOpen && (
+          <div className="new-post-link">
+            <a href="#" onClick={this.handleNewPostLink}>Add post</a>
+          </div>
+        )}
+        {this.props.newPostFormOpen && (
+          <NewPost />
+        )}
         <div>
           <label>
             Sort by:
@@ -51,6 +64,7 @@ function mapStateToProps (state) {
   return {
     categoryName: state.categoryFilter,
     categorySort: sortBy,
+    newPostFormOpen: state.userInterface.newPostFormOpen,
   }
 }
 
