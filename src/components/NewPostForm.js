@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { updatePostForm, clearPostForm, addPost, updateUserInterface } from '../actions';
 import { createPost } from '../utils/api';
 
-class NewPost extends Component {
+class NewPostForm extends Component {
   componentWillUnmount() {
     this.props.dispatch(clearPostForm());
   }
@@ -97,4 +97,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(NewPost);
+export default connect(mapStateToProps)(NewPostForm);

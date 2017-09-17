@@ -8,7 +8,7 @@ import {
 } from '../actions';
 import { createComment } from '../utils/api';
 
-class CommentForm extends Component {
+class NewCommentForm extends Component {
   componentWillUnmount() {
     this.props.dispatch(updateUserInterface(
       { [this.props.parentId]: { commentFormOpen: false, } }
@@ -76,4 +76,4 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(CommentForm);
+export default connect(mapStateToProps)(NewCommentForm);

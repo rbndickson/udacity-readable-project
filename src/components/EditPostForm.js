@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPost, updatePost } from '../utils/api';
+import { updatePost } from '../utils/api';
 import { updateEditPostForm, updateUserInterface, editPost } from '../actions';
 
-class EditPost extends Component {
+class EditPostForm extends Component {
   componentDidMount() {
     this.props.dispatch(updateEditPostForm(this.props.post));
   }
@@ -70,4 +70,4 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(EditPost);
+export default connect(mapStateToProps)(EditPostForm);

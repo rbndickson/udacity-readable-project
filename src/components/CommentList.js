@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comment from './Comment';
-import CommentForm from './CommentForm';
+import NewCommentForm from './NewCommentForm';
 import { updateUserInterface } from '../actions';
 
 class CommentList extends Component {
@@ -42,7 +42,7 @@ class CommentList extends Component {
             ? <div>
                 <button onClick={ this.closeCommentForm }>Close</button>
                 <div>
-                  <CommentForm parentId={this.props.post.id}/>
+                  <NewCommentForm parentId={this.props.post.id}/>
                 </div>
               </div>
             : <button onClick={ this.openCommentForm }>Add New Comment</button>

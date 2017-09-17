@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getPostComments, deletePost } from '../utils/api';
 import { addComment, removePost, updateUserInterface } from '../actions';
 import CommentList from './CommentList';
-import EditPost from './EditPost';
+import EditPostForm from './EditPostForm';
 import VoteButtons from './VoteButtons';
 import { Link } from 'react-router-dom';
 
@@ -55,7 +55,7 @@ class Post extends Component {
           }}>Edit Post</button>
         </div>
         {this.props.editPostFormOpen && (
-          <EditPost id={post.id}/>
+          <EditPostForm id={post.id}/>
         )}
         {this.props.comment_count > 0 && (
           <CommentList id={post.id}/>

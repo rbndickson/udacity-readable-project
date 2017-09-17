@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostList from './PostList';
-import NewPost from './NewPost';
+import NewPostForm from './NewPostForm';
 import {
   changeCategoryFilter,
   changeCategorySort,
@@ -41,7 +41,7 @@ class Category extends Component {
           </div>
         )}
         {this.props.newPostFormOpen && (
-          <NewPost />
+          <NewPostForm />
         )}
         <div>
           <label>
