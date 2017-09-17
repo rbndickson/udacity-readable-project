@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import posts from './posts';
 import comments from './comments';
+import editCommentForms from './editCommentForms';
 
 import {
   ADD_CATEGORY,
@@ -11,11 +12,8 @@ import {
   UPDATE_EDIT_POST_FORM,
   UPDATE_USER_INTERFACE,
   UPDATE_COMMENT_FORM,
-  CLEAR_COMMENT_FORM,
-  OPEN_EDIT_COMMENT_FORM,
-  CLOSE_EDIT_COMMENT_FORM,
-  UPDATE_EDIT_COMMENT_FORM,
-} from '../actions'
+  CLEAR_COMMENT_FORM
+} from '../actions';
 
 function categories (state = {}, action) {
   switch (action.type) {
@@ -118,38 +116,6 @@ function commentForm (state = initialCommentFormState, action) {
       return {
         ...state,
         ...initialCommentFormState
-      }
-    default :
-      return state
-  }
-}
-
-function editCommentForms (state = {}, action) {
-
-  switch (action.type) {
-    case OPEN_EDIT_COMMENT_FORM :
-      const commentToOpen = action.commentId
-      return {
-        ...state,
-        [commentToOpen]: {
-          editCommentFormOpen: true,
-        }
-      }
-    case CLOSE_EDIT_COMMENT_FORM :
-      const commentToClose = action.commentId
-      return {
-        ...state,
-        [commentToClose]: {
-          editCommentFormOpen: false,
-        }
-      }
-    case UPDATE_EDIT_COMMENT_FORM :
-      return {
-        ...state,
-        [action.commentId]: {
-          ...state[action.commentId],
-          [action.field]: action.value,
-        }
       }
     default :
       return state
