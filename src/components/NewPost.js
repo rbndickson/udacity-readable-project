@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { updatePostForm, clearPostForm, addPost,  updateUserInterface } from '../actions';
+import { updatePostForm, clearPostForm, addPost, updateUserInterface } from '../actions';
 import { createPost } from '../utils/api';
 
 class NewPost extends Component {
@@ -27,7 +27,8 @@ class NewPost extends Component {
     })
   }
 
-  handleClose = () => {
+  handleClose = (e) => {
+    e.preventDefault();
     this.props.dispatch(updateUserInterface({
       newPostFormOpen: false,
     }))
@@ -53,6 +54,9 @@ class NewPost extends Component {
     return (
       <div>
         <h3>Create New Post</h3>
+        <div className="text-center">
+          <a href="#" className="mini-link" onClick={this.handleClose}>Close Form</a>
+        </div>
         <form className="new-post-form" onSubmit={this.handleSubmit}>
           <label>
              Your Name:
@@ -75,7 +79,6 @@ class NewPost extends Component {
             </select>
           </label>
           <input type="submit" value="Submit" />
-          <button onClick={this.handleClose}>Cancel</button>
         </form>
       </div>
     );
