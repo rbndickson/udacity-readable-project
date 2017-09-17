@@ -1,15 +1,11 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import posts from './posts';
+import comments from './comments';
 
 import {
   ADD_CATEGORY,
   CHANGE_CATEGORY_FILTER,
   CHANGE_CATEGORY_SORT,
-  ADD_POST,
-  EDIT_POST,
-  REMOVE_POST,
-  ADD_COMMENT,
-  EDIT_COMMENT,
-  REMOVE_COMMENT,
   UPDATE_POST_FORM,
   CLEAR_POST_FORM,
   UPDATE_EDIT_POST_FORM,
@@ -50,60 +46,6 @@ function categorySorts (state = {}, action) {
       return {
         ...state,
         [action.category]: action.sortValue
-      }
-    default :
-      return state
-  }
-}
-
-function posts (state = {}, action) {
-  const { post } = action
-
-  switch (action.type) {
-    case ADD_POST :
-      return {
-        ...state,
-        [post.id]: post
-      }
-    case EDIT_POST :
-      return {
-        ...state,
-        [post.id]: post
-      }
-    case REMOVE_POST :
-      return {
-        ...state,
-        [post.id]: {
-          ...state[post.id],
-          deleted: true,
-        }
-      }
-    default :
-      return state
-  }
-}
-
-function comments (state = {}, action) {
-  const { comment } = action
-
-  switch (action.type) {
-    case ADD_COMMENT :
-      return {
-        ...state,
-        [comment.id]: comment
-      }
-    case EDIT_COMMENT :
-      return {
-        ...state,
-        [comment.id]: comment
-      }
-    case REMOVE_COMMENT :
-      return {
-        ...state,
-        [comment.id]: {
-          ...state[comment.id],
-          deleted: true,
-        }
       }
     default :
       return state
