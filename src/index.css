@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1, h2, h3 {
@@ -37,6 +37,15 @@ nav ul li {
 main {
   width: 600px;
   margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mini-link {
+  font-size: .8em;
+  font-family: Monaco, Consolas, "Lucida Console", monospace;
 }
 
 .new-post-link {
