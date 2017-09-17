@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getPostComments, deletePost } from '../utils/api';
-import { addComment, removePost } from '../actions';
+import { addComment, removePost, updateUserInterface } from '../actions';
 import CommentList from './CommentList';
+import EditPost from './EditPost';
 import VoteButtons from './VoteButtons';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Post extends Component {
   componentDidMount() {
@@ -45,8 +46,17 @@ class Post extends Component {
               }
             })
           }}>Delete Post</button>
-          <a href={`/posts/${post.id}/edit`}><button>Edit Post</button></a>
+          <button onClick={ () => {
+            this.props.dispatch(updateUserInterface(
+              {[post.id]: {
+                editPostFormOpen: true,
+              }}
+            ));
+          }}>Edit Post</button>
         </div>
+        {this.props.editPostFormOpen && (
+          <EditPost id={post.id}/>
+        )}
         {this.props.comment_count > 0 && (
           <CommentList id={post.id}/>
         )}
@@ -63,9 +73,12 @@ function mapStateToProps (state, ownProps) {
     .filter(comment => comment.parentId === postId)
     .length
 
+  const editPostFormOpen = state.userInterface[postId] ? state.userInterface[postId].editPostFormOpen : false
+
   return {
     post: state.posts[ownProps.id],
     comment_count: comment_count,
+    editPostFormOpen: editPostFormOpen,
   }
 }
 

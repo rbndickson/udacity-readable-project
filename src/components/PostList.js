@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getPosts } from '../utils/api';
-import { addPost } from '../actions';
+import { addPost, updateUserInterface } from '../actions';
 import Post from './Post';
 
 class PostList extends Component {
@@ -9,6 +9,11 @@ class PostList extends Component {
     getPosts().then((posts) => {
       posts.forEach((post) => {
         this.props.dispatch(addPost(post));
+        this.props.dispatch(updateUserInterface(
+          {[post.id]: {
+            editPostFormOpen: false,
+          }}
+        ));
       })
     });
   }

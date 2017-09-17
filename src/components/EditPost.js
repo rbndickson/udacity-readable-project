@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { getPost, updatePost } from '../utils/api';
-import { updateEditPostForm } from '../actions';
+import { updateEditPostForm, updateUserInterface, editPost } from '../actions';
 
 class EditPost extends Component {
   componentDidMount() {
-    getPost(this.props.match.params.post).then((post) => {
-      this.props.dispatch(updateEditPostForm(post));
-    });
+    this.props.dispatch(updateEditPostForm(this.props.post));
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
 
     updatePost(
-      this.props.postId,
+      this.props.post.id,
       {
         title: this.props.title,
         body: this.props.body,
       }
-    ).then(() => {
-      this.setState({ redirect: true });
+    ).then((post) => {
+      this.props.dispatch(
+        editPost(post)
+      );
+      this.props.dispatch(
+        updateUserInterface(
+          {[this.props.post.id]: {
+            editPostFormOpen: false,
+          }}
+        )
+      );
     })
   }
 
@@ -37,37 +43,28 @@ class EditPost extends Component {
   }
 
   render() {
-    if (this.state && this.state.redirect) {
-      return (
-        <Redirect to={`/posts/${this.props.postId}`} />
-      )
-    }
     return (
-      <main>
-        <div>
-          <h2>Edit Post</h2>
-          <form className="new-post-form" onSubmit={this.handleSubmit}>
-            <label>
-               Title:
-               <input name="title" value={this.props.title} onChange={this.handleChange} />
-            </label>
-            <label>
-               Body:
-               <textarea name="body" value={this.props.body} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
-      </main>
+      <div>
+        <h2>Edit Post</h2>
+        <form className="edit-post-form" onSubmit={this.handleSubmit}>
+          <label>
+             Title:
+             <input name="title" value={this.props.title} onChange={this.handleChange} />
+          </label>
+          <label>
+             Body:
+             <textarea name="body" value={this.props.body} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 }
 
 function mapStateToProps (state, ownProps) {
-  const postId = ownProps.match.params.post;
-
   return {
-    postId: postId,
+    post: state.posts[ownProps.id],
     title: state.editPostForm.title,
     body: state.editPostForm.body,
   }

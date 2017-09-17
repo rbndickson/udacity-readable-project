@@ -5,7 +5,7 @@ import {
   CHANGE_CATEGORY_FILTER,
   CHANGE_CATEGORY_SORT,
   ADD_POST,
-  UPDATE_POST,
+  EDIT_POST,
   REMOVE_POST,
   ADD_COMMENT,
   UPDATE_COMMENT,
@@ -62,7 +62,7 @@ function posts (state = {}, action) {
         ...state,
         [post.id]: post
       }
-    case UPDATE_POST :
+    case EDIT_POST :
       return {
         ...state,
         [post.id]: post

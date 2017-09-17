@@ -3,8 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import Navigation from './Navigation';
 import Category from './Category';
 import PostDetail from './PostDetail';
-import NewPost from './NewPost';
-import EditPost from './EditPost';
 
 class App extends Component {
   render() {
@@ -18,7 +16,6 @@ class App extends Component {
           <Route exact path="/" component={Category} />
           <Route exact path="/:category" component={Category} />
           <Route exact path="/:category/:post" component={PostDetail} />
-          <Route exact path="/:category/:post/edit" component={EditPost} />
         </Switch>
       </div>
     );
