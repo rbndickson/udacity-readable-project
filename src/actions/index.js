@@ -7,6 +7,9 @@ export const EDIT_POST = 'EDIT_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const UPDATE_EDIT_COMMENT_FORM = 'UPDATE_EDIT_COMMENT_FORM';
+export const OPEN_EDIT_COMMENT_FORM = 'OPEN_EDIT_COMMENT_FORM';
+export const CLOSE_EDIT_COMMENT_FORM = 'CLOSE_EDIT_COMMENT_FORM';
 export const UPDATE_POST_FORM = 'UPDATE_POST_FORM';
 export const CLEAR_POST_FORM = 'CLEAR_POST_FORM';
 export const UPDATE_EDIT_POST_FORM = 'UPDATE_EDIT_POST_FORM';
@@ -71,6 +74,12 @@ export function editComment (comment) {
   }
 }
 
+export function editCommentBody (commentBody) {
+  return {
+    type: EDIT_COMMENT,
+    commentBody,
+  }
+}
 
 export function removeComment (comment) {
   return {
@@ -116,5 +125,28 @@ export function updateCommentForm (updatedField) {
 export function clearCommentForm () {
   return {
     type: CLEAR_COMMENT_FORM,
+  }
+}
+
+export function openEditCommentForm (commentId) {
+  return {
+    type: OPEN_EDIT_COMMENT_FORM,
+    commentId
+  }
+}
+
+export function closeEditCommentForm (commentId) {
+  return {
+    type: CLOSE_EDIT_COMMENT_FORM,
+    commentId
+  }
+}
+
+export function updateEditCommentForm ({ commentId, field, value}) {
+  return {
+    type: UPDATE_EDIT_COMMENT_FORM,
+    commentId,
+    field,
+    value,
   }
 }

@@ -16,6 +16,9 @@ import {
   UPDATE_USER_INTERFACE,
   UPDATE_COMMENT_FORM,
   CLEAR_COMMENT_FORM,
+  OPEN_EDIT_COMMENT_FORM,
+  CLOSE_EDIT_COMMENT_FORM,
+  UPDATE_EDIT_COMMENT_FORM,
 } from '../actions'
 
 function categories (state = {}, action) {
@@ -179,6 +182,38 @@ function commentForm (state = initialCommentFormState, action) {
   }
 }
 
+function editCommentForms (state = {}, action) {
+
+  switch (action.type) {
+    case OPEN_EDIT_COMMENT_FORM :
+      const commentToOpen = action.commentId
+      return {
+        ...state,
+        [commentToOpen]: {
+          editCommentFormOpen: true,
+        }
+      }
+    case CLOSE_EDIT_COMMENT_FORM :
+      const commentToClose = action.commentId
+      return {
+        ...state,
+        [commentToClose]: {
+          editCommentFormOpen: false,
+        }
+      }
+    case UPDATE_EDIT_COMMENT_FORM :
+      return {
+        ...state,
+        [action.commentId]: {
+          ...state[action.commentId],
+          [action.field]: action.value,
+        }
+      }
+    default :
+      return state
+  }
+}
+
 const userInterfaceInitialState = {
   newPostFormOpen: false,
 }
@@ -206,5 +241,6 @@ export default combineReducers({
   postForm,
   editPostForm,
   commentForm,
+  editCommentForms,
   userInterface,
 })

@@ -5,7 +5,17 @@ import NewCommentForm from './NewCommentForm';
 import { updateUserInterface } from '../actions';
 
 class CommentList extends Component {
-  openCommentForm = () => {
+  // componentDidMount() {
+  //   this.props.comments.forEach((comment) => {
+  //     this.props.dispatch(updateUserInterface(
+  //       {[comment.id]: {
+  //         editPostFormOpen: false,
+  //       }}
+  //     ));
+  //   })
+  // }
+
+  openNewCommentForm = () => {
     this.props.dispatch(updateUserInterface(
       {
         [this.props.post.id]: { commentFormOpen: true, }
@@ -13,7 +23,7 @@ class CommentList extends Component {
     ));
   }
 
-  closeCommentForm = () => {
+  closeNewCommentForm = () => {
     this.props.dispatch(updateUserInterface(
       {
         [this.props.post.id]: { commentFormOpen: false, }
@@ -40,12 +50,12 @@ class CommentList extends Component {
           <h4>Comments ({this.props.comment_count})</h4>
           {this.props.commentFormOpen
             ? <div>
-                <button onClick={ this.closeCommentForm }>Close</button>
+                <button onClick={ this.closeNewCommentForm }>Close</button>
                 <div>
                   <NewCommentForm parentId={this.props.post.id}/>
                 </div>
               </div>
-            : <button onClick={ this.openCommentForm }>Add New Comment</button>
+            : <button onClick={ this.openNewCommentForm }>Add New Comment</button>
           }
           {this.props.comments.sort(this.compareForHighestScore).map(comment => {
             return (

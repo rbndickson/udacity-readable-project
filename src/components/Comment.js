@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import EditCommentForm from './EditCommentForm';
 import VoteButtons from './VoteButtons';
 import { deleteComment } from '../utils/api';
-import { removeComment } from '../actions';
+import { removeComment, openEditCommentForm, closeEditCommentForm } from '../actions';
 
 class Comment extends Component {
   handleDelete = () => {
@@ -11,6 +12,14 @@ class Comment extends Component {
         this.props.dispatch(removeComment(this.props.comment));
       }
     })
+  }
+
+  handleOpenEditForm = () => {
+    this.props.dispatch(openEditCommentForm(this.props.comment.id))
+  }
+
+  handleCloseEditForm = () => {
+    this.props.dispatch(closeEditCommentForm(this.props.comment.id))
   }
 
   render() {
@@ -33,7 +42,16 @@ class Comment extends Component {
         <p className="post-date">
           {new Date(comment.timestamp).toDateString()} at {new Date(comment.timestamp).toLocaleTimeString()}
         </p>
-        <button onClick={ this.handleDelete }>Delete Comment</button>
+        <div>
+          <button onClick={this.handleDelete}>Delete</button>
+          {this.props.editCommentFormOpen
+            ? <button onClick={this.handleCloseEditForm}>Close Form</button>
+            : <button onClick={this.handleOpenEditForm}>Edit Comment</button>
+          }
+        </div>
+        {this.props.editCommentFormOpen && (
+          <EditCommentForm id={comment.id}/>
+        )}
         <hr/>
       </div>
     )
@@ -41,7 +59,12 @@ class Comment extends Component {
 }
 
 function mapStateToProps (state, ownProps) {
-  return { comment: state.comments[ownProps.id] }
+  const editCommentFormOpen = state.editCommentForms[ownProps.id] ? state.editCommentForms[ownProps.id].editCommentFormOpen : false
+
+  return {
+    comment: state.comments[ownProps.id],
+    editCommentFormOpen: editCommentFormOpen,
+  }
 }
 
 export default connect(mapStateToProps)(Comment);
