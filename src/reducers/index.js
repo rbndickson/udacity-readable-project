@@ -11,8 +11,9 @@ import {
   CLEAR_POST_FORM,
   UPDATE_EDIT_POST_FORM,
   UPDATE_USER_INTERFACE,
-  UPDATE_COMMENT_FORM,
-  CLEAR_COMMENT_FORM
+  OPEN_NEW_COMMENT_FORM,
+  CLOSE_NEW_COMMENT_FORM,
+  UPDATE_NEW_COMMENT_FORM
 } from '../actions';
 
 function categories (state = {}, action) {
@@ -97,28 +98,32 @@ function editPostForm (state = initialEditPostFormState, action) {
   }
 }
 
-
-const initialCommentFormState = {
-  author: '',
-  body: '',
-}
-
-function commentForm (state = initialCommentFormState, action) {
-  const { updatedField } = action
-
+function newCommentForms (state = {}, action) {
   switch (action.type) {
-    case UPDATE_COMMENT_FORM :
+    case OPEN_NEW_COMMENT_FORM :
       return {
         ...state,
-        ...updatedField
-      }
-    case CLEAR_COMMENT_FORM :
+        [action.postId]: {
+          newCommentFormOpen: true
+        }
+      };
+    case CLOSE_NEW_COMMENT_FORM :
       return {
         ...state,
-        ...initialCommentFormState
-      }
+        [action.postId]: {
+          newCommentFormOpen: false
+        }
+      };
+    case UPDATE_NEW_COMMENT_FORM :
+      return {
+        ...state,
+        [action.postId]: {
+          ...state[action.postId],
+          [action.field]: action.value
+        }
+      };
     default :
-      return state
+      return state;
   }
 }
 
@@ -148,7 +153,7 @@ export default combineReducers({
   comments,
   postForm,
   editPostForm,
-  commentForm,
+  newCommentForms,
   editCommentForms,
   userInterface,
 })

@@ -2,25 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comment from './Comment';
 import NewCommentForm from './NewCommentForm';
-import { updateUserInterface } from '../actions';
+import { openNewCommentForm, closeNewCommentForm } from '../actions';
 
 class CommentList extends Component {
   openNewCommentForm = () => {
-    this.props.dispatch(updateUserInterface(
-      {
-        [this.props.post.id]: { commentFormOpen: true, }
-      }
-    ));
+    this.props.dispatch(openNewCommentForm(this.props.post.id))
   }
 
   closeNewCommentForm = () => {
-    this.props.dispatch(updateUserInterface(
-      {
-        [this.props.post.id]: { commentFormOpen: false, }
-      }
-    ));
+    this.props.dispatch(closeNewCommentForm(this.props.post.id))
   }
-
 
   compareForHighestScore = (a, b) => {
     if (a.voteScore < b.voteScore) {
@@ -38,11 +29,11 @@ class CommentList extends Component {
       <hr />
         <div className="post-comments">
           <h4>Comments ({this.props.comment_count})</h4>
-          {this.props.commentFormOpen
+          {this.props.newCommentFormOpen
             ? <div>
                 <button onClick={ this.closeNewCommentForm }>Close</button>
                 <div>
-                  <NewCommentForm parentId={this.props.post.id}/>
+                  <NewCommentForm postId={this.props.post.id}/>
                 </div>
               </div>
             : <button onClick={ this.openNewCommentForm }>Add New Comment</button>
@@ -72,7 +63,7 @@ function mapStateToProps (state, ownProps) {
     post: state.posts[ownProps.id],
     comments: comments,
     comment_count: comments.length,
-    commentFormOpen: state.userInterface[ownProps.id] && state.userInterface[ownProps.id].commentFormOpen,
+    newCommentFormOpen: state.newCommentForms[ownProps.id] && state.newCommentForms[ownProps.id].newCommentFormOpen
   }
 }
 

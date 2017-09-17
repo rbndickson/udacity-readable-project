@@ -7,14 +7,15 @@ export const EDIT_POST = 'EDIT_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const UPDATE_NEW_COMMENT_FORM = 'UPDATE_NEW_COMMENT_FORM';
+export const OPEN_NEW_COMMENT_FORM = 'OPEN_NEW_COMMENT_FORM';
+export const CLOSE_NEW_COMMENT_FORM = 'CLOSE_NEW_COMMENT_FORM';
 export const UPDATE_EDIT_COMMENT_FORM = 'UPDATE_EDIT_COMMENT_FORM';
 export const OPEN_EDIT_COMMENT_FORM = 'OPEN_EDIT_COMMENT_FORM';
 export const CLOSE_EDIT_COMMENT_FORM = 'CLOSE_EDIT_COMMENT_FORM';
 export const UPDATE_POST_FORM = 'UPDATE_POST_FORM';
 export const CLEAR_POST_FORM = 'CLEAR_POST_FORM';
 export const UPDATE_EDIT_POST_FORM = 'UPDATE_EDIT_POST_FORM';
-export const UPDATE_COMMENT_FORM = 'UPDATE_COMMENT_FORM';
-export const CLEAR_COMMENT_FORM = 'CLEAR_COMMENT_FORM';
 export const UPDATE_USER_INTERFACE = 'UPDATE_USER_INTERFACE';
 
 export function addCategory (category) {
@@ -115,16 +116,26 @@ export function updateUserInterface (userInterface) {
   }
 }
 
-export function updateCommentForm (updatedField) {
+export function openNewCommentForm (postId) {
   return {
-    type: UPDATE_COMMENT_FORM,
-    updatedField
+    type: OPEN_NEW_COMMENT_FORM,
+    postId
   }
 }
 
-export function clearCommentForm () {
+export function closeNewCommentForm (postId) {
   return {
-    type: CLEAR_COMMENT_FORM,
+    type: CLOSE_NEW_COMMENT_FORM,
+    postId
+  }
+}
+
+export function updateNewCommentForm ({ postId, field, value}) {
+  return {
+    type: UPDATE_NEW_COMMENT_FORM,
+    postId,
+    field,
+    value,
   }
 }
 
