@@ -10,13 +10,14 @@ class EditCommentForm extends Component {
       field: 'body',
       value: this.props.comment.body,
     }));
-  }
+  };
+
   componentWillUnmount() {
     this.props.dispatch(closeEditCommentForm(this.props.comment.id))
-  }
+  };
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     updateComment(
       this.props.comment.id,
@@ -24,11 +25,11 @@ class EditCommentForm extends Component {
     ).then((updatedComment) => {
       this.props.dispatch(editComment(updatedComment));
       this.props.dispatch(closeEditCommentForm(this.props.comment.id));
-    })
-  }
+    });
+  };
 
   handleChange = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -36,7 +37,7 @@ class EditCommentForm extends Component {
     this.props.dispatch(updateEditCommentForm({
       commentId: this.props.id,
       field: name,
-      value: value,
+      value: value
     }));
   }
 
@@ -50,14 +51,13 @@ class EditCommentForm extends Component {
         </form>
       </main>
     );
-  }
+  };
 }
 
 function mapStateToProps (state, ownProps) {
-
   return {
     comment: state.comments[ownProps.id],
-    body: state.editCommentForms[ownProps.id]['body']
+    body: state.editCommentForms[ownProps.id].body
   }
 }
 

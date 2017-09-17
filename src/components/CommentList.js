@@ -5,16 +5,6 @@ import NewCommentForm from './NewCommentForm';
 import { updateUserInterface } from '../actions';
 
 class CommentList extends Component {
-  // componentDidMount() {
-  //   this.props.comments.forEach((comment) => {
-  //     this.props.dispatch(updateUserInterface(
-  //       {[comment.id]: {
-  //         editPostFormOpen: false,
-  //       }}
-  //     ));
-  //   })
-  // }
-
   openNewCommentForm = () => {
     this.props.dispatch(updateUserInterface(
       {
