@@ -4,29 +4,31 @@ import { upVotePost, downVotePost, upVoteComment, downVoteComment } from '../uti
 import { editPost, updateComment } from '../actions';
 
 class VoteButtons extends Component {
-  render() {
-    const { voteType, id } = this.props
+  handleUpvote = () => {
+    this.props.voteType === 'post'
+    ? upVotePost(this.props.id).then(post => {
+       this.props.dispatch(editPost(post))
+      })
+    : upVoteComment(this.props.id).then(comment => {
+        this.props.dispatch(updateComment(comment))
+      })
+  }
 
+  handleDownvote = () => {
+    this.props.voteType === 'post'
+    ? downVotePost(this.props.id).then(post => {
+        this.props.dispatch(editPost(post))
+      })
+    : downVoteComment(this.props.id).then(comment => {
+        this.props.dispatch(updateComment(comment))
+      })
+  }
+
+  render() {
     return (
       <div className="vote-buttons">
-        <div className="vote-buttons" onClick={ () => {
-          voteType === 'post'
-          ? upVotePost(id).then(post => {
-             this.props.dispatch(editPost(post))
-            })
-          : upVoteComment(id).then(comment => {
-              this.props.dispatch(updateComment(comment))
-            })
-        }}>⬆</div>
-        <div className="vote-buttons" onClick={ () => {
-          voteType === 'post'
-          ? downVotePost(id).then(post => {
-              this.props.dispatch(editPost(post))
-            })
-          : downVoteComment(id).then(comment => {
-              this.props.dispatch(updateComment(comment))
-            })
-        }}>⬇</div>
+        <div className="vote-buttons" onClick={this.handleUpvote}>⬆</div>
+        <div className="vote-buttons" onClick={this.handleDownvote}>⬇</div>
       </div>
     );
   }

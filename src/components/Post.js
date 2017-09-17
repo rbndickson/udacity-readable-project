@@ -16,6 +16,22 @@ class Post extends Component {
     })
   }
 
+  handleDelete = () => {
+    deletePost(this.props.post.id).then((res) => {
+      if (res && res.ok) {
+        this.props.dispatch(removePost(this.props.post))
+      }
+    })
+  }
+
+  handleEdit = () => {
+    this.props.dispatch(updateUserInterface(
+      {[this.props.post.id]: {
+        editPostFormOpen: true,
+      }}
+    ));
+  }
+
   render() {
     const { post } = this.props
     return (
@@ -39,20 +55,8 @@ class Post extends Component {
           <p className="post-date">
             {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
           </p>
-          <button onClick={ () => {
-            deletePost(post.id).then((res) => {
-              if (res && res.ok) {
-                this.props.dispatch(removePost(post))
-              }
-            })
-          }}>Delete Post</button>
-          <button onClick={ () => {
-            this.props.dispatch(updateUserInterface(
-              {[post.id]: {
-                editPostFormOpen: true,
-              }}
-            ));
-          }}>Edit Post</button>
+          <button onClick={this.handleDelete}>Delete Post</button>
+          <button onClick={this.handleEdit}>Edit Post</button>
         </div>
         {this.props.editPostFormOpen && (
           <EditPostForm id={post.id}/>
