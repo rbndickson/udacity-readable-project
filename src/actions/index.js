@@ -7,6 +7,8 @@ export const EDIT_POST = 'EDIT_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const OPEN_EDIT_POST_FORM = 'OPEN_EDIT_POST_FORM';
+export const CLOSE_EDIT_POST_FORM = 'CLOSE_EDIT_POST_FORM';
 export const UPDATE_NEW_COMMENT_FORM = 'UPDATE_NEW_COMMENT_FORM';
 export const OPEN_NEW_COMMENT_FORM = 'OPEN_NEW_COMMENT_FORM';
 export const CLOSE_NEW_COMMENT_FORM = 'CLOSE_NEW_COMMENT_FORM';
@@ -96,13 +98,6 @@ export function updatePostForm (postForm) {
   }
 }
 
-export function updateEditPostForm (editPostForm) {
-  return {
-    type: UPDATE_EDIT_POST_FORM,
-    editPostForm
-  }
-}
-
 export function clearPostForm () {
   return {
     type: CLEAR_POST_FORM,
@@ -113,6 +108,29 @@ export function updateUserInterface (userInterface) {
   return {
     type: UPDATE_USER_INTERFACE,
     userInterface,
+  }
+}
+
+export function openEditPostForm (postId) {
+  return {
+    type: OPEN_EDIT_POST_FORM,
+    postId
+  }
+}
+
+export function closeEditPostForm (postId) {
+  return {
+    type: CLOSE_EDIT_POST_FORM,
+    postId
+  }
+}
+
+export function updateEditPostForm ({ postId, field, value }) {
+  return {
+    type: UPDATE_EDIT_POST_FORM,
+    postId,
+    field,
+    value,
   }
 }
 

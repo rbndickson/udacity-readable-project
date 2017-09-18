@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getPostComments, deletePost } from '../utils/api';
-import { addComment, removePost, updateUserInterface } from '../actions';
+import { addComment,
+         removePost,
+         openEditPostForm,
+         closeEditPostForm } from '../actions';
 import CommentList from './CommentList';
 import EditPostForm from './EditPostForm';
 import VoteButtons from './VoteButtons';
@@ -11,9 +14,9 @@ class Post extends Component {
   componentDidMount() {
     getPostComments(this.props.id).then(comments => {
       comments.forEach((comment) => {
-        this.props.dispatch(addComment(comment));
-      })
-    })
+        this.props.dispatch(addComment(comment))
+      });
+    });
   }
 
   handleDelete = () => {
@@ -21,27 +24,20 @@ class Post extends Component {
       if (res && res.ok) {
         this.props.dispatch(removePost(this.props.post))
       }
-    })
+    });
   }
 
   handleOpenEditForm = () => {
-    this.props.dispatch(updateUserInterface(
-      {[this.props.post.id]: {
-        editPostFormOpen: true,
-      }}
-    ));
+    this.props.dispatch(openEditPostForm(this.props.post.id))
   }
 
   handleCloseEditForm = () => {
-    this.props.dispatch(updateUserInterface(
-      {[this.props.post.id]: {
-        editPostFormOpen: false,
-      }}
-    ));
+    this.props.dispatch(closeEditPostForm(this.props.post.id))
   }
 
   render() {
-    const { post } = this.props
+    const { post } = this.props;
+
     return (
       <div>
         <div className="post-parent">
@@ -83,20 +79,20 @@ class Post extends Component {
 }
 
 function mapStateToProps (state, ownProps) {
-  const postId = ownProps.id;
+  const id = ownProps.id;
   const comment_keys = Object.keys(state.comments);
   const comment_count = comment_keys
     .map(comment_key => state.comments[comment_key])
-    .filter(comment => comment.parentId === postId)
-    .length
+    .filter(comment => comment.parentId === id)
+    .length;
 
-  const editPostFormOpen = state.userInterface[postId] ? state.userInterface[postId].editPostFormOpen : false
+  const editPostFormOpen = state.editPostForms[id] ? state.editPostForms[id].editPostFormOpen : false;
 
   return {
-    post: state.posts[ownProps.id],
+    post: state.posts[id],
     comment_count: comment_count,
     editPostFormOpen: editPostFormOpen,
-  }
+  };
 }
 
 export default connect(mapStateToProps)(Post);

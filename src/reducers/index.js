@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import posts from './posts';
+import editPostForms from './editPostForms';
 import comments from './comments';
-import editCommentForms from './editCommentForms';
 import newCommentForms from './newCommentForms';
+import editCommentForms from './editCommentForms';
 
 import {
   ADD_CATEGORY,
@@ -10,7 +11,6 @@ import {
   CHANGE_CATEGORY_SORT,
   UPDATE_POST_FORM,
   CLEAR_POST_FORM,
-  UPDATE_EDIT_POST_FORM,
   UPDATE_USER_INTERFACE
 } from '../actions';
 
@@ -75,27 +75,6 @@ function postForm (state = initialPostFormState, action) {
   }
 }
 
-// Otherwise the form is rendered before the state has been set and it cannot
-// call props.title
-const initialEditPostFormState = {
-  title: '',
-  body: '',
-}
-
-function editPostForm (state = initialEditPostFormState, action) {
-  const { editPostForm } = action
-
-  switch (action.type) {
-    case UPDATE_EDIT_POST_FORM :
-      return {
-        ...state,
-        ...editPostForm
-      }
-    default :
-      return state
-  }
-}
-
 const userInterfaceInitialState = {
   newPostFormOpen: false,
 }
@@ -121,7 +100,7 @@ export default combineReducers({
   posts,
   comments,
   postForm,
-  editPostForm,
+  editPostForms,
   newCommentForms,
   editCommentForms,
   userInterface,

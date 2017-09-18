@@ -1,34 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatePost } from '../utils/api';
-import { updateEditPostForm, updateUserInterface, editPost } from '../actions';
+import { updateEditPostForm,
+         closeEditPostForm,
+         editPost } from '../actions';
 
 class EditPostForm extends Component {
-  componentDidMount() {
-    this.props.dispatch(updateEditPostForm(this.props.post));
+  componentWillMount() {
+    this.props.dispatch(updateEditPostForm({
+      postId: this.props.post.id,
+      field: 'title',
+      value: this.props.post.title
+    }));
+    this.props.dispatch(updateEditPostForm({
+      postId: this.props.post.id,
+      field: 'body',
+      value: this.props.post.body
+    }));
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    const { post, title, body } = this.props;
 
     updatePost(
-      this.props.post.id,
+      post.id,
       {
-        title: this.props.title,
-        body: this.props.body,
+        title: title,
+        body: body
       }
     ).then((post) => {
       this.props.dispatch(
         editPost(post)
       );
       this.props.dispatch(
-        updateUserInterface(
-          {[this.props.post.id]: {
-            editPostFormOpen: false,
-          }}
-        )
+        this.props.dispatch(closeEditPostForm(post.id))
       );
-    })
+    });
   }
 
   handleChange = (e) => {
@@ -36,16 +45,19 @@ class EditPostForm extends Component {
     const target = e.target;
     const value = target.value;
     const name = target.name;
+    const postId = this.props.post.id;
 
     this.props.dispatch(updateEditPostForm({
-      [name]: value,
+      postId: postId,
+      field: name,
+      value: value
     }));
   }
 
   render() {
     return (
       <div>
-        <h2>Edit Post</h2>
+        <h3>Edit Post</h3>
         <form className="edit-post-form" onSubmit={this.handleSubmit}>
           <label>
              Title:
@@ -63,10 +75,14 @@ class EditPostForm extends Component {
 }
 
 function mapStateToProps (state, ownProps) {
+  // So that component is always controlled
+  const currentFormTitle = state.editPostForms[ownProps.id].title || ''
+  const currentFormBody = state.editPostForms[ownProps.id].body || ''
+
   return {
     post: state.posts[ownProps.id],
-    title: state.editPostForm.title,
-    body: state.editPostForm.body,
+    title: currentFormTitle,
+    body: currentFormBody,
   }
 }
 
