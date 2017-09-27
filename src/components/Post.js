@@ -54,7 +54,7 @@ class Post extends Component {
             {post.body}
           </div>
           <p className="post-author">
-            Posted by {post.author}
+            Posted by {post.author} in {post.category}
           </p>
           <p className="post-date">
             {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
