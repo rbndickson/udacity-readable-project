@@ -5,7 +5,7 @@ import NewPostForm from './NewPostForm';
 import {
   changeCategoryFilter,
   changeCategorySort,
-  updateUserInterface,
+  openNewPostForm,
 } from '../actions';
 
 class Category extends Component {
@@ -24,7 +24,7 @@ class Category extends Component {
 
   handleNewPostLink = (e) => {
     e.preventDefault();
-    this.props.dispatch(updateUserInterface({ newPostFormOpen: true }))
+    this.props.dispatch(openNewPostForm());
   }
 
   // For ariving via the URL & Using the navigation
@@ -64,7 +64,7 @@ function mapStateToProps (state) {
   return {
     categoryName: state.categoryFilter,
     categorySort: sortBy,
-    newPostFormOpen: state.userInterface.newPostFormOpen,
+    newPostFormOpen: state.newPostForm.newPostFormOpen,
   }
 }
 

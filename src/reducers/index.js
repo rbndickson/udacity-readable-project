@@ -9,8 +9,7 @@ import editCommentForms from './editCommentForms';
 import {
   ADD_CATEGORY,
   CHANGE_CATEGORY_FILTER,
-  CHANGE_CATEGORY_SORT,
-  UPDATE_USER_INTERFACE
+  CHANGE_CATEGORY_SORT
 } from '../actions';
 
 function categories (state = {}, action) {
@@ -48,24 +47,6 @@ function categorySorts (state = {}, action) {
   }
 }
 
-const userInterfaceInitialState = {
-  newPostFormOpen: false,
-}
-
-function userInterface (state = userInterfaceInitialState, action) {
-  const { userInterface } = action
-
-  switch (action.type) {
-    case UPDATE_USER_INTERFACE :
-      return {
-        ...state,
-        ...userInterface
-      }
-    default :
-      return state
-  }
-}
-
 export default combineReducers({
   categories,
   categoryFilter,
@@ -75,6 +56,5 @@ export default combineReducers({
   editPostForms,
   comments,
   newCommentForms,
-  editCommentForms,
-  userInterface,
+  editCommentForms
 })

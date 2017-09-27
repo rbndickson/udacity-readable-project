@@ -83,8 +83,22 @@ export function removeComment (comment) {
 
 // NEW POST FORM
 
+export const OPEN_NEW_POST_FORM = 'OPEN_NEW_POST_FORM';
+export const CLOSE_NEW_POST_FORM = 'CLOSE_NEW_POST_FORM';
 export const UPDATE_NEW_POST_FORM = 'UPDATE_NEW_POST_FORM';
 export const CLEAR_NEW_POST_FORM = 'CLEAR_NEW_POST_FORM';
+
+export function openNewPostForm () {
+  return {
+    type: OPEN_NEW_POST_FORM
+  }
+}
+
+export function closeNewPostForm () {
+  return {
+    type: CLOSE_NEW_POST_FORM
+  }
+}
 
 export function updateNewPostForm (newPostForm) {
   return {
@@ -183,14 +197,5 @@ export function updateEditCommentForm ({ commentId, field, value}) {
     commentId,
     field,
     value,
-  }
-}
-
-export const UPDATE_USER_INTERFACE = 'UPDATE_USER_INTERFACE';
-
-export function updateUserInterface (userInterface) {
-  return {
-    type: UPDATE_USER_INTERFACE,
-    userInterface,
   }
 }

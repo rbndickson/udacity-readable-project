@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { updateNewPostForm, clearNewPostForm, addPost, updateUserInterface } from '../actions';
+import {
+  updateNewPostForm,
+  clearNewPostForm,
+  addPost,
+  closeNewPostForm,
+} from '../actions';
 import { createPost } from '../utils/api';
 
 class NewPostForm extends Component {
@@ -10,7 +15,7 @@ class NewPostForm extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     createPost(
       {
@@ -22,16 +27,14 @@ class NewPostForm extends Component {
         category: this.props.category,
       }
     ).then((post) => {
-      this.props.dispatch(addPost(post))
-      this.props.dispatch(updateUserInterface({ newPostFormOpen: false }))
+      this.props.dispatch(addPost(post));
+      this.props.dispatch(closeNewPostForm());
     })
   }
 
   handleClose = (e) => {
     e.preventDefault();
-    this.props.dispatch(updateUserInterface({
-      newPostFormOpen: false,
-    }))
+    this.props.dispatch(closeNewPostForm());
   }
 
   handleChange = (e) => {
