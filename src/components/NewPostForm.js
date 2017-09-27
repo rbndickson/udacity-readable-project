@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { updatePostForm, clearPostForm, addPost, updateUserInterface } from '../actions';
+import { updateNewPostForm, clearNewPostForm, addPost, updateUserInterface } from '../actions';
 import { createPost } from '../utils/api';
 
 class NewPostForm extends Component {
   componentWillUnmount() {
-    this.props.dispatch(clearPostForm());
+    this.props.dispatch(clearNewPostForm());
   }
 
   handleSubmit = (e) => {
@@ -40,7 +40,7 @@ class NewPostForm extends Component {
     const value = target.value;
     const name = target.name;
 
-    this.props.dispatch(updatePostForm({
+    this.props.dispatch(updateNewPostForm({
       [name]: value,
     }));
   }
@@ -90,10 +90,10 @@ function mapStateToProps (state) {
 
   return {
     categories: category_keys.map(category_key => state.categories[category_key]),
-    title: state.postForm.title,
-    author: state.postForm.author,
-    body: state.postForm.body,
-    category: state.postForm.category,
+    title: state.newPostForm.title,
+    author: state.newPostForm.author,
+    body: state.newPostForm.body,
+    category: state.newPostForm.category,
   }
 }
 

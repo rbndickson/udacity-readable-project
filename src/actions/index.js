@@ -81,22 +81,21 @@ export function removeComment (comment) {
   }
 }
 
-
 // NEW POST FORM
 
-export const UPDATE_POST_FORM = 'UPDATE_POST_FORM';
-export const CLEAR_POST_FORM = 'CLEAR_POST_FORM';
+export const UPDATE_NEW_POST_FORM = 'UPDATE_NEW_POST_FORM';
+export const CLEAR_NEW_POST_FORM = 'CLEAR_NEW_POST_FORM';
 
-export function updatePostForm (postForm) {
+export function updateNewPostForm (newPostForm) {
   return {
-    type: UPDATE_POST_FORM,
-    postForm
+    type: UPDATE_NEW_POST_FORM,
+    newPostForm
   }
 }
 
-export function clearPostForm () {
+export function clearNewPostForm () {
   return {
-    type: CLEAR_POST_FORM,
+    type: CLEAR_NEW_POST_FORM,
   }
 }
 

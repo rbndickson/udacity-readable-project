@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import posts from './posts';
+import newPostForm from './newPostForm';
 import editPostForms from './editPostForms';
 import comments from './comments';
 import newCommentForms from './newCommentForms';
@@ -9,8 +10,6 @@ import {
   ADD_CATEGORY,
   CHANGE_CATEGORY_FILTER,
   CHANGE_CATEGORY_SORT,
-  UPDATE_POST_FORM,
-  CLEAR_POST_FORM,
   UPDATE_USER_INTERFACE
 } from '../actions';
 
@@ -49,32 +48,6 @@ function categorySorts (state = {}, action) {
   }
 }
 
-const initialPostFormState = {
-  title: '',
-  author: '',
-  body: '',
-  category: 'react'
-}
-
-function postForm (state = initialPostFormState, action) {
-  const { postForm } = action
-
-  switch (action.type) {
-    case UPDATE_POST_FORM :
-      return {
-        ...state,
-        ...postForm
-      }
-    case CLEAR_POST_FORM :
-      return {
-        ...state,
-        ...initialPostFormState
-      }
-    default :
-      return state
-  }
-}
-
 const userInterfaceInitialState = {
   newPostFormOpen: false,
 }
@@ -98,9 +71,9 @@ export default combineReducers({
   categoryFilter,
   categorySorts,
   posts,
-  comments,
-  postForm,
+  newPostForm,
   editPostForms,
+  comments,
   newCommentForms,
   editCommentForms,
   userInterface,
