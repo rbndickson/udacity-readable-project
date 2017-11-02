@@ -28,7 +28,6 @@ class CommentList extends Component {
       <div className="post-comments-container">
       <hr />
         <div className="post-comments">
-          <h4>Comments ({this.props.comment_count})</h4>
           {this.props.newCommentFormOpen
             ? <div>
                 <button onClick={ this.closeNewCommentForm }>Close</button>

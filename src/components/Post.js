@@ -59,6 +59,7 @@ class Post extends Component {
           <p className="post-date">
             {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
           </p>
+          <p>Comments ({this.props.comment_count})</p>
           <div>
             <button onClick={this.handleDelete}>Delete Post</button>
             {this.props.editPostFormOpen
@@ -69,9 +70,6 @@ class Post extends Component {
         </div>
         {this.props.editPostFormOpen && (
           <EditPostForm id={post.id}/>
-        )}
-        {this.props.comment_count > 0 && (
-          <CommentList id={post.id}/>
         )}
       </div>
     );
