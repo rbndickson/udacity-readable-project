@@ -15,22 +15,22 @@ class Navigation extends Component {
 
   render() {
     return (
-      <nav>
-        <ul>
-          <li key="all" onClick={() => {
+      <div className="pure-menu pure-menu-horizontal pure-menu-custom">
+        <ul className="pure-menu-list">
+          <li className="pure-menu-item pure-menu-selected" key="all" onClick={() => {
             this.props.dispatch(changeCategoryFilter('all'));
           }}>
-            <Link to="/">all</Link>
+            <Link to="/" className="pure-menu-link pure-menu-link-custom">all</Link>
           </li>
           {this.props.categories.map((category) => (
-            <li key={category.name} onClick={() => {
+            <li className="pure-menu-item" key={category.name} onClick={() => {
               this.props.dispatch(changeCategoryFilter(category.name));
             }}>
-              <Link to={`/${category.path}`}>{category.name}</Link>
+              <Link to={`/${category.path}`}  className="pure-menu-link pure-menu-link-custom">{category.name}</Link>
             </li>
           ))}
         </ul>
-      </nav>
+      </div>
     );
   }
 }
