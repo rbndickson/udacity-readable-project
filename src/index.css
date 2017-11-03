@@ -22,20 +22,20 @@ hr {
 }
 
 nav ul {
-  width: 400px;
+  width: 300px;
   margin: auto;
   padding: 0;
   list-style-type: none;
 }
 
 nav ul li {
-  width: 100px;
+  width: 75px;
   text-align: center;
   display: inline-block;
 }
 
 main {
-  width: 600px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -53,7 +53,7 @@ main {
 }
 
 .post, .new-post-form {
-  width: 600px;
+  max-width: 600px;
   margin: 20px 0;
   padding: 10px 20px;
   background-color: #D9EBE6;
