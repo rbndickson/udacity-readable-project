@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import NewPostForm from './NewPostForm';
 import { changeCategorySort, openNewPostForm, closeNewPostForm } from '../actions';
 
+import FaSort from 'react-icons/lib/fa/sort';
+
 class PostListHeader extends Component {
 
   handleSortChange = (e) => {
@@ -28,16 +30,18 @@ class PostListHeader extends Component {
         <h2>{this.props.categoryName}</h2>
         <div className="row">
           <div className="column column-25">
-            <select value={this.props.categorySort} onChange={this.handleSortChange}>
-              <option value="voteScore">Vote Score</option>
-              <option value="timestamp">Recent</option>
+            <select className="sort-select" value={this.props.categorySort} onChange={this.handleSortChange}>
+              <option value="voteScore">&#x25BC; Vote Score</option>
+              <option value="timestamp">&#x25BC; Recent</option>
             </select>
           </div>
-          <div className="column colum-25 column-offset-50">
-            {this.props.newPostFormOpen
-              ? <button className="secondary-button" onClick={this.handleCloseNewPostForm}>Close</button>
-              : <button onClick={this.handleOpenNewPostForm}>Add post</button>
-            }
+          <div className="column colum-50">
+            <div className="float-right">
+              {this.props.newPostFormOpen
+                ? <button className="secondary-button" onClick={this.handleCloseNewPostForm}>Close</button>
+                : <button onClick={this.handleOpenNewPostForm}>Add post</button>
+              }
+            </div>
           </div>
         </div>
         {this.props.newPostFormOpen && (

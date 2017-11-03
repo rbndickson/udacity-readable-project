@@ -46,6 +46,10 @@ button {
   text-align: center;
 }
 
+.sort-select {
+  width: 150px;
+}
+
 .post {
   max-width: 600px;
   margin: 20px 0;
