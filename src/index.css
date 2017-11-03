@@ -1,36 +1,30 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
+  color: #161621;
+}
+
+a:hover {
+  color: #d65afc;
+}
+
+button:hover {
+  background-color: #d65afc;
+  border-color: #d65afc;
 }
 
 h1, h2, h3 {
   text-align: center;
 }
 
-hr {
-  border: 0;
-  height: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
 .app-header {
-  background-color: #5BBCAF;
-  height: 60px;
-  padding: 10px 0 30px 0;
+  padding: 10px 0 0 0;
 }
 
-nav ul {
-  width: 300px;
-  margin: auto;
-  padding: 0;
-  list-style-type: none;
+nav {
+  text-align: center;
 }
 
 nav ul li {
   width: 75px;
-  text-align: center;
   display: inline-block;
 }
 
@@ -39,13 +33,12 @@ main {
   margin: 0 auto;
 }
 
-.text-center {
-  text-align: center;
+button {
+  margin-right: 10px;
 }
 
-.mini-link {
-  font-size: .8em;
-  font-family: Monaco, Consolas, "Lucida Console", monospace;
+.text-center {
+  text-align: center;
 }
 
 .new-post-link {
@@ -56,7 +49,7 @@ main {
   max-width: 600px;
   margin: 20px 0;
   padding: 10px 20px;
-  background-color: #D9EBE6;
+  background-color: #eee7fd;
 }
 
 .post-score {
@@ -86,11 +79,11 @@ main {
 
 .post-date {
   font-size: .8em;
-  color: #14939E;
+  color: #c99acf;
 }
 
 .post-comments-container {
-  background-color: #ECFFFB;
+  background-color: #eeedff;
 }
 
 .post-comments {

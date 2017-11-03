@@ -59,7 +59,7 @@ class Post extends Component {
             {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
           </p>
           <p>{this.props.comment_count} Comments</p>
-          <div>
+          <div className="buttons">
             <button onClick={this.handleDelete}>Delete Post</button>
             {this.props.editPostFormOpen
               ? <button onClick={this.handleCloseEditForm}>Close Form</button>
