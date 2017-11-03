@@ -19,25 +19,25 @@ class PostListHeader extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h2>{this.props.categoryName}</h2>
-        {!this.props.newPostFormOpen && (
-          <div className="new-post-link">
-            <a href="#" onClick={this.handleNewPostLink}>Add post</a>
-          </div>
-        )}
-        {this.props.newPostFormOpen && (
-          <NewPostForm />
-        )}
-        <div>
-          <label>
-            Sort by:
+        <div className="row">
+          <div className="column column-25">
             <select value={this.props.categorySort} onChange={this.handleSortChange}>
               <option value="voteScore">Vote Score</option>
               <option value="timestamp">Recent</option>
             </select>
-          </label>
+          </div>
+          <div className="column colum-25 column-offset-50">
+            {!this.props.newPostFormOpen && (
+              <button onClick={this.handleNewPostLink}>Add post</button>
+
+            )}
+          </div>
         </div>
+        {this.props.newPostFormOpen && (
+          <NewPostForm />
+        )}
       </div>
     );
   }
