@@ -47,7 +47,7 @@ class EditCommentForm extends Component {
         <h3>Update Comment</h3>
         <form className="comment-form" onSubmit={this.handleSubmit}>
           <textarea name="body" value={this.props.body} onChange={this.handleChange} />
-          <input type="submit" value="Update Comment" />
+          <button type="submit">Update Comment</button>
         </form>
       </main>
     );

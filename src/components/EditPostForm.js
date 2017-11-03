@@ -67,7 +67,7 @@ class EditPostForm extends Component {
              Body:
              <textarea name="body" value={this.props.body} onChange={this.handleChange} />
           </label>
-          <input type="submit" value="Submit" />
+          <button type="submit">Update Post</button>
         </form>
       </div>
     );

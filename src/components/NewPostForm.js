@@ -81,7 +81,7 @@ class NewPostForm extends Component {
               ))}
             </select>
           </label>
-          <input type="submit" value="Submit" />
+          <button type="submit">Add Post</button>
         </form>
       </div>
     );

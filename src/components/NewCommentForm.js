@@ -49,7 +49,7 @@ class NewCommentForm extends Component {
              Body:
              <textarea name="body" value={this.props.currentFormBody} onChange={this.handleChange} />
           </label>
-          <input type="submit" value="Submit" />
+          <button type="submit">Add Comment</button>
         </form>
       </main>
     );
