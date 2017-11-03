@@ -32,11 +32,6 @@ class NewPostForm extends Component {
     })
   }
 
-  handleClose = (e) => {
-    e.preventDefault();
-    this.props.dispatch(closeNewPostForm());
-  }
-
   handleChange = (e) => {
     e.preventDefault()
     const target = e.target;
@@ -56,10 +51,7 @@ class NewPostForm extends Component {
     }
     return (
       <div>
-        <h3>Create New Post</h3>
-        <div className="text-center">
-          <a href="#" className="mini-link" onClick={this.handleClose}>Close Form</a>
-        </div>
+        <h4>Create New Post</h4>
         <form className="new-post-form" onSubmit={this.handleSubmit}>
           <label>
              Your Name:

@@ -11,7 +11,7 @@ button:hover {
   border-color: #d65afc;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   text-align: center;
 }
 
@@ -37,11 +37,12 @@ button {
   margin-right: 10px;
 }
 
-.text-center {
-  text-align: center;
+.secondary-button {
+  background-color: #fc4383;
+  border-color: #fc4383;
 }
 
-.new-post-link {
+.text-center {
   text-align: center;
 }
 

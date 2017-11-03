@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewPostForm from './NewPostForm';
-import { changeCategorySort, openNewPostForm } from '../actions';
+import { changeCategorySort, openNewPostForm, closeNewPostForm } from '../actions';
 
 class PostListHeader extends Component {
 
@@ -12,9 +12,14 @@ class PostListHeader extends Component {
     }))
   }
 
-  handleNewPostLink = (e) => {
+  handleOpenNewPostForm = (e) => {
     e.preventDefault();
     this.props.dispatch(openNewPostForm());
+  }
+
+  handleCloseNewPostForm = (e) => {
+    e.preventDefault();
+    this.props.dispatch(closeNewPostForm());
   }
 
   render() {
@@ -29,10 +34,10 @@ class PostListHeader extends Component {
             </select>
           </div>
           <div className="column colum-25 column-offset-50">
-            {!this.props.newPostFormOpen && (
-              <button onClick={this.handleNewPostLink}>Add post</button>
-
-            )}
+            {this.props.newPostFormOpen
+              ? <button className="secondary-button" onClick={this.handleCloseNewPostForm}>Close</button>
+              : <button onClick={this.handleOpenNewPostForm}>Add post</button>
+            }
           </div>
         </div>
         {this.props.newPostFormOpen && (
