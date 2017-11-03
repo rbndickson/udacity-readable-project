@@ -5,7 +5,6 @@ import { addComment,
          removePost,
          openEditPostForm,
          closeEditPostForm } from '../actions';
-import CommentList from './CommentList';
 import EditPostForm from './EditPostForm';
 import VoteButtons from './VoteButtons';
 import { Link } from 'react-router-dom';
@@ -59,6 +58,7 @@ class Post extends Component {
           <p className="post-date">
             {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
           </p>
+          <p>{this.props.comment_count} Comments</p>
           <div>
             <button onClick={this.handleDelete}>Delete Post</button>
             {this.props.editPostFormOpen
@@ -69,9 +69,6 @@ class Post extends Component {
         </div>
         {this.props.editPostFormOpen && (
           <EditPostForm id={post.id}/>
-        )}
-        {this.props.comment_count > 0 && (
-          <CommentList id={post.id}/>
         )}
       </div>
     );

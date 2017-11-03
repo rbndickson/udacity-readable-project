@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getPost } from '../utils/api';
 import { addPost } from '../actions';
 import Post from './Post';
+import CommentList from './CommentList';
 
 class PostDetail extends Component {
   componentDidMount() {
@@ -21,6 +22,9 @@ class PostDetail extends Component {
         {post && (
           <article key={post.id} className="post">
             <Post id={post.id}/>
+            {this.props.comment_count > 0 && (
+              <CommentList id={post.id}/>
+            )}
           </article>
         )}
       </main>
@@ -30,7 +34,17 @@ class PostDetail extends Component {
 
 function mapStateToProps (state, ownProps) {
   const id = ownProps.match.params.post
-  return { post: state.posts[id], }
+
+  const comment_keys = Object.keys(state.comments);
+  const comment_count = comment_keys
+    .map(comment_key => state.comments[comment_key])
+    .filter(comment => comment.parentId === id)
+    .length;
+
+  return {
+    post: state.posts[id],
+    comment_count: comment_count
+  }
 }
 
 export default connect(mapStateToProps)(PostDetail);
