@@ -34,7 +34,7 @@ class Comment extends Component {
             voteScore={comment.voteScore}
           />
         </div>
-        <div className="card-text-container">
+        <div className="card-text-container card-text-container-comments">
           <div className="card-body">
             {comment.body}
           </div>
@@ -54,7 +54,6 @@ class Comment extends Component {
           {this.props.editCommentFormOpen && (
             <EditCommentForm id={comment.id}/>
           )}
-          <hr/>
         </div>
       </div>
     )

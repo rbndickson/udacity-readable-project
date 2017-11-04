@@ -61,30 +61,45 @@ button {
   max-width: 600px;
   margin: 20px 0;
   padding: 10px 20px;
-  background-color: #eee7fd;
+}
+
+.comments-container {
+  margin-top: 20px;
+}
+
+.comment {
+  margin: 20px 0;
+  padding: 10px 20px;
 }
 
 .card-voting-container {
   float: left;
-  width: 60px;
+  width: 40px;
 }
 
 .card-text-container {
-  margin-left: 80px
+  margin-left: 60px;
+  padding: 15px;
+  border-radius: 3px;
+  background-color: #eee7fd;
+}
+
+.card-text-container-comments {
+  background-color: #eeedff;
 }
 
 .vote-button {
   cursor: pointer;
-  width: 60px;
+  width: 40px;
   height: 10px;
-  background-color: #eee7fd;
+  background-color: #fff;
 }
 
 .upvote-button {
   width: 0;
   height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
 
   border-bottom: 10px solid #70d7dc;
 }
@@ -92,8 +107,8 @@ button {
 .downvote-button {
   width: 0;
   height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
 
   border-top: 10px solid #fc4383;
 }
@@ -123,10 +138,16 @@ button {
   text-align: center;
 }
 
-.new-post-form {
+.new-post-form,
+.edit-post-form {
   margin: 20px 0;
   padding: 10px 20px;
+  border-radius: 3px;
   background-color: #eee7fd;
+}
+
+.edit-post-form-container {
+  margin: 20px 0 0 60px;
 }
 
 .new-post-form *,

@@ -56,7 +56,7 @@ class EditPostForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="edit-post-form-container">
         <h3>Edit Post</h3>
         <form className="edit-post-form" onSubmit={this.handleSubmit}>
           <label>

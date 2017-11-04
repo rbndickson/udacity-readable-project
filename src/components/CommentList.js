@@ -18,7 +18,6 @@ class CommentList extends Component {
   render() {
     return (
       <div className="comments-container">
-        <hr />
         <CommentListHeader
           commentCount={this.props.commentCount}
           postId={this.props.post.id}
@@ -32,7 +31,7 @@ class CommentList extends Component {
         )}
         {this.props.comments.sort(this.compareForHighestScore).map(comment => {
           return (
-            <div key={comment.id}>
+            <div className="comment" key={comment.id}>
               <Comment id={comment.id} />
             </div>
           )
