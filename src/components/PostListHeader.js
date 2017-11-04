@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import NewPostForm from './NewPostForm';
 import { changeCategorySort, openNewPostForm, closeNewPostForm } from '../actions';
 
-import FaSort from 'react-icons/lib/fa/sort';
-
 class PostListHeader extends Component {
 
   handleSortChange = (e) => {
@@ -31,8 +29,8 @@ class PostListHeader extends Component {
         <div className="row">
           <div className="column column-25">
             <select className="sort-select" value={this.props.categorySort} onChange={this.handleSortChange}>
-              <option value="voteScore">&#x25BC; Vote Score</option>
-              <option value="timestamp">&#x25BC; Recent</option>
+              <option value="voteScore">Vote Score</option>
+              <option value="timestamp">Recent</option>
             </select>
           </div>
           <div className="column colum-50">
