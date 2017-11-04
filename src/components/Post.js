@@ -36,14 +36,16 @@ class Post extends Component {
             <div className="card-body">
               {post.body}
             </div>
-            <p className="card-author">
-              Posted by {post.author} in {post.category}
-            </p>
-            <p className="card-date">
-              {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
-            </p>
-            <p>{this.props.comment_count} Comments</p>
-            <PostButtons id={post.id}/>
+            <div>
+              <span className="card-author">Posted by {post.author} in {post.category}, </span>
+              <span className="card-date">
+                {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
+              </span>
+            </div>
+            <div>
+              <span>{this.props.comment_count} Comments</span>
+              <PostButtons id={post.id}/>
+            </div>
           </div>
         </div>
         {this.props.editPostFormOpen && (
