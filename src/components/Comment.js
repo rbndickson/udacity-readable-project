@@ -47,8 +47,8 @@ class Comment extends Component {
           <div>
             <button className="button-small" onClick={this.handleDelete}>Delete</button>
             {this.props.editCommentFormOpen
-              ? <button className="button-small" onClick={this.handleCloseEditForm}>Close Form</button>
-              : <button className="button-small" onClick={this.handleOpenEditForm}>Edit Comment</button>
+              ? <button className="secondary-button button-small" onClick={this.handleCloseEditForm}>Close</button>
+              : <button className="button-small" onClick={this.handleOpenEditForm}>Edit</button>
             }
           </div>
           {this.props.editCommentFormOpen && (

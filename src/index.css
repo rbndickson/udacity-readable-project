@@ -38,6 +38,11 @@ button {
 }
 
 .secondary-button {
+  background-color: #fc6a7e;
+  border-color: #fc6a7e;
+}
+
+.secondary-button:hover {
   background-color: #fc4383;
   border-color: #fc4383;
 }

@@ -27,10 +27,10 @@ class PostButtons extends Component {
 
     return (
       <div className="buttons">
-        <button className="button-small" onClick={this.handleDelete}>Delete Post</button>
+        <button className="button-small" onClick={this.handleDelete}>Delete</button>
         {this.props.editPostFormOpen
-          ? <button className="button-small" onClick={this.handleCloseEditForm}>Close Form</button>
-          : <button className="button-small" onClick={this.handleOpenEditForm}>Edit Post</button>
+          ? <button className="secondary-button button-small" onClick={this.handleCloseEditForm}>Close</button>
+          : <button className="button-small" onClick={this.handleOpenEditForm}>Edit</button>
         }
       </div>
     );
