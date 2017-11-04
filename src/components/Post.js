@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPostComments, deletePost } from '../utils/api';
-import { addComment,
-         removePost,
-         openEditPostForm,
-         closeEditPostForm } from '../actions';
+import { getPostComments } from '../utils/api';
+import { addComment } from '../actions';
 import EditPostForm from './EditPostForm';
 import VoteButtons from './VoteButtons';
+import PostButtons from './PostButtons';
 import { Link } from 'react-router-dom';
 
 class Post extends Component {
@@ -16,22 +14,6 @@ class Post extends Component {
         this.props.dispatch(addComment(comment))
       });
     });
-  }
-
-  handleDelete = () => {
-    deletePost(this.props.post.id).then((res) => {
-      if (res && res.ok) {
-        this.props.dispatch(removePost(this.props.post))
-      }
-    });
-  }
-
-  handleOpenEditForm = () => {
-    this.props.dispatch(openEditPostForm(this.props.post.id))
-  }
-
-  handleCloseEditForm = () => {
-    this.props.dispatch(closeEditPostForm(this.props.post.id))
   }
 
   render() {
@@ -59,13 +41,7 @@ class Post extends Component {
             {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
           </p>
           <p>{this.props.comment_count} Comments</p>
-          <div className="buttons">
-            <button onClick={this.handleDelete}>Delete Post</button>
-            {this.props.editPostFormOpen
-              ? <button onClick={this.handleCloseEditForm}>Close Form</button>
-              : <button onClick={this.handleOpenEditForm}>Edit Post</button>
-            }
-          </div>
+          <PostButtons id={post.id}/>
         </div>
         {this.props.editPostFormOpen && (
           <EditPostForm id={post.id}/>
