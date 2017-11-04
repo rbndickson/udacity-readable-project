@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { upVotePost, downVotePost, upVoteComment, downVoteComment } from '../utils/api';
 import { editPost, editComment } from '../actions';
 
-class VoteButtons extends Component {
+class Voting extends Component {
   handleUpvote = () => {
     this.props.voteType === 'post'
     ? upVotePost(this.props.id).then(post => {this.props.editPost(post)})
@@ -18,9 +18,14 @@ class VoteButtons extends Component {
 
   render() {
     return (
-      <div className="vote-buttons">
-        <div className="vote-buttons" onClick={this.handleUpvote}>⬆</div>
-        <div className="vote-buttons" onClick={this.handleDownvote}>⬇</div>
+      <div>
+        <div className="vote-score">
+          {this.props.voteScore}
+        </div>
+        <div className="vote-buttons">
+          <div className="vote-buttons" onClick={this.handleUpvote}>⬆</div>
+          <div className="vote-buttons" onClick={this.handleDownvote}>⬇</div>
+        </div>
       </div>
     );
   }
@@ -33,4 +38,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(VoteButtons);
+export default connect(null, mapDispatchToProps)(Voting);

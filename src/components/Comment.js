@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EditCommentForm from './EditCommentForm';
-import VoteButtons from './VoteButtons';
+import Voting from './Voting';
 import { deleteComment } from '../utils/api';
 import { removeComment, openEditCommentForm, closeEditCommentForm } from '../actions';
 
@@ -28,10 +28,11 @@ class Comment extends Component {
     return (
       <div className="post-parent">
         <div>
-          <div className="post-score">
-            {comment.voteScore}
-          </div>
-          <VoteButtons voteType='comment' id={comment.id}/>
+          <Voting
+            voteType='comment'
+            id={comment.id}
+            voteScore={comment.voteScore}
+          />
         </div>
         <div className="post-body">
           {comment.body}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getPostComments } from '../utils/api';
 import { addComment } from '../actions';
 import EditPostForm from './EditPostForm';
-import VoteButtons from './VoteButtons';
+import Voting from './Voting';
 import PostButtons from './PostButtons';
 import { Link } from 'react-router-dom';
 
@@ -23,10 +23,11 @@ class Post extends Component {
       <div>
         <div className="post-parent">
           <div>
-            <div className="post-score">
-              {post.voteScore}
-            </div>
-            <VoteButtons voteType='post' id={post.id}/>
+            <Voting
+              voteType='post'
+              id={post.id}
+              voteScore={post.voteScore}
+            />
             <h3 className="post-title">
               <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
             </h3>
