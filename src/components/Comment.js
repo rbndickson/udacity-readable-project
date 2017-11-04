@@ -26,34 +26,36 @@ class Comment extends Component {
     const { comment } = this.props;
 
     return (
-      <div className="post-parent">
-        <div>
+      <div className="card-container">
+        <div className="card-voting-container">
           <Voting
             voteType='comment'
             id={comment.id}
             voteScore={comment.voteScore}
           />
         </div>
-        <div className="post-body">
-          {comment.body}
+        <div className="card-text-container">
+          <div className="card-body">
+            {comment.body}
+          </div>
+          <p className="card-author">
+            Posted by {comment.author}
+          </p>
+          <p className="card-date">
+            {new Date(comment.timestamp).toDateString()} at {new Date(comment.timestamp).toLocaleTimeString()}
+          </p>
+          <div>
+            <button onClick={this.handleDelete}>Delete</button>
+            {this.props.editCommentFormOpen
+              ? <button onClick={this.handleCloseEditForm}>Close Form</button>
+              : <button onClick={this.handleOpenEditForm}>Edit Comment</button>
+            }
+          </div>
+          {this.props.editCommentFormOpen && (
+            <EditCommentForm id={comment.id}/>
+          )}
+          <hr/>
         </div>
-        <p className="post-author">
-          Posted by {comment.author}
-        </p>
-        <p className="post-date">
-          {new Date(comment.timestamp).toDateString()} at {new Date(comment.timestamp).toLocaleTimeString()}
-        </p>
-        <div>
-          <button onClick={this.handleDelete}>Delete</button>
-          {this.props.editCommentFormOpen
-            ? <button onClick={this.handleCloseEditForm}>Close Form</button>
-            : <button onClick={this.handleOpenEditForm}>Edit Comment</button>
-          }
-        </div>
-        {this.props.editCommentFormOpen && (
-          <EditCommentForm id={comment.id}/>
-        )}
-        <hr/>
       </div>
     )
   }

@@ -21,28 +21,30 @@ class Post extends Component {
 
     return (
       <div>
-        <div className="post-parent">
-          <div>
+        <div className="card-container">
+          <div className="card-voting-container">
             <Voting
               voteType='post'
               id={post.id}
               voteScore={post.voteScore}
             />
-            <h3 className="post-title">
+          </div>
+          <div className="card-text-container">
+            <h3 className="card-title">
               <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
             </h3>
+            <div className="card-body">
+              {post.body}
+            </div>
+            <p className="card-author">
+              Posted by {post.author} in {post.category}
+            </p>
+            <p className="card-date">
+              {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
+            </p>
+            <p>{this.props.comment_count} Comments</p>
+            <PostButtons id={post.id}/>
           </div>
-          <div className="post-body">
-            {post.body}
-          </div>
-          <p className="post-author">
-            Posted by {post.author} in {post.category}
-          </p>
-          <p className="post-date">
-            {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
-          </p>
-          <p>{this.props.comment_count} Comments</p>
-          <PostButtons id={post.id}/>
         </div>
         {this.props.editPostFormOpen && (
           <EditPostForm id={post.id}/>

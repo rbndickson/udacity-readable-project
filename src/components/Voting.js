@@ -18,14 +18,12 @@ class Voting extends Component {
 
   render() {
     return (
-      <div>
+      <div className="card-voting">
+        <div className="vote-button upvote-button" onClick={this.handleUpvote} />
         <div className="vote-score">
           {this.props.voteScore}
         </div>
-        <div className="vote-buttons">
-          <div className="vote-buttons" onClick={this.handleUpvote}>⬆</div>
-          <div className="vote-buttons" onClick={this.handleDownvote}>⬇</div>
-        </div>
+        <div className="vote-button downvote-button" onClick={this.handleDownvote} />
       </div>
     );
   }
