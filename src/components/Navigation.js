@@ -17,10 +17,10 @@ class Navigation extends Component {
     return (
       <nav>
         <ul>
-          <li key="all" onClick={() => {
-            this.props.dispatch(changeCategoryFilter('all'));
+          <li key="All" onClick={() => {
+            this.props.dispatch(changeCategoryFilter('All'));
           }}>
-            <Link to="/">all</Link>
+            <Link to="/">All</Link>
           </li>
           {this.props.categories.map((category) => (
             <li key={category.name} onClick={() => {
