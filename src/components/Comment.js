@@ -38,12 +38,12 @@ class Comment extends Component {
           <div className="card-body">
             {comment.body}
           </div>
-          <p className="card-author">
-            Posted by {comment.author}
-          </p>
-          <p className="card-date">
-            {new Date(comment.timestamp).toDateString()} at {new Date(comment.timestamp).toLocaleTimeString()}
-          </p>
+          <div className="card-details">
+            <span className="card-author">Posted by {comment.author}, </span>
+            <span className="card-date">
+              {new Date(comment.timestamp).toDateString()} at {new Date(comment.timestamp).toLocaleTimeString()}
+            </span>
+          </div>
           <div>
             <button className="button-small" onClick={this.handleDelete}>Delete</button>
             {this.props.editCommentFormOpen
