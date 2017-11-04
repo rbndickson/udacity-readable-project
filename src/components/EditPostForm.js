@@ -61,7 +61,7 @@ class EditPostForm extends Component {
         <form className="edit-post-form" onSubmit={this.handleSubmit}>
           <label>
              Title:
-             <input name="title" value={this.props.title} onChange={this.handleChange} />
+             <input name="title" type="text" value={this.props.title} onChange={this.handleChange} />
           </label>
           <label>
              Body:

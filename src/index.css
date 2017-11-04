@@ -159,6 +159,13 @@ button {
   background-color: #eee7fd;
 }
 
+.new-comment-form {
+  margin: 20px 20px 20px 80px;
+  padding: 10px 20px;
+  border-radius: 3px;
+  background-color: #eee7fd;
+}
+
 .edit-post-form-container {
   margin: 20px 0 0 60px;
 }
@@ -168,10 +175,10 @@ button {
   width: 100%;
   margin: 10px 0;
 }
-
-.comment-form * {
-  width: 100%;
+textarea, select, input[type="text"] {
+  background-color: #fff;
 }
-.comment-form {
-  padding: 10px 20px;
+
+.new-comment-form * {
+  width: 100%;
 }

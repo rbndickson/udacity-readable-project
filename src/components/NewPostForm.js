@@ -53,27 +53,29 @@ class NewPostForm extends Component {
       <div>
         <h4>Create New Post</h4>
         <form className="new-post-form" onSubmit={this.handleSubmit}>
-          <label>
-             Your Name:
-             <input name="author" value={this.props.author} onChange={this.handleChange} />
-          </label>
-          <label>
-             Title:
-             <input name="title" value={this.props.title} onChange={this.handleChange} />
-          </label>
-          <label>
-             Body:
-             <textarea name="body" value={this.props.body} onChange={this.handleChange} />
-          </label>
-          <label>
-            Category:
-            <select name="category" value={this.props.category} onChange={this.handleChange}>
-              {this.props.categories.map((category) => (
-                <option key={category.name} value={category.name}>{category.name}</option>
-              ))}
-            </select>
-          </label>
-          <button type="submit">Add Post</button>
+          <fieldset>
+            <label>
+              Your name:
+              <input name="author" type="text" value={this.props.author} onChange={this.handleChange} />
+            </label>
+            <label>
+               Title:
+               <input name="title" type="text" value={this.props.title} onChange={this.handleChange} />
+            </label>
+            <label>
+               Body:
+               <textarea name="body" value={this.props.body} onChange={this.handleChange} />
+            </label>
+            <label>
+              Category:
+              <select name="category" value={this.props.category} onChange={this.handleChange}>
+                {this.props.categories.map((category) => (
+                  <option key={category.name} value={category.name}>{category.name}</option>
+                ))}
+              </select>
+            </label>
+            <button type="submit">Add Post</button>
+          </fieldset>
         </form>
       </div>
     );

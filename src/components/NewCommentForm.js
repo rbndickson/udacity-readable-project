@@ -38,12 +38,11 @@ class NewCommentForm extends Component {
 
   render() {
     return (
-      <main>
-        <h2>Add Comment</h2>
-        <form className="comment-form" onSubmit={this.handleSubmit}>
+      <div className="form-container">
+        <form className="new-comment-form" onSubmit={this.handleSubmit}>
           <label>
              Your Name:
-             <input name="author" value={this.props.currentFormAuthor} onChange={this.handleChange} />
+             <input name="author" type="text" value={this.props.currentFormAuthor} onChange={this.handleChange} />
           </label>
           <label>
              Body:
@@ -51,7 +50,7 @@ class NewCommentForm extends Component {
           </label>
           <button type="submit">Add Comment</button>
         </form>
-      </main>
+      </div>
     );
   }
 }
