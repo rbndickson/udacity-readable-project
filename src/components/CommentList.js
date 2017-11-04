@@ -21,6 +21,7 @@ class CommentList extends Component {
         <CommentListHeader
           commentCount={this.props.commentCount}
           postId={this.props.post.id}
+          newCommentFormOpen={this.props.newCommentFormOpen}
         />
         {this.props.newCommentFormOpen && (
           <div>
