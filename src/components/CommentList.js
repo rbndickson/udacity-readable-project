@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import CommentListHeader from './CommentListHeader';
 import Comment from './Comment';
 import NewCommentForm from './NewCommentForm';
-import { openNewCommentForm, closeNewCommentForm } from '../actions';
 
 class CommentList extends Component {
-  openNewCommentForm = () => {
-    this.props.dispatch(openNewCommentForm(this.props.post.id))
-  }
-
-  closeNewCommentForm = () => {
-    this.props.dispatch(closeNewCommentForm(this.props.post.id))
-  }
-
   compareForHighestScore = (a, b) => {
     if (a.voteScore < b.voteScore) {
       return 1;
@@ -25,27 +17,26 @@ class CommentList extends Component {
 
   render() {
     return (
-      <div className="post-comments-container">
-      <hr />
-        <div className="post-comments">
-          <h4>Comments ({this.props.comment_count})</h4>
-          {this.props.newCommentFormOpen
-            ? <div>
-                <button onClick={ this.closeNewCommentForm }>Close</button>
-                <div>
-                  <NewCommentForm postId={this.props.post.id}/>
-                </div>
-              </div>
-            : <button onClick={ this.openNewCommentForm }>Add New Comment</button>
-          }
-          {this.props.comments.sort(this.compareForHighestScore).map(comment => {
-            return (
-              <div key={comment.id}>
-                <Comment id={comment.id} />
-              </div>
-            )
-          })}
-        </div>
+      <div className="comments-container">
+        <hr />
+        <CommentListHeader
+          commentCount={this.props.commentCount}
+          postId={this.props.post.id}
+        />
+        {this.props.newCommentFormOpen && (
+          <div>
+            <div>
+              <NewCommentForm postId={this.props.post.id}/>
+            </div>
+          </div>
+        )}
+        {this.props.comments.sort(this.compareForHighestScore).map(comment => {
+          return (
+            <div key={comment.id}>
+              <Comment id={comment.id} />
+            </div>
+          )
+        })}
       </div>
     );
   }
@@ -62,7 +53,7 @@ function mapStateToProps (state, ownProps) {
   return {
     post: state.posts[ownProps.id],
     comments: comments,
-    comment_count: comments.length,
+    commentCount: comments.length,
     newCommentFormOpen: state.newCommentForms[ownProps.id] && state.newCommentForms[ownProps.id].newCommentFormOpen
   }
 }

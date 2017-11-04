@@ -119,12 +119,8 @@ button {
   color: #c99acf;
 }
 
-.post-comments-container {
-  background-color: #eeedff;
-}
-
-.post-comments {
-  margin-left: 20px;
+.comment-list-header-button {
+  text-align: center;
 }
 
 .new-post-form {
