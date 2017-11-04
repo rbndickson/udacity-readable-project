@@ -45,10 +45,10 @@ class Comment extends Component {
             {new Date(comment.timestamp).toDateString()} at {new Date(comment.timestamp).toLocaleTimeString()}
           </p>
           <div>
-            <button onClick={this.handleDelete}>Delete</button>
+            <button className="button-small" onClick={this.handleDelete}>Delete</button>
             {this.props.editCommentFormOpen
-              ? <button onClick={this.handleCloseEditForm}>Close Form</button>
-              : <button onClick={this.handleOpenEditForm}>Edit Comment</button>
+              ? <button className="button-small" onClick={this.handleCloseEditForm}>Close Form</button>
+              : <button className="button-small" onClick={this.handleOpenEditForm}>Edit Comment</button>
             }
           </div>
           {this.props.editCommentFormOpen && (
