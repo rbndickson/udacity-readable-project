@@ -65,7 +65,7 @@ function mapStateToProps (state) {
     .map(post_key => state.posts[post_key])
     .filter(post => post.deleted === false);
 
-  const posts = state.categoryFilter === 'All'
+  const posts = state.categoryFilter === 'all'
     ? allPosts
     : allPosts.filter(post => post.category === state.categoryFilter)
 

@@ -26,7 +26,7 @@ function categories (state = {}, action) {
   }
 }
 
-function categoryFilter (state = 'All', action) {
+function categoryFilter (state = 'all', action) {
   switch (action.type) {
     case CHANGE_CATEGORY_FILTER :
       return action.category

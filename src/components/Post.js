@@ -6,6 +6,7 @@ import EditPostForm from './EditPostForm';
 import Voting from './Voting';
 import PostButtons from './PostButtons';
 import { Link } from 'react-router-dom';
+import { capitalize } from '../utils/helpers';
 
 class Post extends Component {
   componentDidMount() {
@@ -37,7 +38,7 @@ class Post extends Component {
               {post.body}
             </div>
             <div>
-              <span className="card-author">Posted by {post.author} in {post.category}, </span>
+              <span className="card-author">Posted by {post.author} in {capitalize(post.category)}, </span>
               <span className="card-date">
                 {new Date(post.timestamp).toDateString()} at {new Date(post.timestamp).toLocaleTimeString()}
               </span>

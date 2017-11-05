@@ -6,7 +6,7 @@ import { changeCategoryFilter } from '../actions';
 
 class Category extends Component {
   updateCategoryFilter() {
-    const category = this.props.match.params.category || 'All'
+    const category = this.props.match.params.category || 'all'
 
     this.props.dispatch(changeCategoryFilter(category))
   }

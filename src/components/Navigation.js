@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getCategories } from '../utils/api';
 import { addCategory, changeCategoryFilter } from '../actions';
 import { Link } from 'react-router-dom';
+import { capitalize } from '../utils/helpers';
 
 class Navigation extends Component {
   componentDidMount() {
@@ -17,8 +18,8 @@ class Navigation extends Component {
     return (
       <nav>
         <ul>
-          <li key="All" onClick={() => {
-            this.props.dispatch(changeCategoryFilter('All'));
+          <li key="all" onClick={() => {
+            this.props.dispatch(changeCategoryFilter('all'));
           }}>
             <Link to="/">All</Link>
           </li>
@@ -26,7 +27,7 @@ class Navigation extends Component {
             <li key={category.name} onClick={() => {
               this.props.dispatch(changeCategoryFilter(category.name));
             }}>
-              <Link to={`/${category.path}`}>{category.name}</Link>
+              <Link to={`/${category.path}`}>{capitalize(category.name)}</Link>
             </li>
           ))}
         </ul>

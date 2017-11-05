@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewPostForm from './NewPostForm';
 import { changeCategorySort, openNewPostForm, closeNewPostForm } from '../actions';
+import { capitalize } from '../utils/helpers';
 
 class PostListHeader extends Component {
 
@@ -25,7 +26,7 @@ class PostListHeader extends Component {
   render() {
     return (
       <div className="container">
-        <h2>{this.props.categoryName}</h2>
+        <h2>{capitalize(this.props.categoryName)}</h2>
         <div className="row">
           <div className="column column-25">
             <select className="sort-select" value={this.props.categorySort} onChange={this.handleSortChange}>
