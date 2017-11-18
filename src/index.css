@@ -10,6 +10,10 @@ a:hover {
   color: #d65afc;
 }
 
+a:focus, a:active {
+  color: #d65afc;
+}
+
 button:hover {
   background-color: #d65afc;
   border-color: #d65afc;
@@ -30,6 +34,11 @@ nav {
 nav ul li {
   width: 75px;
   display: inline-block;
+}
+
+.active-nav-link {
+  color: #d65afc;
+  text-decoration: underline;
 }
 
 main {

@@ -21,13 +21,19 @@ class Navigation extends Component {
           <li key="all" onClick={() => {
             this.props.dispatch(changeCategoryFilter('all'));
           }}>
-            <Link to="/">All</Link>
+            <Link
+              to="/"
+              className={this.props.currentCategory === 'all' ? 'active-nav-link' : 'inactive-nav-link'}
+              >All</Link>
           </li>
           {this.props.categories.map((category) => (
             <li key={category.name} onClick={() => {
               this.props.dispatch(changeCategoryFilter(category.name));
             }}>
-              <Link to={`/${category.path}`}>{capitalize(category.name)}</Link>
+              <Link
+                to={`/${category.path}`}
+                className={this.props.currentCategory === category.name ? 'active-nav-link' : 'inactive-nav-link'}
+                >{capitalize(category.name)}</Link>
             </li>
           ))}
         </ul>
@@ -41,6 +47,7 @@ function mapStateToProps (state) {
   const category_keys = Object.keys(state.categories);
 
   return {
+    currentCategory: state.categoryFilter,
     categories: category_keys.map(category_key => state.categories[category_key]),
   }
 }
