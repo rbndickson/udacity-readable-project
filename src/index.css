@@ -112,6 +112,11 @@ button {
   border-right: 20px solid transparent;
 
   border-bottom: 10px solid #70d7dc;
+  transition: border-bottom .15s;
+}
+
+.upvote-button:hover {
+  border-bottom: 10px solid #3ac8ce;
 }
 
 .downvote-button {
@@ -121,6 +126,11 @@ button {
   border-right: 20px solid transparent;
 
   border-top: 10px solid #fc4383;
+  transition: border-top .15s;
+}
+
+.downvote-button:hover {
+  border-top: 10px solid #fa0459;
 }
 
 .vote-score {
