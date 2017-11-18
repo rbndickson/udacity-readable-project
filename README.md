@@ -18,7 +18,7 @@ This React and Redux frontend application was started using [Create React App](h
 
 ## Backend Server
 
-The app interacts with a [backend server from Udacity](https://github.com/udacity/reactnd-project-readable-starter) which can be found.
+The app interacts with a [backend server from Udacity](https://github.com/udacity/reactnd-project-readable-starter).
 
 ## create-react-app
 
