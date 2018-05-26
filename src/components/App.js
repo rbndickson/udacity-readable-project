@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import Navigation from "./Navigation";
+import AppTitle from "./AppTitle";
 import Category from "./Category";
+import Navigation from "./Navigation";
 import PostDetail from "./PostDetail";
 
 class App extends Component {
   render() {
     return (
-      <div className="app">
-        <div className="app-header">
-          <h2>Readable</h2>
-          <Navigation />
-        </div>
+      <div>
+        <AppTitle />
+        <Navigation />
         <Switch>
           <Route exact path="/" component={Category} />
           <Route exact path="/:category" component={Category} />
