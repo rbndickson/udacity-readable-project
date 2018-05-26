@@ -1,23 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { capitalize } from "../utils/helpers";
-import {
-  changeCategorySort,
-  openNewPostForm,
-  closeNewPostForm
-} from "../actions";
+import { openNewPostForm, closeNewPostForm } from "../actions";
+import PostListHeaderSelect from "./PostListHeaderSelect";
 import NewPostForm from "./NewPostForm";
 
 class PostListHeader extends Component {
-  handleSortChange = e => {
-    this.props.dispatch(
-      changeCategorySort({
-        category: this.props.categoryName,
-        sortValue: e.target.value
-      })
-    );
-  };
-
   handleOpenNewPostForm = e => {
     e.preventDefault();
     this.props.dispatch(openNewPostForm());
@@ -34,14 +22,7 @@ class PostListHeader extends Component {
         <h2>{capitalize(this.props.categoryName)}</h2>
         <div className="row">
           <div className="column column-25">
-            <select
-              className="sort-select"
-              value={this.props.categorySort}
-              onChange={this.handleSortChange}
-            >
-              <option value="voteScore">Vote Score</option>
-              <option value="timestamp">Recent</option>
-            </select>
+            <PostListHeaderSelect />
           </div>
           <div className="column colum-50">
             <div className="float-right">
@@ -65,11 +46,8 @@ class PostListHeader extends Component {
 }
 
 function mapStateToProps(state) {
-  const sortBy = state.categorySorts[state.categoryFilter] || "voteScore";
-
   return {
     categoryName: state.categoryFilter,
-    categorySort: sortBy,
     newPostFormOpen: state.newPostForm.newPostFormOpen
   };
 }
