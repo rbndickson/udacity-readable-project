@@ -23,9 +23,7 @@ class Post extends Component {
     return (
       <div>
         <div className="card-container">
-          <div className="card-voting-container">
-            <Voting voteType="post" id={post.id} voteScore={post.voteScore} />
-          </div>
+          <Voting voteType="post" id={post.id} voteScore={post.voteScore} />
           <div className="card-text-container">
             <h3 className="card-title">
               <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>

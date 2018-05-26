@@ -31,13 +31,11 @@ class Comment extends Component {
 
     return (
       <div className="card-container">
-        <div className="card-voting-container">
-          <Voting
-            voteType="comment"
-            id={comment.id}
-            voteScore={comment.voteScore}
-          />
-        </div>
+        <Voting
+          voteType="comment"
+          id={comment.id}
+          voteScore={comment.voteScore}
+        />
         <div className="card-text-container card-text-container-comments">
           <div className="card-body">{comment.body}</div>
           <div className="card-details">

@@ -6,6 +6,7 @@ import {
   upVoteComment,
   downVoteComment
 } from "../utils/api";
+import "./Voting.css";
 import { editPost, editComment } from "../actions";
 
 class Voting extends Component {
@@ -31,14 +32,14 @@ class Voting extends Component {
 
   render() {
     return (
-      <div className="card-voting">
+      <div className="Voting">
         <div
-          className="vote-button upvote-button"
+          className="Voting-button Voting-button--upvote"
           onClick={this.handleUpvote}
         />
-        <div className="vote-score">{this.props.voteScore}</div>
+        <div className="Voting-score">{this.props.voteScore}</div>
         <div
-          className="vote-button downvote-button"
+          className="Voting-button Voting-button--downvote"
           onClick={this.handleDownvote}
         />
       </div>

@@ -1,0 +1,46 @@
+.Voting {
+  float: left;
+  width: 40px;
+}
+
+.Voting-button {
+  cursor: pointer;
+  width: 40px;
+  height: 10px;
+  background-color: #fff;
+}
+
+.Voting-button--upvote {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-bottom: 10px solid #70d7dc;
+  transition: border-bottom 0.15s;
+}
+
+.Voting-button--upvote:hover {
+  border-bottom: 10px solid #3ac8ce;
+}
+
+.Voting-button--downvote {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-top: 10px solid #fc4383;
+  transition: border-top 0.15s;
+}
+
+.Voting-button--downvote:hover {
+  border-top: 10px solid #fa0459;
+}
+
+.Voting-score {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: #fff;
+}
