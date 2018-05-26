@@ -1,0 +1,24 @@
+.Comment {
+  margin: 20px 0;
+  padding: 10px 20px;
+}
+
+.Comment-main {
+  margin-left: 60px;
+  padding: 15px;
+  border-radius: 3px;
+  background-color: #eeedff;
+}
+
+.Comment-main div {
+  margin-top: 10px;
+}
+
+.Comment-author {
+  font-size: 0.9em;
+}
+
+.Comment-date {
+  font-size: 0.8em;
+  color: #c99acf;
+}

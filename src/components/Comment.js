@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteComment } from "../utils/api";
+import "./Comment.css";
 import EditCommentForm from "./EditCommentForm";
 import Voting from "./Voting";
 import {
@@ -30,17 +31,17 @@ class Comment extends Component {
     const { comment } = this.props;
 
     return (
-      <div className="card-container">
+      <div className={"Comment"}>
         <Voting
           voteType="comment"
           id={comment.id}
           voteScore={comment.voteScore}
         />
-        <div className="card-text-container card-text-container-comments">
-          <div className="card-body">{comment.body}</div>
-          <div className="card-details">
-            <span className="card-author">Posted by {comment.author}, </span>
-            <span className="card-date">
+        <div className="Comment-main">
+          <div>{comment.body}</div>
+          <div>
+            <span className="Comment-author">Posted by {comment.author}, </span>
+            <span className="Comment-date">
               {new Date(comment.timestamp).toDateString()} at{" "}
               {new Date(comment.timestamp).toLocaleTimeString()}
             </span>
