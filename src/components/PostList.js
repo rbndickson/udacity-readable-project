@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPosts } from "../utils/api";
+import "./PostList.css";
 import { addPost, closeEditPostForm } from "../actions";
 import Post from "./Post";
 
@@ -38,20 +39,20 @@ class PostList extends Component {
     const { posts } = this.props;
 
     return (
-      <div>
+      <ul>
         {this.props.sortBy === "voteScore" &&
           posts.sort(this.compareForHighestScore).map(post => (
-            <article key={post.id} className="post">
+            <li key={post.id} className="PostList-item">
               <Post id={post.id} />
-            </article>
+            </li>
           ))}
         {this.props.sortBy === "timestamp" &&
           posts.sort(this.compareForMostRecent).map(post => (
-            <article key={post.id} className="post">
+            <li key={post.id} className="PostList-item">
               <Post id={post.id} />
-            </article>
+            </li>
           ))}
-      </div>
+      </ul>
     );
   }
 }

@@ -1,0 +1,6 @@
+.PostList-item {
+  max-width: 600px;
+  margin: 20px 0;
+  padding: 10px 20px;
+  list-style-type: none;
+}

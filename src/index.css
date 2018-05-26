@@ -72,6 +72,12 @@ button {
   text-align: center;
 }
 
+.PostList-item {
+  max-width: 600px;
+  margin: 20px 0;
+  padding: 10px 20px;
+}
+
 .post {
   max-width: 600px;
   margin: 20px 0;
