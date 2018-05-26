@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPost } from "../utils/api";
+import "./PostDetail.css";
 import { addPost } from "../actions";
 import CommentList from "./CommentList";
 import Post from "./Post";
@@ -20,7 +21,7 @@ class PostDetail extends Component {
     return (
       <main>
         {post && (
-          <article key={post.id} className="post">
+          <article key={post.id} className="PostDetail">
             <Post id={post.id} />
             {this.props.comment_count > 0 && <CommentList id={post.id} />}
           </article>
