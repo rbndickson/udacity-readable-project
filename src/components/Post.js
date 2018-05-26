@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getPostComments } from "../utils/api";
-import { addComment } from "../actions";
-import EditPostForm from "./EditPostForm";
-import Voting from "./Voting";
-import PostButtons from "./PostButtons";
 import { Link } from "react-router-dom";
+import { getPostComments } from "../utils/api";
 import { capitalize } from "../utils/helpers";
+import { addComment } from "../actions";
+import PostButtons from "./PostButtons";
+import Voting from "./Voting";
+import EditPostForm from "./EditPostForm";
 
 class Post extends Component {
   componentDidMount() {

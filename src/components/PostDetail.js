@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPost } from "../utils/api";
 import { addPost } from "../actions";
-import Post from "./Post";
 import CommentList from "./CommentList";
+import Post from "./Post";
 
 class PostDetail extends Component {
   componentDidMount() {

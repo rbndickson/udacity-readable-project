@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { updateComment } from "../utils/api";
 import {
   updateEditCommentForm,
   closeEditCommentForm,
   editComment
 } from "../actions";
-import { updateComment } from "../utils/api";
 
 class EditCommentForm extends Component {
   componentDidMount() {

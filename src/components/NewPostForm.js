@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { createPost } from "../utils/api";
 import {
   updateNewPostForm,
   clearNewPostForm,
   addPost,
   closeNewPostForm
 } from "../actions";
-import { createPost } from "../utils/api";
 
 class NewPostForm extends Component {
   componentWillUnmount() {

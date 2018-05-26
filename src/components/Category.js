@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { changeCategoryFilter } from "../actions";
 import PostList from "./PostList";
 import PostListHeader from "./PostListHeader";
-import { changeCategoryFilter } from "../actions";
 
 class Category extends Component {
   updateCategoryFilter() {

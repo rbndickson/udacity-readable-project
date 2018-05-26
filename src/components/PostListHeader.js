@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import NewPostForm from "./NewPostForm";
+import { capitalize } from "../utils/helpers";
 import {
   changeCategorySort,
   openNewPostForm,
   closeNewPostForm
 } from "../actions";
-import { capitalize } from "../utils/helpers";
+import NewPostForm from "./NewPostForm";
 
 class PostListHeader extends Component {
   handleSortChange = e => {

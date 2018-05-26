@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCategories } from "../utils/api";
-import { addCategory, changeCategoryFilter } from "../actions";
 import { Link } from "react-router-dom";
+import { getCategories } from "../utils/api";
 import { capitalize } from "../utils/helpers";
+import { addCategory, changeCategoryFilter } from "../actions";
 
 class Navigation extends Component {
   componentDidMount() {

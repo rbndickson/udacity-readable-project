@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { deleteComment } from "../utils/api";
 import EditCommentForm from "./EditCommentForm";
 import Voting from "./Voting";
-import { deleteComment } from "../utils/api";
 import {
   removeComment,
   openEditCommentForm,

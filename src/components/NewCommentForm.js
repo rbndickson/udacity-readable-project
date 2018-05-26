@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { createComment } from "../utils/api";
 import {
   updateNewCommentForm,
   addComment,
   closeNewCommentForm
 } from "../actions";
-import { createComment } from "../utils/api";
 
 class NewCommentForm extends Component {
   handleChange = e => {
