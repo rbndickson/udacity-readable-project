@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Navigation from './Navigation';
-import Category from './Category';
-import PostDetail from './PostDetail';
+import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
+import Navigation from "./Navigation";
+import Category from "./Category";
+import PostDetail from "./PostDetail";
 
 class App extends Component {
   render() {

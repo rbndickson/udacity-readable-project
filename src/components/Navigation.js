@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getCategories } from '../utils/api';
-import { addCategory, changeCategoryFilter } from '../actions';
-import { Link } from 'react-router-dom';
-import { capitalize } from '../utils/helpers';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getCategories } from "../utils/api";
+import { addCategory, changeCategoryFilter } from "../actions";
+import { Link } from "react-router-dom";
+import { capitalize } from "../utils/helpers";
 
 class Navigation extends Component {
   componentDidMount() {
-    getCategories().then((categories) => {
-      categories.forEach((category) => {
+    getCategories().then(categories => {
+      categories.forEach(category => {
         this.props.dispatch(addCategory(category));
-      })
+      });
     });
   }
 
@@ -18,22 +18,40 @@ class Navigation extends Component {
     return (
       <nav>
         <ul>
-          <li key="all" onClick={() => {
-            this.props.dispatch(changeCategoryFilter('all'));
-          }}>
+          <li
+            key="all"
+            onClick={() => {
+              this.props.dispatch(changeCategoryFilter("all"));
+            }}
+          >
             <Link
               to="/"
-              className={this.props.currentCategory === 'all' ? 'active-nav-link' : 'inactive-nav-link'}
-              >All</Link>
+              className={
+                this.props.currentCategory === "all"
+                  ? "active-nav-link"
+                  : "inactive-nav-link"
+              }
+            >
+              All
+            </Link>
           </li>
-          {this.props.categories.map((category) => (
-            <li key={category.name} onClick={() => {
-              this.props.dispatch(changeCategoryFilter(category.name));
-            }}>
+          {this.props.categories.map(category => (
+            <li
+              key={category.name}
+              onClick={() => {
+                this.props.dispatch(changeCategoryFilter(category.name));
+              }}
+            >
               <Link
                 to={`/${category.path}`}
-                className={this.props.currentCategory === category.name ? 'active-nav-link' : 'inactive-nav-link'}
-                >{capitalize(category.name)}</Link>
+                className={
+                  this.props.currentCategory === category.name
+                    ? "active-nav-link"
+                    : "inactive-nav-link"
+                }
+              >
+                {capitalize(category.name)}
+              </Link>
             </li>
           ))}
         </ul>
@@ -42,14 +60,15 @@ class Navigation extends Component {
   }
 }
 
-
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const category_keys = Object.keys(state.categories);
 
   return {
     currentCategory: state.categoryFilter,
-    categories: category_keys.map(category_key => state.categories[category_key]),
-  }
+    categories: category_keys.map(
+      category_key => state.categories[category_key]
+    )
+  };
 }
 
 export default connect(mapStateToProps)(Navigation);

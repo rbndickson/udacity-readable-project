@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getPosts } from '../utils/api';
-import { addPost, closeEditPostForm } from '../actions';
-import Post from './Post';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getPosts } from "../utils/api";
+import { addPost, closeEditPostForm } from "../actions";
+import Post from "./Post";
 
 class PostList extends Component {
   componentDidMount() {
-    getPosts().then((posts) => {
-      posts.forEach((post) => {
+    getPosts().then(posts => {
+      posts.forEach(post => {
         this.props.dispatch(addPost(post));
         this.props.dispatch(closeEditPostForm(post.id));
-      })
+      });
     });
   }
 
@@ -22,7 +22,7 @@ class PostList extends Component {
       return -1;
     }
     return 0;
-  }
+  };
 
   compareForMostRecent = (a, b) => {
     if (a.timestamp < b.timestamp) {
@@ -32,49 +32,48 @@ class PostList extends Component {
       return -1;
     }
     return 0;
-  }
+  };
 
   render() {
-    const { posts } = this.props
+    const { posts } = this.props;
 
     return (
       <div>
-        {this.props.sortBy === 'voteScore' && (
-          posts.sort(this.compareForHighestScore).map((post) => (
+        {this.props.sortBy === "voteScore" &&
+          posts.sort(this.compareForHighestScore).map(post => (
             <article key={post.id} className="post">
-              <Post id={post.id}/>
+              <Post id={post.id} />
             </article>
-          ))
-        )}
-        {this.props.sortBy === 'timestamp' && (
-          posts.sort(this.compareForMostRecent).map((post) => (
+          ))}
+        {this.props.sortBy === "timestamp" &&
+          posts.sort(this.compareForMostRecent).map(post => (
             <article key={post.id} className="post">
-              <Post id={post.id}/>
+              <Post id={post.id} />
             </article>
-          ))
-        )}
+          ))}
       </div>
     );
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const post_keys = Object.keys(state.posts);
 
   const allPosts = post_keys
     .map(post_key => state.posts[post_key])
     .filter(post => post.deleted === false);
 
-  const posts = state.categoryFilter === 'all'
-    ? allPosts
-    : allPosts.filter(post => post.category === state.categoryFilter)
+  const posts =
+    state.categoryFilter === "all"
+      ? allPosts
+      : allPosts.filter(post => post.category === state.categoryFilter);
 
-  const sortBy = state.categorySorts[state.categoryFilter] || 'voteScore';
+  const sortBy = state.categorySorts[state.categoryFilter] || "voteScore";
 
   return {
     posts: posts,
-    sortBy: sortBy,
-  }
+    sortBy: sortBy
+  };
 }
 
 export default connect(mapStateToProps)(PostList);

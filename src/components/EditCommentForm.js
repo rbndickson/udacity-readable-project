@@ -1,63 +1,74 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { updateEditCommentForm, closeEditCommentForm, editComment } from '../actions';
-import { updateComment } from '../utils/api';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import {
+  updateEditCommentForm,
+  closeEditCommentForm,
+  editComment
+} from "../actions";
+import { updateComment } from "../utils/api";
 
 class EditCommentForm extends Component {
   componentDidMount() {
-    this.props.dispatch(updateEditCommentForm({
-      commentId: this.props.comment.id,
-      field: 'body',
-      value: this.props.comment.body,
-    }));
-  };
+    this.props.dispatch(
+      updateEditCommentForm({
+        commentId: this.props.comment.id,
+        field: "body",
+        value: this.props.comment.body
+      })
+    );
+  }
 
   componentWillUnmount() {
-    this.props.dispatch(closeEditCommentForm(this.props.comment.id))
-  };
+    this.props.dispatch(closeEditCommentForm(this.props.comment.id));
+  }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
 
-    updateComment(
-      this.props.comment.id,
-      { body: this.props.body }
-    ).then((updatedComment) => {
-      this.props.dispatch(editComment(updatedComment));
-      this.props.dispatch(closeEditCommentForm(this.props.comment.id));
-    });
+    updateComment(this.props.comment.id, { body: this.props.body }).then(
+      updatedComment => {
+        this.props.dispatch(editComment(updatedComment));
+        this.props.dispatch(closeEditCommentForm(this.props.comment.id));
+      }
+    );
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     e.preventDefault();
     const target = e.target;
     const value = target.value;
     const name = target.name;
 
-    this.props.dispatch(updateEditCommentForm({
-      commentId: this.props.id,
-      field: name,
-      value: value
-    }));
-  }
+    this.props.dispatch(
+      updateEditCommentForm({
+        commentId: this.props.id,
+        field: name,
+        value: value
+      })
+    );
+  };
 
   render() {
     return (
       <main>
         <form className="comment-form" onSubmit={this.handleSubmit}>
-          <textarea name="body" value={this.props.body} onChange={this.handleChange} />
+          <textarea
+            name="body"
+            value={this.props.body}
+            onChange={this.handleChange}
+          />
           <button type="submit">Update Comment</button>
         </form>
       </main>
     );
-  };
+  }
 }
 
-function mapStateToProps (state, ownProps) {
+function mapStateToProps(state, ownProps) {
   return {
     comment: state.comments[ownProps.id],
     body: state.editCommentForms[ownProps.id].body
-  }
+  };
 }
 
 export default connect(mapStateToProps)(EditCommentForm);

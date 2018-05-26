@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import CommentListHeader from './CommentListHeader';
-import Comment from './Comment';
-import NewCommentForm from './NewCommentForm';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import CommentListHeader from "./CommentListHeader";
+import Comment from "./Comment";
+import NewCommentForm from "./NewCommentForm";
 
 class CommentList extends Component {
   compareForHighestScore = (a, b) => {
@@ -13,7 +13,7 @@ class CommentList extends Component {
       return -1;
     }
     return 0;
-  }
+  };
 
   render() {
     return (
@@ -26,7 +26,7 @@ class CommentList extends Component {
         {this.props.newCommentFormOpen && (
           <div>
             <div>
-              <NewCommentForm postId={this.props.post.id}/>
+              <NewCommentForm postId={this.props.post.id} />
             </div>
           </div>
         )}
@@ -35,15 +35,15 @@ class CommentList extends Component {
             <div className="comment" key={comment.id}>
               <Comment id={comment.id} />
             </div>
-          )
+          );
         })}
       </div>
     );
   }
 }
 
-function mapStateToProps (state, ownProps) {
-  const postId = ownProps.id
+function mapStateToProps(state, ownProps) {
+  const postId = ownProps.id;
   const comment_keys = Object.keys(state.comments);
   const comments = comment_keys
     .map(comment_key => state.comments[comment_key])
@@ -54,8 +54,10 @@ function mapStateToProps (state, ownProps) {
     post: state.posts[ownProps.id],
     comments: comments,
     commentCount: comments.length,
-    newCommentFormOpen: state.newCommentForms[ownProps.id] && state.newCommentForms[ownProps.id].newCommentFormOpen
-  }
+    newCommentFormOpen:
+      state.newCommentForms[ownProps.id] &&
+      state.newCommentForms[ownProps.id].newCommentFormOpen
+  };
 }
 
 export default connect(mapStateToProps)(CommentList);

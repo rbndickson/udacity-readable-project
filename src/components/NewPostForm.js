@@ -1,53 +1,55 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import {
   updateNewPostForm,
   clearNewPostForm,
   addPost,
-  closeNewPostForm,
-} from '../actions';
-import { createPost } from '../utils/api';
+  closeNewPostForm
+} from "../actions";
+import { createPost } from "../utils/api";
 
 class NewPostForm extends Component {
   componentWillUnmount() {
     this.props.dispatch(clearNewPostForm());
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
 
-    createPost(
-      {
-        id: Date.now().toString(36) + Math.random().toString(36).substr(2, 14),
-        timestamp: Date.now(),
-        author: this.props.author,
-        title: this.props.title,
-        body: this.props.body,
-        category: this.props.category,
-      }
-    ).then((post) => {
+    createPost({
+      id:
+        Date.now().toString(36) +
+        Math.random()
+          .toString(36)
+          .substr(2, 14),
+      timestamp: Date.now(),
+      author: this.props.author,
+      title: this.props.title,
+      body: this.props.body,
+      category: this.props.category
+    }).then(post => {
       this.props.dispatch(addPost(post));
       this.props.dispatch(closeNewPostForm());
-    })
-  }
+    });
+  };
 
-  handleChange = (e) => {
-    e.preventDefault()
+  handleChange = e => {
+    e.preventDefault();
     const target = e.target;
     const value = target.value;
     const name = target.name;
 
-    this.props.dispatch(updateNewPostForm({
-      [name]: value,
-    }));
-  }
+    this.props.dispatch(
+      updateNewPostForm({
+        [name]: value
+      })
+    );
+  };
 
   render() {
     if (this.state && this.state.redirect) {
-      return (
-        <Redirect to={`/${this.props.category}`} />
-      )
+      return <Redirect to={`/${this.props.category}`} />;
     }
     return (
       <div>
@@ -56,21 +58,41 @@ class NewPostForm extends Component {
           <fieldset>
             <label>
               Your name:
-              <input name="author" type="text" value={this.props.author} onChange={this.handleChange} />
+              <input
+                name="author"
+                type="text"
+                value={this.props.author}
+                onChange={this.handleChange}
+              />
             </label>
             <label>
-               Title:
-               <input name="title" type="text" value={this.props.title} onChange={this.handleChange} />
+              Title:
+              <input
+                name="title"
+                type="text"
+                value={this.props.title}
+                onChange={this.handleChange}
+              />
             </label>
             <label>
-               Body:
-               <textarea name="body" value={this.props.body} onChange={this.handleChange} />
+              Body:
+              <textarea
+                name="body"
+                value={this.props.body}
+                onChange={this.handleChange}
+              />
             </label>
             <label>
               Category:
-              <select name="category" value={this.props.category} onChange={this.handleChange}>
-                {this.props.categories.map((category) => (
-                  <option key={category.name} value={category.name}>{category.name}</option>
+              <select
+                name="category"
+                value={this.props.category}
+                onChange={this.handleChange}
+              >
+                {this.props.categories.map(category => (
+                  <option key={category.name} value={category.name}>
+                    {category.name}
+                  </option>
                 ))}
               </select>
             </label>
@@ -82,16 +104,18 @@ class NewPostForm extends Component {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const category_keys = Object.keys(state.categories);
 
   return {
-    categories: category_keys.map(category_key => state.categories[category_key]),
+    categories: category_keys.map(
+      category_key => state.categories[category_key]
+    ),
     title: state.newPostForm.title,
     author: state.newPostForm.author,
     body: state.newPostForm.body,
-    category: state.newPostForm.category,
-  }
+    category: state.newPostForm.category
+  };
 }
 
 export default connect(mapStateToProps)(NewPostForm);
