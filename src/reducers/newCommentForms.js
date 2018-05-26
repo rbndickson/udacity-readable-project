@@ -2,25 +2,25 @@ import {
   OPEN_NEW_COMMENT_FORM,
   CLOSE_NEW_COMMENT_FORM,
   UPDATE_NEW_COMMENT_FORM
-} from '../actions';
+} from "../actions";
 
-function newCommentForms (state = {}, action) {
+function newCommentForms(state = {}, action) {
   switch (action.type) {
-    case OPEN_NEW_COMMENT_FORM :
+    case OPEN_NEW_COMMENT_FORM:
       return {
         ...state,
         [action.postId]: {
           newCommentFormOpen: true
         }
       };
-    case CLOSE_NEW_COMMENT_FORM :
+    case CLOSE_NEW_COMMENT_FORM:
       return {
         ...state,
         [action.postId]: {
           newCommentFormOpen: false
         }
       };
-    case UPDATE_NEW_COMMENT_FORM :
+    case UPDATE_NEW_COMMENT_FORM:
       return {
         ...state,
         [action.postId]: {
@@ -28,10 +28,9 @@ function newCommentForms (state = {}, action) {
           [action.field]: action.value
         }
       };
-    default :
+    default:
       return state;
   }
 }
-
 
 export default newCommentForms;

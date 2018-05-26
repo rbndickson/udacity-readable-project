@@ -2,25 +2,25 @@ import {
   OPEN_EDIT_POST_FORM,
   CLOSE_EDIT_POST_FORM,
   UPDATE_EDIT_POST_FORM
-} from '../actions';
+} from "../actions";
 
-function editPostForms (state = {}, action) {
+function editPostForms(state = {}, action) {
   switch (action.type) {
-    case OPEN_EDIT_POST_FORM :
+    case OPEN_EDIT_POST_FORM:
       return {
         ...state,
         [action.postId]: {
           editPostFormOpen: true
         }
       };
-    case CLOSE_EDIT_POST_FORM :
+    case CLOSE_EDIT_POST_FORM:
       return {
         ...state,
         [action.postId]: {
           editPostFormOpen: false
         }
       };
-    case UPDATE_EDIT_POST_FORM :
+    case UPDATE_EDIT_POST_FORM:
       return {
         ...state,
         [action.postId]: {
@@ -28,7 +28,7 @@ function editPostForms (state = {}, action) {
           [action.field]: action.value
         }
       };
-    default :
+    default:
       return state;
   }
 }

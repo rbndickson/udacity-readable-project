@@ -1,24 +1,20 @@
-import {
-  ADD_COMMENT,
-  EDIT_COMMENT,
-  REMOVE_COMMENT
-} from '../actions';
+import { ADD_COMMENT, EDIT_COMMENT, REMOVE_COMMENT } from "../actions";
 
-function comments (state = {}, action) {
+function comments(state = {}, action) {
   const { comment } = action;
 
   switch (action.type) {
-    case ADD_COMMENT :
+    case ADD_COMMENT:
       return {
         ...state,
         [comment.id]: comment
       };
-    case EDIT_COMMENT :
+    case EDIT_COMMENT:
       return {
         ...state,
         [comment.id]: comment
       };
-    case REMOVE_COMMENT :
+    case REMOVE_COMMENT:
       return {
         ...state,
         [comment.id]: {
@@ -26,7 +22,7 @@ function comments (state = {}, action) {
           deleted: true
         }
       };
-    default :
+    default:
       return state;
   }
 }

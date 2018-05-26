@@ -1,24 +1,20 @@
-import {
-  ADD_POST,
-  EDIT_POST,
-  REMOVE_POST
-} from '../actions';
+import { ADD_POST, EDIT_POST, REMOVE_POST } from "../actions";
 
-function posts (state = {}, action) {
+function posts(state = {}, action) {
   const { post } = action;
 
   switch (action.type) {
-    case ADD_POST :
+    case ADD_POST:
       return {
         ...state,
         [post.id]: post
       };
-    case EDIT_POST :
+    case EDIT_POST:
       return {
         ...state,
         [post.id]: post
       };
-    case REMOVE_POST :
+    case REMOVE_POST:
       return {
         ...state,
         [post.id]: {
@@ -26,7 +22,7 @@ function posts (state = {}, action) {
           deleted: true
         }
       };
-    default :
+    default:
       return state;
   }
 }
