@@ -94,16 +94,12 @@ button {
   background-color: #eee7fd;
 }
 
-.card-text-container-comments {
-  background-color: #eeedff;
-}
-
 .card-text-container div {
   margin-top: 10px;
 }
 
-.card-title {
-  text-align: left;
+.card-text-container-comments {
+  background-color: #eeedff;
 }
 
 .card-author {

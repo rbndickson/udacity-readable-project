@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getPostComments } from "../utils/api";
 import { capitalize } from "../utils/helpers";
+import "./Post.css";
 import { addComment } from "../actions";
 import PostButtons from "./PostButtons";
 import Voting from "./Voting";
@@ -22,18 +23,18 @@ class Post extends Component {
 
     return (
       <div>
-        <div className="card-container">
+        <div>
           <Voting voteType="post" id={post.id} voteScore={post.voteScore} />
-          <div className="card-text-container">
-            <h3 className="card-title">
+          <div className="Post-main">
+            <h3 className="Post-title">
               <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
             </h3>
-            <div className="card-body">{post.body}</div>
+            <div>{post.body}</div>
             <div>
-              <span className="card-author">
+              <span className="Post-author">
                 Posted by {post.author} in {capitalize(post.category)},{" "}
               </span>
-              <span className="card-date">
+              <span className="Post-date">
                 {new Date(post.timestamp).toDateString()} at{" "}
                 {new Date(post.timestamp).toLocaleTimeString()}
               </span>
