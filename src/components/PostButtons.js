@@ -22,8 +22,6 @@ class PostButtons extends Component {
   };
 
   render() {
-    const { post } = this.props;
-
     return (
       <div>
         <Button text={"Delete"} mods={["small"]} onClick={this.handleDelete} />
