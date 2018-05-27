@@ -4,7 +4,7 @@ import { capitalize } from "../utils/helpers";
 import { openNewPostForm, closeNewPostForm } from "../actions";
 import Button from "./Button";
 import PostListHeaderSelect from "./PostListHeaderSelect";
-import NewPostForm from "./NewPostForm";
+import NewPost from "./NewPost";
 
 class PostListHeader extends Component {
   handleOpenNewPostForm = e => {
@@ -42,7 +42,7 @@ class PostListHeader extends Component {
             </div>
           </div>
         </div>
-        {this.props.newPostFormOpen && <NewPostForm />}
+        {this.props.newPostFormOpen && <NewPost />}
       </div>
     );
   }

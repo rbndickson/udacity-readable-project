@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import "./NewPostForm.css";
 import { createPost } from "../utils/api";
 import { createId } from "../utils/helpers";
@@ -41,58 +40,52 @@ class NewPostForm extends Component {
   };
 
   render() {
-    if (this.state && this.state.redirect) {
-      return <Redirect to={`/${this.props.category}`} />;
-    }
     return (
-      <div className={"NewPostForm"}>
-        <h4>Create New Post</h4>
-        <form onSubmit={this.handleSubmit}>
-          <fieldset>
-            <label>
-              Your name:
-              <input
-                name="author"
-                type="text"
-                value={this.state.author}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Title:
-              <input
-                name="title"
-                type="text"
-                value={this.state.title}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Body:
-              <textarea
-                name="body"
-                value={this.state.body}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Category:
-              <select
-                name="category"
-                value={this.state.category}
-                onChange={this.handleChange}
-              >
-                {this.props.categories.map(category => (
-                  <option key={category.name} value={category.name}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <Button text={"Add Post"} />
-          </fieldset>
-        </form>
-      </div>
+      <form className={"NewPostForm"} onSubmit={this.handleSubmit}>
+        <fieldset>
+          <label>
+            Your name:
+            <input
+              name="author"
+              type="text"
+              value={this.state.author}
+              onChange={this.handleChange}
+            />
+          </label>
+          <label>
+            Title:
+            <input
+              name="title"
+              type="text"
+              value={this.state.title}
+              onChange={this.handleChange}
+            />
+          </label>
+          <label>
+            Body:
+            <textarea
+              name="body"
+              value={this.state.body}
+              onChange={this.handleChange}
+            />
+          </label>
+          <label>
+            Category:
+            <select
+              name="category"
+              value={this.state.category}
+              onChange={this.handleChange}
+            >
+              {this.props.categories.map(category => (
+                <option key={category.name} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <Button text={"Add Post"} />
+        </fieldset>
+      </form>
     );
   }
 }

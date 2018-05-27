@@ -1,11 +1,11 @@
-.NewPostForm form {
+.NewPostForm {
   margin: 20px 0;
   padding: 10px 20px;
   border-radius: 3px;
   background-color: #eee7fd;
 }
 
-.NewPostForm form * {
+.NewPostForm fieldset {
   width: 100%;
   margin: 10px 0;
 }
