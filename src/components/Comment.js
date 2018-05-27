@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteComment } from "../utils/api";
 import "./Comment.css";
-import EditCommentForm from "./EditCommentForm";
-import Voting from "./Voting";
 import {
   removeComment,
   openEditCommentForm,
   closeEditCommentForm
 } from "../actions";
+import EditCommentForm from "./EditCommentForm";
+import Voting from "./Voting";
+import Button from "./Button";
 
 class Comment extends Component {
   handleDelete = () => {
@@ -47,23 +48,23 @@ class Comment extends Component {
             </span>
           </div>
           <div>
-            <button className="button-small" onClick={this.handleDelete}>
-              Delete
-            </button>
+            <Button
+              text={"Delete"}
+              mods={["small"]}
+              onClick={this.handleDelete}
+            />
             {this.props.editCommentFormOpen ? (
-              <button
-                className="secondary-button button-small"
+              <Button
+                text={"Close"}
+                mods={["secondary", "small"]}
                 onClick={this.handleCloseEditForm}
-              >
-                Close
-              </button>
+              />
             ) : (
-              <button
-                className="button-small"
+              <Button
+                text={"Edit"}
+                mods={["small"]}
                 onClick={this.handleOpenEditForm}
-              >
-                Edit
-              </button>
+              />
             )}
           </div>
           {this.props.editCommentFormOpen && (

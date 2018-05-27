@@ -6,6 +6,7 @@ import {
   closeEditCommentForm,
   editComment
 } from "../actions";
+import Button from "./Button";
 
 class EditCommentForm extends Component {
   componentDidMount() {
@@ -57,7 +58,7 @@ class EditCommentForm extends Component {
             value={this.props.body}
             onChange={this.handleChange}
           />
-          <button type="submit">Update Comment</button>
+          <Button text={"Update Comment"} />
         </form>
       </main>
     );

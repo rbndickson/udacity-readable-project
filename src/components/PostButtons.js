@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deletePost } from "../utils/api";
 import { removePost, openEditPostForm, closeEditPostForm } from "../actions";
+import Button from "./Button";
 
 class PostButtons extends Component {
   handleDelete = () => {
@@ -24,21 +25,20 @@ class PostButtons extends Component {
     const { post } = this.props;
 
     return (
-      <div className="buttons">
-        <button className="button-small" onClick={this.handleDelete}>
-          Delete
-        </button>
+      <div>
+        <Button text={"Delete"} mods={["small"]} onClick={this.handleDelete} />
         {this.props.editPostFormOpen ? (
-          <button
-            className="secondary-button button-small"
+          <Button
+            text={"Close"}
+            mods={["secondary", "small"]}
             onClick={this.handleCloseEditForm}
-          >
-            Close
-          </button>
+          />
         ) : (
-          <button className="button-small" onClick={this.handleOpenEditForm}>
-            Edit
-          </button>
+          <Button
+            text={["Edit"]}
+            mods={["small"]}
+            onClick={this.handleOpenEditForm}
+          />
         )}
       </div>
     );

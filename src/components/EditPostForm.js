@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updatePost } from "../utils/api";
 import { updateEditPostForm, closeEditPostForm, editPost } from "../actions";
+import Button from "./Button";
 
 class EditPostForm extends Component {
   componentWillMount() {
@@ -73,7 +74,7 @@ class EditPostForm extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit">Update Post</button>
+          <Button text={"Update Post"} />
         </form>
       </div>
     );

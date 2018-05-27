@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { capitalize } from "../utils/helpers";
 import { openNewPostForm, closeNewPostForm } from "../actions";
+import Button from "./Button";
 import PostListHeaderSelect from "./PostListHeaderSelect";
 import NewPostForm from "./NewPostForm";
 
@@ -27,14 +28,16 @@ class PostListHeader extends Component {
           <div className="column colum-50">
             <div className="float-right">
               {this.props.newPostFormOpen ? (
-                <button
-                  className="secondary-button"
+                <Button
+                  text={"Close"}
+                  mods={["secondary"]}
                   onClick={this.handleCloseNewPostForm}
-                >
-                  Close
-                </button>
+                />
               ) : (
-                <button onClick={this.handleOpenNewPostForm}>Add post</button>
+                <Button
+                  text={"Add Post"}
+                  onClick={this.handleOpenNewPostForm}
+                />
               )}
             </div>
           </div>

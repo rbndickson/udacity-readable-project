@@ -15,11 +15,6 @@ a:active {
   color: #d65afc;
 }
 
-button:hover {
-  background-color: #d65afc;
-  border-color: #d65afc;
-}
-
 h1,
 h2,
 h3,
@@ -44,28 +39,6 @@ nav ul li {
 main {
   max-width: 600px;
   margin: 0 auto;
-}
-
-button {
-  margin-right: 10px;
-  transition: background-color 0.15s;
-}
-
-.secondary-button {
-  background-color: #fc6a7e;
-  border-color: #fc6a7e;
-}
-
-.secondary-button:hover {
-  background-color: #fc4383;
-  border-color: #fc4383;
-}
-
-.button-small {
-  font-size: 0.8rem;
-  height: 2.8rem;
-  line-height: 2.8rem;
-  padding: 0 1.5rem;
 }
 
 .text-center {

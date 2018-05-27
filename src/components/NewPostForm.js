@@ -8,6 +8,7 @@ import {
   addPost,
   closeNewPostForm
 } from "../actions";
+import Button from "./Button";
 
 class NewPostForm extends Component {
   componentWillUnmount() {
@@ -96,7 +97,7 @@ class NewPostForm extends Component {
                 ))}
               </select>
             </label>
-            <button type="submit">Add Post</button>
+            <Button text={"Add Post"} />
           </fieldset>
         </form>
       </div>

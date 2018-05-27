@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { openNewCommentForm, closeNewCommentForm } from "../actions";
+import Button from "./Button";
 
 class CommentListHeader extends Component {
   openNewCommentForm = () => {
@@ -18,17 +19,17 @@ class CommentListHeader extends Component {
         <div className="comment-list-header-button">
           {this.props.newCommentFormOpen ? (
             <div>
-              <button
-                className="button-small"
+              <Button
+                text={"Close"}
+                mods={["secondary"]}
                 onClick={this.closeNewCommentForm}
-              >
-                Close
-              </button>
+              />
             </div>
           ) : (
-            <button className="button-small" onClick={this.openNewCommentForm}>
-              Add New Comment
-            </button>
+            <Button
+              text={"Add New Comment"}
+              onClick={this.openNewCommentForm}
+            />
           )}
         </div>
       </div>

@@ -6,6 +6,7 @@ import {
   addComment,
   closeNewCommentForm
 } from "../actions";
+import Button from "./Button";
 
 class NewCommentForm extends Component {
   handleChange = e => {
@@ -63,7 +64,7 @@ class NewCommentForm extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit">Add Comment</button>
+          <Button text={"Add Comment"} />
         </form>
       </div>
     );

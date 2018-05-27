@@ -1,0 +1,26 @@
+.Button {
+  margin-right: 10px;
+  transition: background-color 0.15s;
+}
+
+.Button:hover {
+  background-color: #d65afc;
+  border-color: #d65afc;
+}
+
+.Button--secondary {
+  background-color: #fc6a7e;
+  border-color: #fc6a7e;
+}
+
+.Button--secondary:hover {
+  background-color: #fc4383;
+  border-color: #fc4383;
+}
+
+.Button--small {
+  font-size: 0.8rem;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  padding: 0 1.5rem;
+}
