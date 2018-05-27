@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { createPost } from "../utils/api";
-import {
-  updateNewPostForm,
-  clearNewPostForm,
-  addPost,
-  closeNewPostForm
-} from "../actions";
+import { addPost, closeNewPostForm } from "../actions";
 import Button from "./Button";
 
 class NewPostForm extends Component {
@@ -17,10 +12,6 @@ class NewPostForm extends Component {
     body: "",
     category: "react"
   };
-
-  componentWillUnmount() {
-    this.props.dispatch(clearNewPostForm());
-  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -109,16 +100,12 @@ class NewPostForm extends Component {
 }
 
 function mapStateToProps(state) {
-  const category_keys = Object.keys(state.categories);
+  const categories = Object.keys(state.categories).map(
+    category_key => state.categories[category_key]
+  );
 
   return {
-    categories: category_keys.map(
-      category_key => state.categories[category_key]
-    ),
-    title: state.newPostForm.title,
-    author: state.newPostForm.author,
-    body: state.newPostForm.body,
-    category: state.newPostForm.category
+    categories: categories
   };
 }
 
