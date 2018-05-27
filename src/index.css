@@ -53,27 +53,14 @@ main {
   text-align: center;
 }
 
-.new-post-form,
-.edit-post-form {
+.new-post-form {
   margin: 20px 0;
   padding: 10px 20px;
   border-radius: 3px;
   background-color: #eee7fd;
 }
 
-.new-comment-form {
-  margin: 20px 20px 20px 80px;
-  padding: 10px 20px;
-  border-radius: 3px;
-  background-color: #eee7fd;
-}
-
-.edit-post-form-container {
-  margin: 20px 0 0 60px;
-}
-
-.new-post-form *,
-.edit-post-form * {
+.new-post-form * {
   width: 100%;
   margin: 10px 0;
 }
@@ -81,6 +68,13 @@ textarea,
 select,
 input[type="text"] {
   background-color: #fff;
+}
+
+.new-comment-form {
+  margin: 20px 20px 20px 80px;
+  padding: 10px 20px;
+  border-radius: 3px;
+  background-color: #eee7fd;
 }
 
 .new-comment-form * {

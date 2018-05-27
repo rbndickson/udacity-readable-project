@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "./EditPostForm.css";
 import { updatePost } from "../utils/api";
 import { closeEditPostForm, editPost } from "../actions";
 import Button from "./Button";
@@ -47,9 +48,9 @@ class EditPostForm extends Component {
     const { title, body } = this.state;
 
     return (
-      <div className="edit-post-form-container">
+      <div className="EditPostForm">
         <h3>Edit Post</h3>
-        <form className="edit-post-form" onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <label>
             Title:
             <input
