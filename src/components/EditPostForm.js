@@ -1,58 +1,51 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updatePost } from "../utils/api";
-import { updateEditPostForm, closeEditPostForm, editPost } from "../actions";
+import { closeEditPostForm, editPost } from "../actions";
 import Button from "./Button";
 
 class EditPostForm extends Component {
-  componentWillMount() {
-    this.props.dispatch(
-      updateEditPostForm({
-        postId: this.props.post.id,
-        field: "title",
-        value: this.props.post.title
-      })
-    );
-    this.props.dispatch(
-      updateEditPostForm({
-        postId: this.props.post.id,
-        field: "body",
-        value: this.props.post.body
-      })
-    );
+  state = {
+    title: "",
+    body: ""
+  };
+
+  componentDidMount() {
+    const { title, body } = this.props.post;
+
+    this.setState({
+      title: title,
+      body: body
+    });
   }
 
   handleSubmit = e => {
     e.preventDefault();
 
-    const { post, title, body } = this.props;
+    const { id } = this.props.post;
+    const { title, body } = this.state;
 
-    updatePost(post.id, {
+    updatePost(id, {
       title: title,
       body: body
     }).then(post => {
       this.props.dispatch(editPost(post));
-      this.props.dispatch(this.props.dispatch(closeEditPostForm(post.id)));
+      this.props.dispatch(this.props.dispatch(closeEditPostForm(id)));
     });
   };
 
   handleChange = e => {
     e.preventDefault();
     const target = e.target;
-    const value = target.value;
-    const name = target.name;
-    const postId = this.props.post.id;
 
-    this.props.dispatch(
-      updateEditPostForm({
-        postId: postId,
-        field: name,
-        value: value
-      })
-    );
+    this.setState({
+      [target.name]: target.value
+    });
   };
 
   render() {
+    const { title, body } = this.state;
+
     return (
       <div className="edit-post-form-container">
         <h3>Edit Post</h3>
@@ -62,17 +55,13 @@ class EditPostForm extends Component {
             <input
               name="title"
               type="text"
-              value={this.props.title}
+              value={title}
               onChange={this.handleChange}
             />
           </label>
           <label>
             Body:
-            <textarea
-              name="body"
-              value={this.props.body}
-              onChange={this.handleChange}
-            />
+            <textarea name="body" value={body} onChange={this.handleChange} />
           </label>
           <Button text={"Update Post"} />
         </form>
@@ -82,14 +71,10 @@ class EditPostForm extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  // So that component is always controlled
-  const currentFormTitle = state.editPostForms[ownProps.id].title || "";
-  const currentFormBody = state.editPostForms[ownProps.id].body || "";
+  const post = state.posts[ownProps.id];
 
   return {
-    post: state.posts[ownProps.id],
-    title: currentFormTitle,
-    body: currentFormBody
+    post: post
   };
 }
 
