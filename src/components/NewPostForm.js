@@ -11,7 +11,7 @@ class NewPostForm extends Component {
     author: "",
     title: "",
     body: "",
-    category: "react"
+    category: this.props.categories[0].name
   };
 
   handleSubmit = e => {
