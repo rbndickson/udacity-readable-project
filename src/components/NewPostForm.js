@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "./NewPostForm.css";
 import { createPost } from "../utils/api";
+import { createId } from "../utils/helpers";
 import { addPost, closeNewPostForm } from "../actions";
 import Button from "./Button";
 
@@ -18,11 +19,7 @@ class NewPostForm extends Component {
     e.preventDefault();
 
     createPost({
-      id:
-        Date.now().toString(36) +
-        Math.random()
-          .toString(36)
-          .substr(2, 14),
+      id: createId(),
       timestamp: Date.now(),
       author: this.state.author,
       title: this.state.title,
