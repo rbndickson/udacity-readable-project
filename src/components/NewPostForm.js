@@ -1,94 +1,65 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "./NewPostForm.css";
 import { createPost } from "../utils/api";
 import { createId } from "../utils/helpers";
 import { addPost, closeNewPostForm } from "../actions";
 import Button from "./Button";
+import { withFormik, Form, Field } from "formik";
 
-class NewPostForm extends Component {
-  state = {
-    author: "",
-    title: "",
-    body: "",
-    category: this.props.categories[0].name
-  };
+const FormikForm = ({ values }) => (
+  <Form className="NewPostForm">
+    <label>
+      Your name:
+      <Field name="author" type="text" />
+    </label>
+    <label>
+      Title:
+      <Field name="title" type="text" />
+    </label>
+    <label>
+      Body:
+      <Field component="textarea" name="body" />
+    </label>
+    <label>
+      Category:
+      <Field component="select" name="category">
+        {values.categories.map(category => (
+          <option key={category.name} value={category.name}>
+            {category.name}
+          </option>
+        ))}
+      </Field>
+    </label>
+    <Button text="Add Post" />
+  </Form>
+);
 
-  handleSubmit = e => {
-    e.preventDefault();
+const NewPostForm = withFormik({
+  mapPropsToValues({ categories }) {
+    return {
+      author: "",
+      title: "",
+      body: "",
+      category: categories[0].name,
+      categories: categories
+    };
+  },
 
+  handleSubmit(values, { props }) {
     createPost({
       id: createId(),
       timestamp: Date.now(),
-      author: this.state.author,
-      title: this.state.title,
-      body: this.state.body,
-      category: this.state.category
+      author: values.author,
+      title: values.title,
+      body: values.body,
+      category: values.category
     }).then(post => {
-      this.props.dispatch(addPost(post));
-      this.props.dispatch(closeNewPostForm());
+      props.dispatch(addPost(post));
+      props.dispatch(closeNewPostForm());
     });
-  };
-
-  handleChange = e => {
-    e.preventDefault();
-    const target = e.target;
-
-    this.setState({
-      [target.name]: target.value
-    });
-  };
-
-  render() {
-    return (
-      <form className={"NewPostForm"} onSubmit={this.handleSubmit}>
-        <fieldset>
-          <label>
-            Your name:
-            <input
-              name="author"
-              type="text"
-              value={this.state.author}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Title:
-            <input
-              name="title"
-              type="text"
-              value={this.state.title}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Body:
-            <textarea
-              name="body"
-              value={this.state.body}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Category:
-            <select
-              name="category"
-              value={this.state.category}
-              onChange={this.handleChange}
-            >
-              {this.props.categories.map(category => (
-                <option key={category.name} value={category.name}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <Button text={"Add Post"} />
-        </fieldset>
-      </form>
-    );
   }
-}
+})(FormikForm);
 
 function mapStateToProps(state) {
   const categories = Object.keys(state.categories).map(
