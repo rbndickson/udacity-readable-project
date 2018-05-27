@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import "./NewPostForm.css";
 import { createPost } from "../utils/api";
 import { addPost, closeNewPostForm } from "../actions";
 import Button from "./Button";
@@ -47,9 +48,9 @@ class NewPostForm extends Component {
       return <Redirect to={`/${this.props.category}`} />;
     }
     return (
-      <div>
+      <div className={"NewPostForm"}>
         <h4>Create New Post</h4>
-        <form className="new-post-form" onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <fieldset>
             <label>
               Your name:
