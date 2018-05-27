@@ -11,6 +11,13 @@ import {
 import Button from "./Button";
 
 class NewPostForm extends Component {
+  state = {
+    author: "",
+    title: "",
+    body: "",
+    category: "react"
+  };
+
   componentWillUnmount() {
     this.props.dispatch(clearNewPostForm());
   }
@@ -25,10 +32,10 @@ class NewPostForm extends Component {
           .toString(36)
           .substr(2, 14),
       timestamp: Date.now(),
-      author: this.props.author,
-      title: this.props.title,
-      body: this.props.body,
-      category: this.props.category
+      author: this.state.author,
+      title: this.state.title,
+      body: this.state.body,
+      category: this.state.category
     }).then(post => {
       this.props.dispatch(addPost(post));
       this.props.dispatch(closeNewPostForm());
@@ -38,14 +45,10 @@ class NewPostForm extends Component {
   handleChange = e => {
     e.preventDefault();
     const target = e.target;
-    const value = target.value;
-    const name = target.name;
 
-    this.props.dispatch(
-      updateNewPostForm({
-        [name]: value
-      })
-    );
+    this.setState({
+      [target.name]: target.value
+    });
   };
 
   render() {
@@ -62,7 +65,7 @@ class NewPostForm extends Component {
               <input
                 name="author"
                 type="text"
-                value={this.props.author}
+                value={this.state.author}
                 onChange={this.handleChange}
               />
             </label>
@@ -71,7 +74,7 @@ class NewPostForm extends Component {
               <input
                 name="title"
                 type="text"
-                value={this.props.title}
+                value={this.state.title}
                 onChange={this.handleChange}
               />
             </label>
@@ -79,7 +82,7 @@ class NewPostForm extends Component {
               Body:
               <textarea
                 name="body"
-                value={this.props.body}
+                value={this.state.body}
                 onChange={this.handleChange}
               />
             </label>
@@ -87,7 +90,7 @@ class NewPostForm extends Component {
               Category:
               <select
                 name="category"
-                value={this.props.category}
+                value={this.state.category}
                 onChange={this.handleChange}
               >
                 {this.props.categories.map(category => (
