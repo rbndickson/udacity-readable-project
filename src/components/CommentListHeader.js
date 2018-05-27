@@ -15,7 +15,7 @@ class CommentListHeader extends Component {
   render() {
     return (
       <div>
-        <h4>Comments ({this.props.commentCount})</h4>
+        <h4>Comments ({this.props.commentCount || 0})</h4>
         <div className="comment-list-header-button">
           {this.props.newCommentFormOpen ? (
             <div>

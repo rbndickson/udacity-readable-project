@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { getPost } from "../utils/api";
 import "./PostDetail.css";
 import { addPost } from "../actions";
+import CommentListHeader from "./CommentListHeader";
+import NewCommentForm from "./NewCommentForm";
 import CommentList from "./CommentList";
 import Post from "./Post";
 
@@ -23,6 +25,18 @@ class PostDetail extends Component {
         {post && (
           <article key={post.id} className="PostDetail">
             <Post id={post.id} />
+            <CommentListHeader
+              commentCount={this.props.commentCount}
+              postId={post.id}
+              newCommentFormOpen={this.props.newCommentFormOpen}
+            />
+            {this.props.newCommentFormOpen && (
+              <div>
+                <div>
+                  <NewCommentForm postId={this.props.post.id} />
+                </div>
+              </div>
+            )}
             {this.props.comment_count > 0 && <CommentList id={post.id} />}
           </article>
         )}
@@ -41,7 +55,9 @@ function mapStateToProps(state, ownProps) {
 
   return {
     post: state.posts[id],
-    comment_count: comment_count
+    comment_count: comment_count,
+    newCommentFormOpen:
+      state.newCommentForms[id] && state.newCommentForms[id].newCommentFormOpen
   };
 }
 

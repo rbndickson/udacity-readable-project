@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import CommentListHeader from "./CommentListHeader";
 import Comment from "./Comment";
-import NewCommentForm from "./NewCommentForm";
 
 class CommentList extends Component {
   compareForHighestScore = (a, b) => {
@@ -18,18 +16,6 @@ class CommentList extends Component {
   render() {
     return (
       <div className="comments-container">
-        <CommentListHeader
-          commentCount={this.props.commentCount}
-          postId={this.props.post.id}
-          newCommentFormOpen={this.props.newCommentFormOpen}
-        />
-        {this.props.newCommentFormOpen && (
-          <div>
-            <div>
-              <NewCommentForm postId={this.props.post.id} />
-            </div>
-          </div>
-        )}
         {this.props.comments.sort(this.compareForHighestScore).map(comment => {
           return (
             <div className="comment" key={comment.id}>
@@ -53,10 +39,7 @@ function mapStateToProps(state, ownProps) {
   return {
     post: state.posts[ownProps.id],
     comments: comments,
-    commentCount: comments.length,
-    newCommentFormOpen:
-      state.newCommentForms[ownProps.id] &&
-      state.newCommentForms[ownProps.id].newCommentFormOpen
+    commentCount: comments.length
   };
 }
 
