@@ -1,7 +1,6 @@
 import {
   OPEN_EDIT_COMMENT_FORM,
   CLOSE_EDIT_COMMENT_FORM,
-  UPDATE_EDIT_COMMENT_FORM
 } from "../actions";
 
 function editCommentForms(state = {}, action) {
@@ -18,14 +17,6 @@ function editCommentForms(state = {}, action) {
         ...state,
         [action.commentId]: {
           editCommentFormOpen: false
-        }
-      };
-    case UPDATE_EDIT_COMMENT_FORM:
-      return {
-        ...state,
-        [action.commentId]: {
-          ...state[action.commentId],
-          [action.field]: action.value
         }
       };
     default:

@@ -2,34 +2,30 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateComment } from "../utils/api";
 import {
-  updateEditCommentForm,
   closeEditCommentForm,
   editComment
 } from "../actions";
 import Button from "./common/Button";
 
 class EditCommentForm extends Component {
-  componentDidMount() {
-    this.props.dispatch(
-      updateEditCommentForm({
-        commentId: this.props.comment.id,
-        field: "body",
-        value: this.props.comment.body
-      })
-    );
+  state = {
+    body: ''
   }
 
-  componentWillUnmount() {
-    this.props.dispatch(closeEditCommentForm(this.props.comment.id));
+  componentDidMount() {
+    this.setState({
+      body: this.props.comment.body
+    })
   }
 
   handleSubmit = e => {
     e.preventDefault();
-
-    updateComment(this.props.comment.id, { body: this.props.body }).then(
+    const { body } = this.state
+    const { dispatch, comment } = this.props
+    updateComment(comment.id, { body: body }).then(
       updatedComment => {
-        this.props.dispatch(editComment(updatedComment));
-        this.props.dispatch(closeEditCommentForm(this.props.comment.id));
+        dispatch(editComment(updatedComment));
+        dispatch(closeEditCommentForm(comment.id));
       }
     );
   };
@@ -37,30 +33,22 @@ class EditCommentForm extends Component {
   handleChange = e => {
     e.preventDefault();
     const target = e.target;
-    const value = target.value;
-    const name = target.name;
 
-    this.props.dispatch(
-      updateEditCommentForm({
-        commentId: this.props.id,
-        field: name,
-        value: value
-      })
-    );
+    this.setState({
+      body: target.value
+    })
   };
 
   render() {
     return (
-      <main>
-        <form className="comment-form" onSubmit={this.handleSubmit}>
-          <textarea
-            name="body"
-            value={this.props.body}
-            onChange={this.handleChange}
-          />
-          <Button text={"Update Comment"} />
-        </form>
-      </main>
+      <form className="comment-form" onSubmit={this.handleSubmit}>
+        <textarea
+          name="body"
+          value={this.state.body}
+          onChange={this.handleChange}
+        />
+        <Button text={"Update Comment"} />
+      </form>
     );
   }
 }
