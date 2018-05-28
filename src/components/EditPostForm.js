@@ -5,19 +5,15 @@ import "./EditPostForm.css";
 import { updatePost } from "../utils/api";
 import { closeEditPostForm, editPost } from "../actions";
 import Button from "./Button";
+import LabelledTextInput from "./LabelledTextInput";
 
-const FormikForm = () => (
+const FormikForm = values => (
   <div className="EditPostForm">
     <h3>Edit Post</h3>
     <Form>
-      <label>
-        Title:
-        <Field name="title" type="text" />
-      </label>
-      <label>
-        Body:
-        <Field component="textarea" name="body" />
-      </label>
+      <LabelledTextInput name="title" type="text" label="Title:" />
+      <label htmlFor="body">Body:</label>
+      <Field component="textarea" name="body" />
       <Button text="Update Post" />
     </Form>
   </div>
