@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { capitalize } from "../utils/helpers";
 import { openNewPostForm, closeNewPostForm } from "../actions";
-import Button from "./Button";
+import Button from "./common/Button";
 import PostListHeaderSelect from "./PostListHeaderSelect";
 import NewPost from "./NewPost";
 

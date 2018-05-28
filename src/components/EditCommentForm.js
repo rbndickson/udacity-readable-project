@@ -6,7 +6,7 @@ import {
   closeEditCommentForm,
   editComment
 } from "../actions";
-import Button from "./Button";
+import Button from "./common/Button";
 
 class EditCommentForm extends Component {
   componentDidMount() {

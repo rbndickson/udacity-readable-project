@@ -5,8 +5,8 @@ import "./NewPostForm.css";
 import { createPost } from "../utils/api";
 import { createId } from "../utils/helpers";
 import { addPost, closeNewPostForm } from "../actions";
-import Button from "./Button";
-import LabelledTextInput from "./LabelledTextInput";
+import Button from "./common/Button";
+import LabelledTextInput from "./common/LabelledTextInput";
 
 const FormikForm = ({ values }) => (
   <Form className="NewPostForm">

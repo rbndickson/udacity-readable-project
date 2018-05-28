@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { openNewCommentForm, closeNewCommentForm } from "../actions";
-import Button from "./Button";
+import Button from "./common/Button";
 
 class CommentListHeader extends Component {
   openNewCommentForm = () => {

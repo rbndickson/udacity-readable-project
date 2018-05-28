@@ -8,8 +8,8 @@ import {
   closeEditCommentForm
 } from "../actions";
 import EditCommentForm from "./EditCommentForm";
-import Voting from "./Voting";
-import Button from "./Button";
+import Voting from "./common/Voting";
+import Button from "./common/Button";
 
 class Comment extends Component {
   handleDelete = () => {

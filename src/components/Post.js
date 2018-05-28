@@ -6,7 +6,7 @@ import { capitalize } from "../utils/helpers";
 import "./Post.css";
 import { addComment } from "../actions";
 import PostButtons from "./PostButtons";
-import Voting from "./Voting";
+import Voting from "./common/Voting";
 import EditPostForm from "./EditPostForm";
 
 class Post extends Component {

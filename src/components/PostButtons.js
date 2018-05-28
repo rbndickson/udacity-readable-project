@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deletePost } from "../utils/api";
 import { removePost, openEditPostForm, closeEditPostForm } from "../actions";
-import Button from "./Button";
+import Button from "./common/Button";
 
 class PostButtons extends Component {
   handleDelete = () => {

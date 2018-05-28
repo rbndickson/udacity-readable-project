@@ -6,7 +6,7 @@ import {
   addComment,
   closeNewCommentForm
 } from "../actions";
-import Button from "./Button";
+import Button from "./common/Button";
 
 class NewCommentForm extends Component {
   handleChange = e => {

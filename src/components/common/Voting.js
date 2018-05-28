@@ -5,9 +5,9 @@ import {
   downVotePost,
   upVoteComment,
   downVoteComment
-} from "../utils/api";
+} from "../../utils/api";
 import "./Voting.css";
-import { editPost, editComment } from "../actions";
+import { editPost, editComment } from "../../actions";
 
 class Voting extends Component {
   handleUpvote = () => {

@@ -4,8 +4,8 @@ import { withFormik, Form, Field } from "formik";
 import "./EditPostForm.css";
 import { updatePost } from "../utils/api";
 import { closeEditPostForm, editPost } from "../actions";
-import Button from "./Button";
-import LabelledTextInput from "./LabelledTextInput";
+import Button from "./common/Button";
+import LabelledTextInput from "./common/LabelledTextInput";
 
 const FormikForm = values => (
   <div className="EditPostForm">
