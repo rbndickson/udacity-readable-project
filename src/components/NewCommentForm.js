@@ -1,31 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createComment } from "../utils/api";
-import {
-  updateNewCommentForm,
-  addComment,
-  closeNewCommentForm
-} from "../actions";
+import { addComment, closeNewCommentForm } from "../actions";
 import Button from "./common/Button";
 
 class NewCommentForm extends Component {
+  state = {
+    author: "",
+    body: ""
+  };
+
   handleChange = e => {
     e.preventDefault();
     const target = e.target;
-    const value = target.value;
-    const name = target.name;
 
-    this.props.dispatch(
-      updateNewCommentForm({
-        postId: this.props.postId,
-        field: name,
-        value: value
-      })
-    );
+    this.setState({
+      [target.name]: target.value
+    });
   };
 
   handleSubmit = e => {
     e.preventDefault();
+    const { author, body } = this.state;
+    const { postId, dispatch } = this.props;
 
     createComment({
       id:
@@ -33,13 +30,13 @@ class NewCommentForm extends Component {
         Math.random()
           .toString(36)
           .substr(2, 14),
-      parentId: this.props.postId,
+      parentId: postId,
       timestamp: Date.now(),
-      author: this.props.currentFormAuthor,
-      body: this.props.currentFormBody
+      author: author,
+      body: body
     }).then(comment => {
-      this.props.dispatch(addComment(comment));
-      this.props.dispatch(closeNewCommentForm(this.props.postId));
+      dispatch(addComment(comment));
+      dispatch(closeNewCommentForm(postId));
     });
   };
 
@@ -52,7 +49,7 @@ class NewCommentForm extends Component {
             <input
               name="author"
               type="text"
-              value={this.props.currentFormAuthor}
+              value={this.state.author}
               onChange={this.handleChange}
             />
           </label>
@@ -60,7 +57,7 @@ class NewCommentForm extends Component {
             Body:
             <textarea
               name="body"
-              value={this.props.currentFormBody}
+              value={this.state.body}
               onChange={this.handleChange}
             />
           </label>
@@ -71,16 +68,4 @@ class NewCommentForm extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  // So that component is always controlled
-  const currentFormAuthor = state.newCommentForms[ownProps.postId].author || "";
-  const currentFormBody = state.newCommentForms[ownProps.postId].body || "";
-
-  return {
-    postId: ownProps.postId,
-    currentFormAuthor: currentFormAuthor,
-    currentFormBody: currentFormBody
-  };
-}
-
-export default connect(mapStateToProps)(NewCommentForm);
+export default connect()(NewCommentForm);
