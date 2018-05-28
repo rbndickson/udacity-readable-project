@@ -1,7 +1,6 @@
 import {
   OPEN_EDIT_POST_FORM,
-  CLOSE_EDIT_POST_FORM,
-  UPDATE_EDIT_POST_FORM
+  CLOSE_EDIT_POST_FORM
 } from "../actions";
 
 function editPostForms(state = {}, action) {
@@ -18,14 +17,6 @@ function editPostForms(state = {}, action) {
         ...state,
         [action.postId]: {
           editPostFormOpen: false
-        }
-      };
-    case UPDATE_EDIT_POST_FORM:
-      return {
-        ...state,
-        [action.postId]: {
-          ...state[action.postId],
-          [action.field]: action.value
         }
       };
     default:
