@@ -1,22 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withFormik, Form, Field } from "formik";
 import "./NewPostForm.css";
 import { createPost } from "../utils/api";
 import { createId } from "../utils/helpers";
 import { addPost, closeNewPostForm } from "../actions";
 import Button from "./Button";
-import { withFormik, Form, Field } from "formik";
+import LabelledTextInput from "./LabelledTextInput";
 
 const FormikForm = ({ values }) => (
   <Form className="NewPostForm">
-    <label>
-      Your name:
-      <Field name="author" type="text" />
-    </label>
-    <label>
-      Title:
-      <Field name="title" type="text" />
-    </label>
+    <LabelledTextInput name="author" type="text" label="Your name:" />
+    <LabelledTextInput name="title" type="text" label="Title:" />
     <label>
       Body:
       <Field component="textarea" name="body" />
