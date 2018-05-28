@@ -1,71 +1,44 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import { withFormik, Form, Field } from "formik";
+import "./NewCommentForm.css";
 import { createComment } from "../utils/api";
+import { createId } from "../utils/helpers";
 import { addComment, closeNewCommentForm } from "../actions";
 import Button from "./common/Button";
+import LabelledTextInput from "./common/LabelledTextInput";
 
-class NewCommentForm extends Component {
-  state = {
-    author: "",
-    body: ""
-  };
+const FormikForm = ({ values }) => (
+  <Form className="NewCommentForm">
+    <LabelledTextInput name="author" type="text" label="Your Name:" />
+    <label>
+      Comment:
+      <Field component="textarea" name="body" />
+    </label>
+    <Button text={"Add Comment"} />
+  </Form>
+);
 
-  handleChange = e => {
-    e.preventDefault();
-    const target = e.target;
+const NewCommentForm = withFormik({
+  mapPropsToValues() {
+    return {
+      author: "",
+      body: ""
+    };
+  },
 
-    this.setState({
-      [target.name]: target.value
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const { author, body } = this.state;
-    const { postId, dispatch } = this.props;
-
+  handleSubmit(values, { props }) {
     createComment({
-      id:
-        Date.now().toString(36) +
-        Math.random()
-          .toString(36)
-          .substr(2, 14),
-      parentId: postId,
+      id: createId(),
+      parentId: props.postId,
       timestamp: Date.now(),
-      author: author,
-      body: body
+      author: values.author,
+      body: values.body
     }).then(comment => {
-      dispatch(addComment(comment));
-      dispatch(closeNewCommentForm(postId));
+      props.dispatch(addComment(comment));
+      props.dispatch(closeNewCommentForm(props.postId));
     });
-  };
-
-  render() {
-    return (
-      <div className="form-container">
-        <form className="new-comment-form" onSubmit={this.handleSubmit}>
-          <label>
-            Your Name:
-            <input
-              name="author"
-              type="text"
-              value={this.state.author}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Body:
-            <textarea
-              name="body"
-              value={this.state.body}
-              onChange={this.handleChange}
-            />
-          </label>
-          <Button text={"Add Comment"} />
-        </form>
-      </div>
-    );
   }
-}
+})(FormikForm);
 
 export default connect()(NewCommentForm);
