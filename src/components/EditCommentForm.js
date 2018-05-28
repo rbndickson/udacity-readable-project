@@ -1,57 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import { withFormik, Form, Field } from "formik";
 import { updateComment } from "../utils/api";
-import {
-  closeEditCommentForm,
-  editComment
-} from "../actions";
+import { closeEditCommentForm, editComment } from "../actions";
 import Button from "./common/Button";
 
-class EditCommentForm extends Component {
-  state = {
-    body: ''
+const FormikForm = ({ values }) => (
+  <Form>
+    <Field component="textarea" name="body" />
+    <Button text={"Update Comment"} />
+  </Form>
+);
+
+const EditCommentForm = withFormik({
+  mapPropsToValues({ comment }) {
+    return {
+      body: comment.body
+    };
+  },
+
+  handleSubmit(values, { props }) {
+    const { dispatch, comment } = props;
+
+    updateComment(comment.id, { body: values.body }).then(updatedComment => {
+      dispatch(editComment(updatedComment));
+      dispatch(closeEditCommentForm(comment.id));
+    });
   }
-
-  componentDidMount() {
-    this.setState({
-      body: this.props.comment.body
-    })
-  }
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const { body } = this.state
-    const { dispatch, comment } = this.props
-    updateComment(comment.id, { body: body }).then(
-      updatedComment => {
-        dispatch(editComment(updatedComment));
-        dispatch(closeEditCommentForm(comment.id));
-      }
-    );
-  };
-
-  handleChange = e => {
-    e.preventDefault();
-    const target = e.target;
-
-    this.setState({
-      body: target.value
-    })
-  };
-
-  render() {
-    return (
-      <form className="comment-form" onSubmit={this.handleSubmit}>
-        <textarea
-          name="body"
-          value={this.state.body}
-          onChange={this.handleChange}
-        />
-        <Button text={"Update Comment"} />
-      </form>
-    );
-  }
-}
+})(FormikForm);
 
 function mapStateToProps(state, ownProps) {
   return {
