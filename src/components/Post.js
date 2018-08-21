@@ -40,7 +40,7 @@ class Post extends Component {
               </span>
             </div>
             <div>
-              <span>{this.props.comment_count} Comments</span>
+              <span>{this.props.commentCount} Comments</span>
               <PostButtons id={post.id} />
             </div>
           </div>
@@ -54,7 +54,7 @@ class Post extends Component {
 function mapStateToProps(state, ownProps) {
   const id = ownProps.id;
   const comment_keys = Object.keys(state.comments);
-  const comment_count = comment_keys
+  const commentCount = comment_keys
     .map(comment_key => state.comments[comment_key])
     .filter(comment => comment.parentId === id).length;
 
@@ -64,7 +64,7 @@ function mapStateToProps(state, ownProps) {
 
   return {
     post: state.posts[id],
-    comment_count: comment_count,
+    commentCount: commentCount,
     editPostFormOpen: editPostFormOpen
   };
 }
